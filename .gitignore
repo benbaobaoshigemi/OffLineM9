@@ -1,0 +1,9 @@
+rom/
+emu/root/
+emu/apex/
+third_party/
+re/apk_src/
+re/chromatix/dump/
+re/chromatix/modes/
+*.mem
+out/
