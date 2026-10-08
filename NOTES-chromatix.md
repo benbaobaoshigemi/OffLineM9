@@ -21,12 +21,13 @@
 ## 调参模式
 - 类型：0 Default, 1 Sensor, 2 Usecase, 3 Feature0, 4 Feature1, 5 Feature2, 6 Scene, 7 Effect。
 - 传说模式由 `libmicamera_adapter.so` `updateLegendCustomFeature` 设定：
-  control=0xF4，**Feature0 = 8（M9，legendMode==2）/ 7（M3）**；
+  control=0xF4，**Feature0 = 7（M9，legendMode==1）/ 8（M3 Monopan 黑白，legendMode==2）**（App：VALUE_M3→2，否则→1）；
   FormatConvertor 节点 Feature1=0x24，PreRawEmbeder 节点 Feature2=0xBC；B2Y 节点不改 Feature1/2。
 
 ## 主摄可用模块（wide_i）
 风格相关 IPE：gamma152, ltm21, cc15, cv122, tdl13, sce112, cs202, asf353, gra102, upscale202, hdr10p102；SW：tmc202。
 
-## M9 专属（Feature0=8，Sensor 1/4/11、Usecase 0/1 结果一致）
+## Feature0=8（实为 M3 黑白：CC 两通道相同、CV 色度系数为 0）
+## 以下结论需对 Feature0=7（M9）重做：（原：Sensor 1/4/11、Usecase 0/1 结果一致）
 gamma152、ltm21、cc15、cv122、tdl13、tmc202 均为 M9 专属实例；gra102、sce112 与默认相同；
 cs202 仅 Usecase0 不同；asf353/upscale 随传感器/usecase 变化，与 M9 无关。
