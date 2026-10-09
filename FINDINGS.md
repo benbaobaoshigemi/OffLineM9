@@ -103,3 +103,18 @@
   camera.qcom.sm8850.so SetAIEnabledPerFrame / IPEIQControlAIEnable）取得；aiEnable=1 时用 ACB 的 CCM 输出变换矩阵
   （libhwliqinterface2 0x29f020 → 0xfe7a20）。Legend 下是否置 1 未追完（sm8850 库 Ghidra 分析超 5 分钟）。
 - TMC202：m9/tmc.py 与原版在 4 组 lux/DRC 下一致（≤1.2e-6，tools/verify_tmc.py）。
+
+## Ultra HDR 增益图（2026-10-09）
+- legendsnapshot：两路 B2Y（GainmapAnchor 吃 anchor RAW，GainmapForRGB 吃 AIO RGB16）都接 GainMap **port 2 = LinearYUV**；
+  port 0/1 = SDR/HDR（libultrahdr generateGainMap，Legend 不用），port 3 = RAW。
+- offcamb2y `updateMetaForGainMap`(0x4bde4)：设 `com.xiaomi.ultraHDR.linearFrame` → chromatix **function 51
+  UltraHdrLinearFrame**（function 53 BkUltraHdrLinearFrame 为人像）：M9 下 gamma152/tmc202/ltm21 不同（gamma 黑位抬到
+  47–78/1023，tmc GTM 50%/LTM 50% 但 LTM 强度 0），cc15/cv122/tdl13/gtm133 与 M9 相同。
+  数字增益 "regular algo"：dg = 0.3（legendMode 1/2，否则 0.6），luxIdx>150 且 adrc<1.33 时 ×adrc/1.33；ADRC 沿用主帧。
+  配置 odm/etc/camera/xiaomi/chiofflinesetting.json "UltraHdr"（histstep 3、brightRatio 300ppm、evAnchor/evTarget、
+  normADRCKnee 133、normADRCLux 150、luxIdx 表）；EVx/HDR 多帧时另有亮区直方图增益路径（离线单帧不走）。
+- gainmap 插件属性默认：policy 2、maxRGB 1、scaleFactor 2（superhd 4）、maxHdrBoost 500→5.0。MaxRGB(0xc320)：
+  g8 = clip(Y + (max(dR,dG,dB)⁺ + mean)/2)，整数系数 359/-88/-183/454 >>8、×0x5556>>16。元数据 ver 1.0、gamma 1、offset 0、
+  min 1、max 5、hdrCap 1/5。
+- gainmapPostProc：hl% = g8≥250 占比；extra 100%(≤8%)→80%(≥20%)；maxBoost=hdrCapMax=max(1, extra×5.0×residualGain)；
+  灰度 JPEG 质量 98。jpegrAggr 写 XMP + MPF（还写 ISO 21496 元数据、Leica 水印/四边框高度处理）。

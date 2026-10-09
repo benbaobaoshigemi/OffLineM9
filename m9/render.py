@@ -22,7 +22,8 @@ from .leicafilter import LeicaFilter
 
 def render(path: str, out: str, lux_index: float | None = None, cct: float | None = None,
            scene: str = "common", ev: float = 0.0, quality: int = 95, half: bool = False,
-           verbose: bool = True, camera: str = "main", zoom: float | None = None) -> np.ndarray:
+           verbose: bool = True, camera: str = "main", zoom: float | None = None,
+           hdr: bool = True) -> np.ndarray:
     fe = b2y(path, lux_index, cct, ev=ev, half=half, camera=camera)
     if zoom is None:
         zoom = 1.0 if camera == "main" else _tele_zoom(path)
@@ -45,7 +46,16 @@ def render(path: str, out: str, lux_index: float | None = None, cct: float | Non
               f"style={a.style_scale:.2f} mid={a.mid_target:.1f} dr={a.dr_b2d:.1f} "
               f"exp_mid={a.exp_mid:.2f} exp_short={a.exp_short:.2f} adrc={a.adrc_gain:.2f} "
               f"| StyleTrans={'on' if style_on else 'off (LeicaFilter preview params)'}")
-    _save(img, out, quality)
+    if hdr:
+        from . import gainmap, uhdr
+        gm = gainmap.make(fe, ev)
+        fe.lin = None
+        n = uhdr.write(out, img, gm, quality)
+        if verbose:
+            print(f"  UltraHDR: gainmap {gm.image.shape[1]}x{gm.image.shape[0]} mean={gm.image.mean():.1f} "
+                  f"hl={gm.hl_pct:.2f}% maxBoost={gm.max_boost:.2f} -> {n / 1e6:.1f} MB")
+    else:
+        _save(img, out, quality)
     return img
 
 
@@ -74,10 +84,11 @@ def main():
     ap.add_argument("--ev", type=float, default=0.0, help="exposure compensation (stops)")
     ap.add_argument("--camera", default="main", choices=["main", "tele"])
     ap.add_argument("--zoom", type=float, help="LeicaFilter zoom ratio (default: main 1.0, tele from focal length)")
+    ap.add_argument("--no-hdr", action="store_true", help="plain SDR JPEG (no Ultra HDR gain map)")
     ap.add_argument("--half", action="store_true", help="half-size demosaic (fast preview)")
     a = ap.parse_args()
     out = a.output or os.path.splitext(a.input)[0] + "_M9.jpg"
-    render(a.input, out, a.lux_index, a.cct, a.scene, a.ev, half=a.half, camera=a.camera, zoom=a.zoom)
+    render(a.input, out, a.lux_index, a.cct, a.scene, a.ev, half=a.half, camera=a.camera, zoom=a.zoom, hdr=not a.no_hdr)
 
 
 if __name__ == "__main__":

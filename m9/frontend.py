@@ -248,16 +248,22 @@ def gamma_apply(rgb_lin: np.ndarray, lut: np.ndarray) -> np.ndarray:
     return np.interp(np.clip(rgb_lin, 0, 1), xs, lut).astype(np.float32)
 
 
-def cv_apply(rgb: np.ndarray, p: np.ndarray) -> np.ndarray:
-    """cv122: Y = ry R + gy G + by B ; Cb = a[(B-G) + b(R-G)], Cr = c[(R-G) + d(B-G)]
-    (p/m pairs by sign of the result). Output re-expanded with the BT.601 full-range inverse,
-    i.e. the RGB a downstream NV12 consumer sees."""
+def cv_yuv(rgb: np.ndarray, p: np.ndarray):
+    """cv122 RGB -> YCbCr: Y = ry R + gy G + by B ; Cb = a[(B-G) + b(R-G)], Cr = c[(R-G) + d(B-G)]
+    (p/m pairs by sign of the result). Returns (Y, Cb, Cr), Cb/Cr centred on 0."""
     r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
     y = p[0] * r + p[1] * g + p[2] * b
     cb_ = (b - g) + np.where((b - g) >= 0, p[6], p[7]) * (r - g)
     cr_ = (r - g) + np.where((r - g) >= 0, p[10], p[11]) * (b - g)
     cb = np.where(cb_ >= 0, p[4], p[5]) * cb_
     cr = np.where(cr_ >= 0, p[8], p[9]) * cr_
+    return y, cb, cr
+
+
+def cv_apply(rgb: np.ndarray, p: np.ndarray) -> np.ndarray:
+    """cv122, re-expanded with the BT.601 full-range inverse, i.e. the RGB a downstream NV12
+    consumer sees."""
+    y, cb, cr = cv_yuv(rgb, p)
     R = y + 1.402 * cr
     G = y - 0.344136 * cb - 0.714136 * cr
     B = y + 1.772 * cb
@@ -271,6 +277,9 @@ class FrontEndResult:
     info: RawInfo
     lux_index: float
     cct: float
+    lin: np.ndarray | None = None        # linear WB'd camera RGB (input of the B2Y nodes)
+    cam2srgb: np.ndarray | None = None
+    camera: str = "main"
 
 
 def b2y(path: str, lux_index: float | None = None, cct: float | None = None, ev: float = 0.0,
@@ -305,4 +314,4 @@ def b2y(path: str, lux_index: float | None = None, cct: float | None = None, ev:
         out[bounds[i]:bounds[i + 1]] = strip(lin[bounds[i]:bounds[i + 1]])
     with ThreadPoolExecutor(n) as ex:
         list(ex.map(run, range(2 * n)))
-    return FrontEndResult(out, ae, info, li, k)
+    return FrontEndResult(out, ae, info, li, k, lin, cam2srgb, camera)

@@ -31,7 +31,8 @@ python -m m9.render input.dng -o out.jpg [--camera main|tele] [--zoom Z] [--ev 0
 | Depurple（altek CFR） | 按镜头参数去紫边（w.bin），无 M9 专属 | 不做 | **必要取舍**：17U 镜头专用 |
 | WideLDC / LDC | 畸变校正 | 不做 | **必要取舍**：17U 镜头专用 |
 | **LeicaFilter** | 17³ LUT（lux×CCT 插值）+ CvStyle 暗角；StyleTrans 运行用 snapshot 参数，否则 preview 参数 | `m9/leicafilter.py` | 精确 |
-| Watermark / GainMap / jpegr | 水印、Ultra HDR 增益图 | 只输出 SDR JPEG | 可选，未做 |
+| **GainMap 支路**（B2Y GainmapForRGB → GainMap → GainMapPostProc → jpegrAggr） | B2Y 以 function 51 `UltraHdrLinearFrame` 调校（自有 gamma/tmc，cc/cv/tdl 同 M9）、数字增益 0.3（Legend）×LDR 修正；GainMap 取 (maxRGB+meanRGB)/2 生成 Y8（1/2 尺寸）；PostProc 按 ≥250 占比给 extraGain，maxBoost = extra×5.0 | `m9/gainmap.py` + `m9/uhdr.py`（Ultra HDR v1：XMP hdrgm + MPF），默认开启，`--no-hdr` 关闭 | 逐节点按反汇编复刻；ISO 21496-1 二进制元数据未写（XMP 已足够 Android/Chrome 识别）；LDC 不做（与主图一致） |
+| Watermark | 徕卡水印 | 不做 | 可选 |
 
 ## 运行 StyleTrans（精确后端）
 - 需要 QAIRT SDK 2.33.0.250327（`M9_QAIRT`），Windows 下通过 WSL 运行 `qnn-net-run`（`M9_WSL_DISTRO`）。
