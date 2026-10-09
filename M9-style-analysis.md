@@ -66,8 +66,32 @@ M9 的 B2Y 风格层不是"加料"，而是**做减法**：降低基础饱和度
 在强光下降低反差；DRC 全部由全局曲线承担。风格的"性格"（CCD 色彩）交给后面的 StyleTrans 网络和 LeicaFilter LUT。
 自建前端应提供：低饱和的色彩转换、对高饱和的柔和压缩、无局部对比度增强、偏平的全局影调。
 
-## StyleTrans 选择规则（来自 `libmialgo_styletrans.so`）
-- low 模型：`lux_index > 260` 且 `CCT < 4692 K`（暗、暖光）；其余用 high 模型。
-- 前处理：resize 到 768×1024（横拍 1024×768）→ 人像分割 mask → RGB+mask 4 通道 →
-  四周各补 48 像素到 864×1120 → 量化 (x−128)/127.5。
-- 后处理（放大回原尺寸、colorfix 拼接）待续。
+## StyleTrans 全流程（`libmialgo_styletrans.so`，`styletrans_pipeline.cpp`，已由反汇编坐实）
+`run()` 0x449518 依次调用：
+
+| 步骤 | 函数 | 做法 |
+|---|---|---|
+| 1 yuv_convert_rgb | 0x441db8 → `MialgoCvtcolorYUVToRGB` | NV12（+0x338==1 时 NV21）→ RGB u8，**BT.601 全范围**（Y 不减 16；R=Y+1.403·V′，G=Y−0.344·U′−0.714·V′，B=Y+1.772·U′，U′/V′=U/V−128） |
+| 2 pad_input | 0x4434d0 | 居中 `copyMakeBorder` 到 **4096×3072**（宽×高，横向传感器方向），BORDER_REFLECT_101；4096×3072 原图即为空操作 |
+| 3 resize1 | 0x443758(1) | `cv::resize` INTER_AREA，4096×3072 → **1024×768** |
+| 4 styletrans | 0x444694 | 见下 |
+| 5 resize2 | 0x443758(2) | `cv::resize` INTER_AREA（放大时等同双线性），1024×768 → 4096×3072 |
+| 6 colorfix | 0x44788c | 分块全分辨率修色网络，见下 |
+| 7 crop_output | 0x443610 | 居中裁回原尺寸 |
+| 8 rgb_convert_yuv | 0x442934 | `Rgb2Nv12601`，BT.601 全范围 |
+
+### styletrans（低分辨率风格网络）
+- 模型选择：low = `lux_index > 260` 且 `CCT < 4692 K`（暗、暖光）；其余 high。
+- 人像分割（humanseg）输出 768×768 mask → resize 到 1024×768。
+- RGB 与 mask 各四周补 48 px 到 1120×864：RGB 用 **BORDER_REFLECT**，mask 用常数 0。
+- RGB+mask 拼 4 通道，量化 (x−128)/127.5 输入网络。
+- 输出 u8 RGB（1120×864），取 `Rect(48,48,1024,768)` 写回。
+
+### colorfix（全分辨率修色网络，"low-res 风格 → hi-res 细节"）
+- 输入 1 = 补边后的原图（4096×3072），输入 2 = resize2 放大的风格图。
+- 以 **512 步长**遍历；每块取 [y−16, y+528) × [x−16, x+528)（边缘截断）放入 **544×544** 块，
+  块内偏移 16−(y−起点)，不足处留空。
+- 两块 3 通道拼成 **544×544×6**（风格图在前、原图在后）送网络。
+- 输出取块中心 **512×512**（块内 [16,528)）直接拷回输出图，**无羽化/混合**。
+- 含义：网络只在低分辨率上决定"颜色/影调"，colorfix 把这个颜色映射以原图细节为引导搬到全分辨率
+  （类似学习式 guided upsampling），因此不会损失原图锐度和纹理。
