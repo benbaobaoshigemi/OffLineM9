@@ -1,0 +1,8 @@
+ERROR VarnodeContext: out of address spaces at @00f4937f for: x14-00f4937f (VarnodeContext)  
+ERROR VarnodeContext: out of address spaces at @00f6d7ef for: x14-00f6d7ef (VarnodeContext)  
+ERROR VarnodeContext: out of address spaces at @00fa740f for: x14-00fa740f (VarnodeContext)  
+INFO  REPORT: Analysis succeeded for file: file:///F:/OffLineM9/rom/vendor/lib64/libhwliqinterface2.so (HeadlessAnalyzer)  
+INFO  SCRIPT: F:\OffLineM9-pipeline\tools\ghidra\DecompileAt.java (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///F:/OffLineM9/rom/vendor/lib64/libhwliqinterface2.so (HeadlessAnalyzer)  
+INFO  REPORT: Save succeeded for: /libhwliqinterface2.so (libhwliqinterface2.so:/libhwliqinterface2.so) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

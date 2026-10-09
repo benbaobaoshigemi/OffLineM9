@@ -8,3 +8,4 @@ re/chromatix/modes/
 *.mem
 out/
 samples/
+re/weights/

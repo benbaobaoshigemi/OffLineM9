@@ -159,11 +159,22 @@ class LeicaFilterParams:
 
 
 # ------------------------------------------------------------------ shaders
+def _torch():
+    try:
+        import torch
+        return torch, ("cuda" if torch.cuda.is_available() else "cpu")
+    except ImportError:
+        return None, None
+
+
 def lut_apply(rgb: np.ndarray, lut: np.ndarray) -> np.ndarray:
     """CubeLutEffect, lut_type=1: texture(lut, c*(N-1)/N + .5/N .zyx).bgr, strength 1.
 
     rgb: float32 [...,3] in 0..1. Trilinear filtering like GL_LINEAR on a 3D texture.
     """
+    torch, dev = _torch()
+    if torch is not None:
+        return _lut_apply_torch(torch, dev, rgb, lut)
     n = lut.shape[0]
     t = lut.astype(np.float32) / 255.0          # [r][g][b] -> (B,G,R)
     t = t[..., ::-1]                             # -> (R,G,B)
@@ -183,12 +194,68 @@ def lut_apply(rgb: np.ndarray, lut: np.ndarray) -> np.ndarray:
     return out
 
 
+def _lut_apply_torch(torch, dev, rgb, lut):
+    """Same trilinear lookup as the numpy path, on the GPU (row chunks bound memory)."""
+    n = lut.shape[0]
+    t = torch.from_numpy(np.ascontiguousarray((lut.astype(np.float32) / 255.0)[..., ::-1])).to(dev)
+    tf = t.reshape(-1, 3)
+    out = np.empty(rgb.shape, np.float32)
+    step = max(1, (1 << 22) // max(1, rgb.shape[1]))
+    for y in range(0, rgb.shape[0], step):
+        x = torch.from_numpy(np.ascontiguousarray(rgb[y:y + step], np.float32)).to(dev).clamp(0, 1) * (n - 1)
+        i0 = torch.clamp(torch.floor(x).to(torch.int64), max=n - 2)
+        f = x - i0
+        acc = torch.zeros_like(x)
+        for dr in (0, 1):
+            wr = f[..., 0:1] if dr else 1 - f[..., 0:1]
+            for dg in (0, 1):
+                wg = f[..., 1:2] if dg else 1 - f[..., 1:2]
+                for db in (0, 1):
+                    wb = f[..., 2:3] if db else 1 - f[..., 2:3]
+                    idx = ((i0[..., 0] + dr) * n + (i0[..., 1] + dg)) * n + (i0[..., 2] + db)
+                    acc = acc + wr * wg * wb * tf[idx]
+        out[y:y + step] = acc.cpu().numpy()
+    return out
+
+
+def _cvstyle_torch(torch, dev, rgb, p, current_time):
+    h, w = rgb.shape[:2]
+    start, end, coord_scale, value_scale, k, b, v, t = (float(x) for x in p)
+    ys = torch.arange(h, device=dev, dtype=torch.float32)[:, None].expand(h, w)
+    xs = torch.arange(w, device=dev, dtype=torch.float32)[None, :].expand(h, w)
+    uvx = ((xs + 0.5) / w - 0.5) * w / h + 0.5
+    uvy = (ys + 0.5) / h
+    ux, uy = uvx - 0.5, uvy - 0.5
+    dist = torch.sqrt(ux * ux + uy * uy)
+    tt = current_time * (30.0 / 60.0) / 100.0
+    nx, ny = ux - 0.5, uy - 0.5
+
+    def nrand(u, vv):
+        s = torch.sin(u * 12.9898 + vv * 78.233) * 43758.5453
+        return torch.remainder(s - torch.trunc(s), 1.0)
+
+    rnd = sum(nrand(nx + c * tt, ny + c * tt) for c in (0.07, 0.11, 0.13, 0.17, 0.19, 0.23)) / 6.0
+    dist = dist + 0.004 * rnd * 10.0 * coord_scale
+    s = torch.clamp((dist - start) / (end - start), 0.0, 1.0)
+    vig = s * s * (3.0 - 2.0 * s)
+    x = torch.from_numpy(np.ascontiguousarray(rgb, np.float32)).to(dev)
+    r, g, bb = x[..., 0], x[..., 1], x[..., 2]
+    L = 0.499 * r + 0.387 * g + 0.114 * bb
+    Y = 0.299 * r + 0.587 * g + 0.114 * bb
+    pf = v / (1.0 + torch.exp(k * (-L + b))) + t
+    vig = ((1.0 - pf) * vig + pf) * value_scale
+    return (x + (Y * (vig - 1.0))[..., None]).cpu().numpy()
+
+
 def _nrand(u, v):
     return np.modf(np.sin(u * 12.9898 + v * 78.233) * 43758.5453)[0] % 1.0
 
 
 def cvstyle_apply(rgb: np.ndarray, p: np.ndarray, current_time: float = 0.0) -> np.ndarray:
     """CvStyleEffect (libMiPhotoFilter): luminance-only vignette, preserves extremes."""
+    torch, dev = _torch()
+    if torch is not None:
+        return _cvstyle_torch(torch, dev, rgb, p, current_time)
     h, w = rgb.shape[:2]
     start, end, coord_scale, value_scale, k, b, v, t = (float(x) for x in p)
     ys, xs = np.mgrid[0:h, 0:w].astype(np.float32)

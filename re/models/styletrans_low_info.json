@@ -1,0 +1,104 @@
+{
+    "version": "QNN_SYSTEM_CONTEXT_BINARY_INFO_VERSION_3",
+    "info": {
+        "backendId": 6,
+        "buildId": "v2.33.0.250327124043_117917",
+        "coreApiVersion": "2.25.0",
+        "backendApiVersion": "5.33.0",
+        "socVersion": "",
+        "contextBlobVersion": "3.2.2",
+        "contextBlobSize": 10004456,
+        "numContextTensors": 0,
+        "contextTensors": [],
+        "numGraphs": 1,
+        "graphs": [
+            {
+                "version": "QNN_SYSTEM_CONTEXT_GRAPH_INFO_VERSION_3",
+                "info": {
+                    "graphName": "model",
+                    "numGraphInputs": 1,
+                    "graphInputs": [
+                        {
+                            "version": "QNN_TENSOR_VERSION_1",
+                            "info": {
+                                "id": 1,
+                                "name": "input",
+                                "type": "QNN_TENSOR_TYPE_APP_WRITE",
+                                "dataFormat": "QNN_TENSOR_DATA_FORMAT_FLAT_BUFFER",
+                                "dataType": "QNN_DATATYPE_UFIXED_POINT_8",
+                                "rank": 4,
+                                "dimensions": [
+                                    1,
+                                    864,
+                                    1120,
+                                    4
+                                ],
+                                "memType": "QNN_TENSORMEMTYPE_RAW",
+                                "quantizeParams": {
+                                    "definition": "QNN_DEFINITION_DEFINED",
+                                    "quantizationEncoding": "QNN_QUANTIZATION_ENCODING_SCALE_OFFSET",
+                                    "scaleOffset": {
+                                        "scale": 0.007843137718737126,
+                                        "offset": -128
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "numGraphOutputs": 1,
+                    "graphOutputs": [
+                        {
+                            "version": "QNN_TENSOR_VERSION_1",
+                            "info": {
+                                "id": 3365,
+                                "name": "output",
+                                "type": "QNN_TENSOR_TYPE_APP_READ",
+                                "dataFormat": "QNN_TENSOR_DATA_FORMAT_FLAT_BUFFER",
+                                "dataType": "QNN_DATATYPE_UFIXED_POINT_8",
+                                "rank": 4,
+                                "dimensions": [
+                                    1,
+                                    864,
+                                    1120,
+                                    3
+                                ],
+                                "memType": "QNN_TENSORMEMTYPE_RAW",
+                                "quantizeParams": {
+                                    "definition": "QNN_DEFINITION_DEFINED",
+                                    "quantizationEncoding": "QNN_QUANTIZATION_ENCODING_SCALE_OFFSET",
+                                    "scaleOffset": {
+                                        "scale": 0.007843137718737126,
+                                        "offset": -128
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "numUpdateableTensors": 0,
+                    "updateableTensors": [],
+                    "graphBlobInfoSize": 40,
+                    "graphBlobInfo": [
+                        {
+                            "version": "QNN_SYSTEM_CONTEXT_HTP_GRAPH_INFO_BLOB_VERSION_V1",
+                            "info": {
+                                "spillFillBufferSize": 40501248,
+                                "optimizationLevel": 3,
+                                "vtcmSize": 8,
+                                "htpDlbc": 0,
+                                "numHvxThreads": 8
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "contextMetadataSize": 8,
+        "contextMetadata": {
+            "version": "QNN_SYSTEM_CONTEXT_HTP_CONTEXT_INFO_BLOB_VERSION_V1",
+            "info": {
+                "dsp arch": 81
+            }
+        },
+        "soc model": 0
+    }
+}

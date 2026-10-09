@@ -17,6 +17,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+import os
+
 import numpy as np
 import rawpy
 
@@ -109,26 +111,50 @@ def dng_color(tags: dict, neutral: np.ndarray):
     return cm, cct
 
 
-def load_dng(path: str, half: bool = False) -> tuple[np.ndarray, np.ndarray, RawInfo]:
-    """Return (linear WB'd camera RGB with 1.0 = clip, WB'd camera -> linear sRGB, info)."""
-    info = RawInfo()
-    with rawpy.imread(path) as raw:
-        rgb = raw.postprocess(
-            gamma=(1, 1), no_auto_bright=True, output_bps=16, use_camera_wb=True,
-            output_color=rawpy.ColorSpace.raw, demosaic_algorithm=rawpy.DemosaicAlgorithm.AHD,
-            half_size=half, highlight_mode=rawpy.HighlightMode.Clip)
-        rgb = rgb.astype(np.float32) / 65535.0
-        wb = np.array(raw.camera_whitebalance[:3], np.float64)
+XYZ_D50 = np.array([0.96422, 1.0, 0.82521])
+LEGEND_CCT = 5003.0   # libawbcore MiAwbAlgo::CalLegendModeGain: "Legend CCT:5000" (D50 point)
 
+
+def _cm_at(tags: dict, cct: float) -> np.ndarray:
+    cm1, cm2 = _mat(tags.get("ColorMatrix1")), _mat(tags.get("ColorMatrix2"))
+    if cm2 is None:
+        return cm1
+    t1 = _ILLUM_CCT.get(int(_num(tags.get("CalibrationIlluminant1"))), 6504.0)
+    t2 = _ILLUM_CCT.get(int(_num(tags.get("CalibrationIlluminant2"))), 2856.0)
+    w = np.clip((1 / cct - 1 / t2) / (1 / t1 - 1 / t2), 0, 1) if t1 != t2 else 1.0
+    return w * cm1 + (1 - w) * cm2
+
+
+def load_dng(path: str, half: bool = False) -> tuple[np.ndarray, np.ndarray, RawInfo]:
+    """Return (linear camera RGB white-balanced to the M9 locked D50 point, 1.0 = clip;
+    that camera space -> linear sRGB; info with the *scene* CCT from AsShotNeutral).
+
+    17U Legend AWB (libawbcore CalLegendModeGain): gains are fixed to the sensor's calibrated
+    D50 point times the AWBPreference shift, which is 1.0 for Legend; the AWB statistics
+    still run and report the scene CCT used by the IQ tables and StyleTrans model choice."""
+    info = RawInfo()
     tags = dng_tags(path)
-    neutral = wb[1] / np.maximum(wb, 1e-6)
     if "AsShotNeutral" in tags:
         neutral = _rationals(tags["AsShotNeutral"])
+    else:
+        with rawpy.imread(path) as raw:
+            wb = np.array(raw.camera_whitebalance[:3], np.float64)
+        neutral = wb[1] / np.maximum(wb, 1e-6)
     info.as_shot_neutral = neutral
-    xyz2cam, info.cct = dng_color(tags, neutral)
-    # white-balanced camera space: camWB = diag(1/neutral) cam ; rows normalised so that
-    # sRGB white maps to camWB white (dcraw convention), then inverted
-    srgb2cam = np.diag(1.0 / neutral) @ xyz2cam @ SRGB_TO_XYZ
+    _, info.cct = dng_color(tags, neutral)
+
+    xyz2cam = _cm_at(tags, LEGEND_CCT)
+    n50 = xyz2cam @ XYZ_D50
+    n50 = n50 / n50[1]
+    mul = 1.0 / n50
+    with rawpy.imread(path) as raw:
+        rgb = raw.postprocess(
+            gamma=(1, 1), no_auto_bright=True, output_bps=16, user_wb=[mul[0], mul[1], mul[2], mul[1]],
+            output_color=rawpy.ColorSpace.raw, demosaic_algorithm=rawpy.DemosaicAlgorithm.AHD,
+            half_size=half, highlight_mode=rawpy.HighlightMode.Clip)
+    rgb = rgb.astype(np.float32) / 65535.0
+    # WB'd camera space: camWB = diag(1/n50) cam ; rows normalised so D50 white -> (1,1,1)
+    srgb2cam = np.diag(1.0 / n50) @ xyz2cam @ SRGB_TO_XYZ
     srgb2cam /= srgb2cam.sum(axis=1, keepdims=True)
     cam2srgb = np.linalg.inv(srgb2cam)
 
@@ -158,11 +184,22 @@ def drc_curve(x: np.ndarray, gain: float) -> np.ndarray:
     return gain * x / (1.0 + (gain - 1.0) * x)
 
 
-def ltm_global(rgb_lin: np.ndarray, gain: float) -> np.ndarray:
-    """LTM block with ltm/lce strength 0: only the global luma curve, as a hue-preserving gain."""
+def tmc_lut(gain: float, lux: float, n: int = 4096) -> np.ndarray:
+    """TMC202 GTM curve (m9.tmc, original knee/Hermite code) sampled on [0,1]."""
+    from . import tmc
+    leaf = tuning.lookup("m9", "tmc202_sw_v2", drc=max(gain, 1.0), gain=1.0, lux=lux)
+    X, Y = tmc.anchor_knees(leaf, max(gain, 1.0))
+    return tmc.gtm_curve(np.linspace(0, 1, n), X, Y).astype(np.float32)
+
+
+def ltm_global(rgb_lin: np.ndarray, gain: float, lut: np.ndarray | None = None) -> np.ndarray:
+    """LTM block with ltm/lce strength 0: only the global (TMC/GTM) luma curve, applied as the
+    OFE gtm133 Y-ratio gain curve(Y)/Y (hue-preserving)."""
     y = rgb_lin @ np.array([0.299, 0.587, 0.114], np.float32)
-    g = drc_curve(np.maximum(y, 0.0), gain) / np.maximum(y, 1e-6)
-    return rgb_lin * g[..., None]
+    yc = np.clip(y, 0.0, 1.0)
+    c = drc_curve(yc, gain) if lut is None else np.interp(yc, np.linspace(0, 1, lut.size), lut)
+    g = c / np.maximum(y, 1e-6)
+    return rgb_lin * g[..., None].astype(np.float32)
 
 
 def cc_m9(cam2srgb: np.ndarray, lux: float, cct: float, drc: float) -> np.ndarray:
@@ -236,12 +273,28 @@ def b2y(path: str, lux_index: float | None = None, cct: float | None = None, ev:
     k = float(cct) if cct is not None else info.cct
 
     ae = meter(lin, li)
-    x = lin * (ae.exp_short * 2.0 ** ev)
-    x = ltm_global(x, ae.adrc_gain)
+    gain = np.float32(ae.exp_short * 2.0 ** ev)
     cond = dict(drc=ae.adrc_gain, lux=li, cct=k)
-    x = np.clip(x @ cc_m9(cam2srgb, li, k, ae.adrc_gain).T, 0, None)
+    ccm = cc_m9(cam2srgb, li, k, ae.adrc_gain).T
     hue_tab, sat_tab = tuning.tdl_tables("m9", flag=0.0, **cond)
-    x = tdl_apply(x, hue_tab, sat_tab)
-    x = gamma_apply(x, tuning.gamma_lut("m9", **cond))
-    x = cv_apply(x, tuning.cv_params("m9", flag=0.0, **cond))
-    return FrontEndResult(np.clip(x, 0, 1), ae, info, li, k)
+    glut = tuning.gamma_lut("m9", **cond)
+    cvp = tuning.cv_params("m9", flag=0.0, **cond)
+    gtm = tmc_lut(ae.adrc_gain, li)
+
+    def strip(x):                      # per-pixel IPE chain; strips run in parallel threads
+        x = ltm_global(x * gain, ae.adrc_gain, gtm)
+        x = np.clip(x @ ccm, 0, None)
+        x = tdl_apply(x, hue_tab, sat_tab)
+        x = gamma_apply(x, glut)
+        return np.clip(cv_apply(x, cvp), 0, 1)
+
+    from concurrent.futures import ThreadPoolExecutor
+    n = os.cpu_count() or 4
+    bounds = np.linspace(0, lin.shape[0], 2 * n + 1).astype(int)
+    out = np.empty(lin.shape, np.float32)
+
+    def run(i):
+        out[bounds[i]:bounds[i + 1]] = strip(lin[bounds[i]:bounds[i + 1]])
+    with ThreadPoolExecutor(n) as ex:
+        list(ex.map(run, range(2 * n)))
+    return FrontEndResult(out, ae, info, li, k)

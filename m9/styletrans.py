@@ -4,7 +4,7 @@ a pluggable network backend. Pre/post-processing follows styletrans_pipeline.cpp
 
   rgb (B2Y NV12 decoded, BT.601 full) -> centre pad to 4096x3072 (REFLECT_101)
   -> INTER_AREA 1024x768 -> [mask from humanseg] -> pad 48 (RGB REFLECT, mask 0) -> 1120x864x4
-  -> (x-128)/127.5 -> styletrans_{low,high} -> crop Rect(48,48,1024,768)
+  -> u8 graph input (net sees (x-128)/127.5) -> styletrans_{low,high} -> crop Rect(48,48,1024,768)
   -> INTER_AREA up to 4096x3072 -> colorfix 544x544x6 tiles (step 512, centre 512 kept)
   -> centre crop back.
 Model choice: low if lux_index > 260 and CCT < 4692 else high.
@@ -56,8 +56,9 @@ class StyleTrans:
         mask = self.humanseg(small) if self.humanseg else np.zeros((NH, NW), np.uint8)
         rgbp = cv2.copyMakeBorder(small, PAD, PAD, PAD, PAD, cv2.BORDER_REFLECT)
         mp = cv2.copyMakeBorder(mask, PAD, PAD, PAD, PAD, cv2.BORDER_CONSTANT, value=0)
+        # graph input is UFIXED8 (scale 1/127.5, offset -128): raw pixels, the (x-128)/127.5
+        # normalisation of the library lives in the quantisation parameters
         inp = np.concatenate([rgbp, mp[..., None]], -1).astype(np.float32)
-        inp = (inp - 128.0) / 127.5
         model = choose_model(lux_index, cct)
         out = self.be.run(model, inp[None])[0]              # 864x1120x3, 0..255
         styled = np.clip(out[PAD:PAD + NH, PAD:PAD + NW], 0, 255).astype(np.uint8)
@@ -93,7 +94,13 @@ class StyleTrans:
 def load():
     """Return a StyleTrans instance if a backend is available, else None."""
     be = None
-    if os.environ.get("M9_QNN_SIM", "1") != "0":
+    if os.environ.get("M9_BACKEND", "torch") == "torch":
+        try:
+            from .torch_backend import TorchBackend
+            be = TorchBackend.create()
+        except ImportError:
+            be = None
+    if be is None and os.environ.get("M9_BACKEND") == "qnn":   # simulator: opt-in only (minutes/image)
         try:
             from .qnn_backend import QnnSimBackend
             be = QnnSimBackend.create()
