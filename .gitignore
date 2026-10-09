@@ -8,4 +8,8 @@ re/chromatix/modes/
 *.mem
 out/
 samples/
-re/weights/
+re/ghidra/
+emu/tmc
+emu/nodedump
+emu/uhdr
+__pycache__/
