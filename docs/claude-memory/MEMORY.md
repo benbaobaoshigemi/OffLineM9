@@ -1,0 +1,7 @@
+- [Clean up intermediates](cleanup-intermediates.md) — delete temp/intermediate files promptly; disks nearly full
+- [OffLineM9 project](project-offline-m9.md) — 17U M9 offline RAW renderer; ROM is source of truth, reference zip only hints; work autonomously
+- [No 17U samples/device](no-17u-samples-or-device.md) — no 17U DNG/17U phone; validate via ROM self-consistency, don't hunt for samples
+- [No distillation](no-distillation.md) — recover NN weights exactly; OPPO SM8850 phone only as rare decoding "key", not routine checks or data
+- [Own RAW front end](own-raw-frontend.md) — own RAW pipeline; MUST decode/analyse chromatix for style intent, never transplant live; M9 stages exact
+- [Record side findings](record-side-findings.md) — log all incidental RE finds in FINDINGS.md; live transplant planned later
+- [No silent long runs](no-silent-long-runs.md) — max 5 min per silent step, split & report; never run QNN simulator

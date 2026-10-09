@@ -12,6 +12,22 @@ python -m m9.render input.dng -o out.jpg [--camera main|tele] [--zoom Z] [--ev 0
 - 三颗共有、两版相同：AWB 锁定、StyleTrans、LeicaFilter。超广角未做。
 真值来源：17U ROM（OS3.0.308）。详细逆向记录见 `M9-style-analysis.md`、`FINDINGS.md`。
 
+## 仓库结构（私有）
+| 目录 | 内容 |
+|---|---|
+| `m9/` | 离线渲染器：前端（AE/AWB/IPE/TMC）、StyleTrans（PyTorch 后端 + QNN 模拟器后端）、LeicaFilter、GainMap、Ultra HDR 写入 |
+| `m9/assets/` | 从 ROM 解出的调校表（IPE、AE、LeicaFilter 参数、Display P3 ICC） |
+| `re/weights/` | StyleTrans low/high/colorfix 浮点权重（由 `decode/` 从 ROM 上下文二进制还原） |
+| `re/models/` | 解密后的 `.minn` 模型（QNN HTP 上下文二进制 / DLC） |
+| `re/*.c`、`re/miaec/` | Ghidra 反编译结果、mi_tuning 描述符 |
+| `tools/` | mi_tuning/chromatix/protobuf 解析、导出、校验脚本、Ghidra 无头脚本 |
+| `emu/src/` | qemu-aarch64 下直接调用 ROM 原版库的测试程序（TMC、chromatix 节点、libultrahdr） |
+| `decode/` | StyleTrans 权重解码工具链（HTP 上下文解析、量化/HMX 规则、导出）及其笔记 `HANDOFF.md` / `NOTES.md` |
+| `docs/claude-memory/` | 工作记忆笔记（约束、经验） |
+| `FINDINGS.md`、`M9-style-analysis.md` | 逆向发现与风格分析 |
+
+不入库：ROM 本体与 sysroot、Ghidra 工程、样张 DNG、渲染输出、参考项目压缩包。
+
 ## 原版节点核对表（legendsnapshot.json 主链）
 
 | 原版节点 | 原版做什么（已核实） | 离线实现 | 依据 / 取舍 |

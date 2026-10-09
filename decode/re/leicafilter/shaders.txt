@@ -1,0 +1,121 @@
+//==== @00013926
+uniform highp samplerExternalOES PREFIX(tex); vec4 FUNCNAME(vec2 tc) { vec4 color = texture2D(PREFIX(tex), tc); return color; }
+
+
+//==== @00014c32
+void main()
+{
+	vec4 ret= INPUT(tc);
+   vec3 yuv = rgb_2_yuv(ret.xyz,itu_601_full_range).xyz;
+	gl_FragColor = vec4(yuv,1.0);
+}
+
+
+//==== @00015880
+precision highp float; float nrand( vec2 n ) { return fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453); } float n6rand( vec2 n ) { float t = 1.11212121134131; if(PREFIX(Random) > 0.0) { t = PREFIX(CurrentTime); } float nrnd0 = nrand( n + 0.07*t ); float nrnd1 = nrand( n + 0.11*t ); float nrnd2 = nrand( n + 0.13*t ); float nrnd3 = nrand( n + 0.17*t ); float nrnd4 = nrand( n + 0.19*t ); float nrnd5 = nrand( n + 0.23*t ); return (nrnd0+nrnd1+nrnd2+nrnd3+nrnd4+nrnd5) / 6.0; } vec4 vignette1(vec4 color, vec2 uv) { uv.x = (uv.x - 0.5) * 0.75 + 0.5; float dist = distance(uv, vec2(0.5,0.5)); float falloff = 0.27; float amount = PREFIX(VignetteStrength); float vig = smoothstep(0.4, falloff * 0.4, dist * amount); vec2 res = PREFIX(Resolution)/2.0; vec2 stepUv = floor(uv *res)/res; float its = (n6rand(uv)- 0.5)*4.0/255.0; vec3 factor = vec3(0.2125, 0.7154, 0.0721); float Y = dot(vec3(color), factor); float pow = 1.0 / pow(100.0, (1.0 - Y)); return (color * (1.0 - pow) * vig + color * pow) * (its + 1.0); } float lum(vec3 color) { return color.x * 0.299 + color.y *0.114 + color.z * 0.587; } vec4 FUNCNAME(vec2 tc) { vec2 uv = tc; vec3 color = INPUT(uv).rgb; float its = n6rand(uv); its = its * 2.0; float brightness = lum(color); vec3 noise = color * its; float noiseStrength = PREFIX(NoiseStrength); noiseStrength = noiseStrength * (1.0 - brightness); noiseStrength = step(0.0,noiseStrength) * noiseStrength; vec4 withNoise = vec4(mix(color,noise,noiseStrength),1.0); vec4 outColor = vignette1(withNoise, uv); outColor.a = 1.0; return outColor; } 
+
+
+//==== @00016527
+#version 300 es
+#extension GL_OES_EGL_image_external_essl3 : require
+#extension GL_EXT_YUV_target : require
+#define texture2D texture
+#define gl_FragColor  outColor
+ precision highp float;
+precision highp int;
+precision highp sampler3D;
+in vec2 tc;
+out vec4 gl_FragColor;
+ 
+
+//==== @0001738e
+uniform highp __samplerExternal2DY2YEXT PREFIX(tex); vec4 FUNCNAME(vec2 tc) { vec4 color = texture2D(PREFIX(tex), tc); vec3 rgb = yuv_2_rgb(color.xyz,itu_601_full_range); return vec4(clamp(rgb,0.0,1.0),1.0); }
+
+
+//==== @00017da9
+vec2 rotateUV(vec2 uv, float rotation, vec2 mid) { float c = cos(rotation); float s = sin(rotation); mat2 matrix = mat2(c, -s, s, c); vec2 p = uv; p -= mid; p = matrix * p; p += mid; return p; } vec4 FUNCNAME(vec2 tc) { vec4 textureColor = INPUT(tc); float ori = PREFIX(orientation); vec2 uv = rotateUV(tc, ori, vec2(0.5, 0.5)); vec4 watermarkColor = texture(PREFIX(watermark), uv); float premultiplied = PREFIX(premultiplied); if(premultiplied < 0.5){ textureColor.rgb = pow(pow(watermarkColor.rgb,vec3(2.2)) * watermarkColor.a + pow(textureColor.rgb,vec3(2.2))* (1.0 - watermarkColor.a),vec3(1.0/2.2)); }else{ textureColor.rgb = watermarkColor.rgb + textureColor.rgb * (1.0 - watermarkColor.a); } return textureColor; } 
+
+
+//==== @00019549
+const float DOWN_SCALE = 3.5; const int MAX_INT_DIGITS = 4; const vec2 CHAR_SIZE = vec2(8, 12); const vec2 CHAR_SPACING = vec2(8, 12); float STRWIDTH(float c) { return (c * CHAR_SPACING.x); } float STRHEIGHT(float c) { return (c * CHAR_SPACING.y); } const vec4 ch_spc = vec4(0x000000,0x000000,0x000000,0x000000); const vec4 ch_exc = vec4(0x003078,0x787830,0x300030,0x300000); const vec4 ch_quo = vec4(0x006666,0x662400,0x000000,0x000000); const vec4 ch_hsh = vec4(0x006C6C,0xFE6C6C,0x6CFE6C,0x6C0000); const vec4 ch_dol = vec4(0x30307C,0xC0C078,0x0C0CF8,0x303000); const vec4 ch_pct = vec4(0x000000,0xC4CC18,0x3060CC,0x8C0000); const vec4 ch_amp = vec4(0x0070D8,0xD870FA,0xDECCDC,0x760000); const vec4 ch_apo = vec4(0x003030,0x306000,0x000000,0x000000); const vec4 ch_lbr = vec4(0x000C18,0x306060,0x603018,0x0C0000); const vec4 ch_rbr = vec4(0x006030,0x180C0C,0x0C1830,0x600000); const vec4 ch_ast = vec4(0x000000,0x663CFF,0x3C6600,0x000000); const vec4 ch_crs = vec4(0x000000,0x18187E,0x181800,0x000000); const vec4 ch_com = vec4(0x000000,0x000000,0x000038,0x386000); const vec4 ch_dsh = vec4(0x000000,0x0000FE,0x000000,0x000000); const vec4 ch_per = vec4(0x000000,0x000000,0x000038,0x380000); const vec4 ch_lsl = vec4(0x000002,0x060C18,0x3060C0,0x800000); const vec4 ch_0 = vec4(0x007CC6,0xD6D6D6,0xD6D6C6,0x7C0000); const vec4 ch_1 = vec4(0x001030,0xF03030,0x303030,0xFC0000); const vec4 ch_2 = vec4(0x0078CC,0xCC0C18,0x3060CC,0xFC0000); const vec4 ch_3 = vec4(0x0078CC,0x0C0C38,0x0C0CCC,0x780000); const vec4 ch_4 = vec4(0x000C1C,0x3C6CCC,0xFE0C0C,0x1E0000); const vec4 ch_5 = vec4(0x00FCC0,0xC0C0F8,0x0C0CCC,0x780000); const vec4 ch_6 = vec4(0x003860,0xC0C0F8,0xCCCCCC,0x780000); const vec4 ch_7 = vec4(0x00FEC6,0xC6060C,0x183030,0x300000); const vec4 ch_8 = vec4(0x0078CC,0xCCEC78,0xDCCCCC,0x780000); const vec4 ch_9 = vec4(0x0078CC,0xCCCC7C,0x181830,0x700000); const vec4 ch_col = vec4(0x000000,0x383800,0x003838,0x000000); const vec4 ch_scl = vec4(0x000000,0x383800,0x003838,0x183000); const vec4 ch_les = vec4(0x000C18,0x3060C0,0x603018,0x0C0000); const vec4 ch_equ = vec4(0x000000,0x007E00,0x7E0000,0x000000); const vec4 ch_grt = vec4(0x006030,0x180C06,0x0C1830,0x600000); const vec4 ch_que = vec4(0x0078CC,0x0C1830,0x300030,0x300000); const vec4 ch_ats = vec4(0x007CC6,0xC6DEDE,0xDEC0C0,0x7C0000); const vec4 ch_A = vec4(0x003078,0xCCCCCC,0xFCCCCC,0xCC0000); const vec4 ch_B = vec4(0x00FC66,0x66667C,0x666666,0xFC0000); const vec4 ch_C = vec4(0x003C66,0xC6C0C0,0xC0C666,0x3C0000); const vec4 ch_D = vec4(0x00F86C,0x666666,0x66666C,0xF80000); const vec4 ch_E = vec4(0x00FE62,0x60647C,0x646062,0xFE0000); const vec4 ch_F = vec4(0x00FE66,0x62647C,0x646060,0xF00000); const vec4 ch_G = vec4(0x003C66,0xC6C0C0,0xCEC666,0x3E0000); const vec4 ch_H = vec4(0x00CCCC,0xCCCCFC,0xCCCCCC,0xCC0000); const vec4 ch_I = vec4(0x007830,0x303030,0x303030,0x780000); const vec4 ch_J = vec4(0x001E0C,0x0C0C0C,0xCCCCCC,0x780000); const vec4 ch_K = vec4(0x00E666,0x6C6C78,0x6C6C66,0xE60000); const vec4 ch_L = vec4(0x00F060,0x606060,0x626666,0xFE0000); const vec4 ch_M = vec4(0x00C6EE,0xFEFED6,0xC6C6C6,0xC60000); const vec4 ch_N = vec4(0x00C6C6,0xE6F6FE,0xDECEC6,0xC60000); const vec4 ch_O = vec4(0x00386C,0xC6C6C6,0xC6C66C,0x380000); const vec4 ch_P = vec4(0x00FC66,0x66667C,0x606060,0xF00000); const vec4 ch_Q = vec4(0x00386C,0xC6C6C6,0xCEDE7C,0x0C1E00); const vec4 ch_R = vec4(0x00FC66,0x66667C,0x6C6666,0xE60000); const vec4 ch_S = vec4(0x0078CC,0xCCC070,0x18CCCC,0x780000); const vec4 ch_T = vec4(0x00FCB4,0x303030,0x303030,0x780000); const vec4 ch_U = vec4(0x00CCCC,0xCCCCCC,0xCCCCCC,0x780000); const vec4 ch_V = vec4(0x00CCCC,0xCCCCCC,0xCCCC78,0x300000); const vec4 ch_W = vec4(0x00C6C6,0xC6C6D6,0xD66C6C,0x6C0000); const vec4 ch_X = vec4(0x00CCCC,0xCC7830,0x78CCCC,0xCC0000); const vec4 ch_Y = vec4(0x00CCCC,0xCCCC78,0x303030,0x780000); const vec4 ch_Z = vec4(0x00FECE,0x981830,0x6062C6,0xFE0000); const vec4 ch_lsb = vec4(0x003C30,0x303030,0x303030,0x3C0000); const vec4 ch_rsl = vec4(0x000080,0xC06030,0x180C06,0x020000); const vec4 ch_rsb = vec4(0x003C0C,0x0C0C0C,0x0C0C0C,0x3C0000); const vec4 ch_pow = vec4(0x10386C,0xC60000,0x000000,0x000000); const vec4 ch_usc = vec4(0x000000,0x000000,0x000000,0x00FF00); const vec4 ch_a = vec4(0x000000,0x00780C,0x7CCCCC,0x760000); const vec4 ch_b = vec4(0x00E060,0x607C66,0x666666,0xDC0000); const vec4 ch_c = vec4(0x000000,0x0078CC,0xC0C0CC,0x780000); const vec4 ch_d = vec4(0x001C0C,0x0C7CCC,0xCCCCCC,0x760000); const vec4 ch_e = vec4(0x000000,0x0078CC,0xFCC0CC,0x780000); const vec4 ch_f = vec4(0x00386C,0x6060F8,0x606060,0xF00000); const vec4 ch_g = vec4(0x000000,0x0076CC,0xCCCC7C,0x0CCC78); const vec4 ch_h = vec4(0x00E060,0x606C76,0x666666,0xE60000); const vec4 ch_i = vec4(0x001818,0x007818,0x181818,0x7E0000); const vec4 ch_j = vec4(0x000C0C,0x003C0C,0x0C0C0C,0xCCCC78); const vec4 ch_k = vec4(0x00E060,0x60666C,0x786C66,0xE60000); const vec4 ch_l = vec4(0x007818,0x181818,0x181818,0x7E0000); const vec4 ch_m = vec4(0x000000,0x00FCD6,0xD6D6D6,0xC60000); const vec4 ch_n = vec4(0x000000,0x00F8CC,0xCCCCCC,0xCC0000); const vec4 ch_o = vec4(0x000000,0x0078CC,0xCCCCCC,0x780000); const vec4 ch_p = vec4(0x000000,0x00DC66,0x666666,0x7C60F0); const vec4 ch_q = vec4(0x000000,0x0076CC,0xCCCCCC,0x7C0C1E); const vec4 ch_r = vec4(0x000000,0x00EC6E,0x766060,0xF00000); const vec4 ch_s = vec4(0x000000,0x0078CC,0x6018CC,0x780000); const vec4 ch_t = vec4(0x000020,0x60FC60,0x60606C,0x380000); const vec4 ch_u = vec4(0x000000,0x00CCCC,0xCCCCCC,0x760000); const vec4 ch_v = vec4(0x000000,0x00CCCC,0xCCCC78,0x300000); const vec4 ch_w = vec4(0x000000,0x00C6C6,0xD6D66C,0x6C0000); const vec4 ch_x = vec4(0x000000,0x00C66C,0x38386C,0xC60000); const vec4 ch_y = vec4(0x000000,0x006666,0x66663C,0x0C18F0); const vec4 ch_z = vec4(0x000000,0x00FC8C,0x1860C4,0xFC0000); const vec4 ch_lpa = vec4(0x001C30,0x3060C0,0x603030,0x1C0000); const vec4 ch_bar = vec4(0x001818,0x181800,0x181818,0x180000); const vec4 ch_rpa = vec4(0x00E030,0x30180C,0x183030,0xE00000); const vec4 ch_tid = vec4(0x0073DA,0xCE0000,0x000000,0x000000); const vec4 ch_lar = vec4(0x000000,0x10386C,0xC6C6FE,0x000000); vec2 res = vec2(0); vec2 print_pos = vec2(0); float extract_bit(float n, float b) { b = clamp(b,-1.0,24.0); return floor(mod(floor(n / pow(2.0,floor(b))),2.0)); } float sprite(vec4 spr, vec2 size, vec2 uv) { uv = floor(uv); float bit = (size.x-uv.x-1.0) + uv.y * size.x; bool bounds = all(greaterThanEqual(uv,vec2(0))) && all(lessThan(uv,size)); float pixels = 0.0; pixels += extract_bit(spr.x, bit - 72.0); pixels += extract_bit(spr.y, bit - 48.0); pixels += extract_bit(spr.z, bit - 24.0); pixels += extract_bit(spr.w, bit - 00.0); return bounds ? pixels : 0.0; } float char(vec4 ch, vec2 uv) { float px = sprite(ch, CHAR_SIZE, uv - print_pos); return px; } vec4 get_digit(float d) { d = floor(d); if(d == 0.0) return ch_0; if(d == 1.0) return ch_1; if(d == 2.0) return ch_2; if(d == 3.0) return ch_3; if(d == 4.0) return ch_4; if(d == 5.0) return ch_5; if(d == 6.0) return ch_6; if(d == 7.0) return ch_7; if(d == 8.0) return ch_8; if(d == 9.0) return ch_9; return vec4(0.0); } float print_number(float number, vec2 uv) { float result = 0.0; for(int i = 3;i >= -1;i--) { float digit = mod( number / pow(10.0, float(i)) , 10.0); if(i == -1) { result += char(ch_per,uv); } if(abs(number) > pow(10.0, float(i)) || i == 0) { result += char(get_digit(digit),uv); } } return result; } float print_integer(float number, int zeros, vec2 uv) { float result = 0.0; for(int i = MAX_INT_DIGITS;i >= 0;i--) { float digit = mod( number / pow(10.0, float(i)) , 10.0); if(abs(number) > pow(10.0, float(i)) || zeros > i || i == 0) { result += char(get_digit(digit),uv); print_pos.x += CHAR_SPACING.x; } } return result; } float drawString4(vec2 uv,vec4 str1,vec4 str2, vec4 str3, vec4 str4) { float col = 0.0; col += char(str1, uv); print_pos.x += CHAR_SPACING.x; col += char(str2, uv); print_pos.x += CHAR_SPACING.x; col += char(str3, uv); print_pos.x += CHAR_SPACING.x; col += char(str4, uv); print_pos.x += CHAR_SPACING.x; return col; } float drawString3(vec2 uv,vec4 str1,vec4 str2, vec4 str3) { float col = 0.0; col += char(str1, uv); print_pos.x += CHAR_SPACING.x; col += char(str2, uv); print_pos.x += CHAR_SPACING.x; col += char(str3, uv); print_pos.x += CHAR_SPACING.x; return col; } float drawMonth(vec2 uv,float month) { float col = 0.0; if(month == 1.0) { col+=drawString3(uv,ch_J,ch_A,ch_N); } else if(month == 2.0) { col+=drawString3(uv,ch_F,ch_E,ch_B); } else if(month == 3.0) { col+=drawString3(uv,ch_M,ch_A,ch_R); } else if(month == 4.0) { col+=drawString3(uv,ch_A,ch_P,ch_R); } else if(month == 5.0) { col+=drawString3(uv,ch_M,ch_A,ch_Y); } else if(month == 6.0) { col+=drawString3(uv,ch_J,ch_U,ch_N); } else if(month == 7.0) { col+=drawString3(uv,ch_J,ch_U,ch_L); } else if(month == 8.0) { col+=drawString3(uv,ch_A,ch_U,ch_G); } else if(month == 9.0) { col+=drawString4(uv,ch_S,ch_E,ch_P,ch_T); } else if(month == 10.0) { col+=drawString3(uv,ch_O,ch_C,ch_T); } else if(month == 11.0) { col+=drawString3(uv,ch_N,ch_O,ch_V); } else if(month == 12.0) { col+=drawString3(uv,ch_D,ch_E,ch_C); } return col; } float text(vec2 uv, float year, float month, float day, float hour, float minute, float second) { float col = 0.0; print_pos = vec2(10.0, 50.0); col += drawMonth(uv,month); col += char(ch_per,uv); print_pos.x += CHAR_SPACING.x; col += print_integer(day,2,uv); print_pos.x += CHAR_SPACING.x; col += print_integer(year,4,uv); vec2 resolution = PREFIX(Resolution); res = resolution / DOWN_SCALE; vec2 uv = gl_FragCoord.xy / DOWN_SCALE; print_pos = vec2( 200.0 , print_pos.y); print_pos.x -= CHAR_SPACING.x * 2.0; col += print_integer(minute,2, uv); print_pos.x -= CHAR_SPACING.x * 3.0; col += char(ch_col, uv); print_pos.x -= CHAR_SPACING.x * 2.0; bool am = true; if(hour > 12.0) { am = false; hour -= 12.0; } col += print_integer(hour,2, uv); print_pos.x -= CHAR_SPACING.x * 2.0; print_pos.x -= CHAR_SPACING.x * 2.0; if(am) { col += char(ch_M,uv); print_pos.x -= CHAR_SPACING.x * 1.0; col += char(ch_A,uv); } else { col += char(ch_M,uv); print_pos.x -= CHAR_SPACING.x * 1.0; col += char(ch_P,uv); } return col; } vec4 addBottom(vec2 tc) { float col = 0.0; vec2 uv = gl_FragCoord.xy / DOWN_SCALE; if(uv.x < 5.0 || uv.x > 205.0 || uv.y < 50.0 || uv.y > 65.0 ) { return vec4(0.0); } float year = PREFIX(Year); float month = PREFIX(Month); float day = PREFIX(Day); float hour = PREFIX(Hour); float minute = PREFIX(Minute); float second = PREFIX(Second); float pixel = text(uv, year, month, day, hour, minute, second); vec4 textColor = vec4(1.0,1.0,1.0, pixel); return textColor; } float circle(float r, vec2 tc){ vec2 uv = tc - print_pos; float l = length(uv); float w = 1.0; return smoothstep( r+w, r-w, l); } vec4 addTopLeft(vec2 tc) { float col = 0.0; vec2 resolution = PREFIX(Resolution); res = resolution / DOWN_SCALE; vec2 uv = gl_FragCoord.xy / DOWN_SCALE; if(uv.x > 50.0 || uv.y > 45.0) { return vec4(0.0); } print_pos = vec2( 10.0, STRHEIGHT(1.0)+18.0); col += char(ch_R,uv); print_pos.x += CHAR_SPACING.x; col += char(ch_E,uv); print_pos.x += CHAR_SPACING.x; col += char(ch_C,uv); print_pos.x += CHAR_SPACING.x *2.2; print_pos.y += CHAR_SPACING.y/2.0; vec4 color = vec4(0.0); float red = circle(4.0,uv); color = red > 0.0 ? vec4(1.0,0.0,0.0,1.0) : color; color = col > 0.0 ? color += vec4(col,col,col,1.0) : color; return color; } vec4 chromaticAberration(vec2 uv) { int sampleCount = 10; float blur = 0.1; float falloff = 3.0; vec2 direction = normalize(uv - 0.5); vec2 velocity = direction * blur * pow(length(uv - 0.5), falloff); float inverseSampleCount = 1.0 / float(sampleCount); mat3 increments = mat3(velocity * 1.0 * inverseSampleCount,1.0, velocity * 2.0 * inverseSampleCount,1.0, velocity * 4.0 * inverseSampleCount,1.0); vec3 accumulator = vec3(0.0); mat3 offsets = mat3(0.0); for (int i = 0; i < sampleCount; i++) { accumulator.r += INPUT(uv + offsets[0].xy).r; accumulator.g += INPUT(uv + offsets[1].xy).g; accumulator.b += INPUT(uv + offsets[2].xy).b; offsets -= increments; } return vec4(accumulator / float(sampleCount), 1.0); } vec4 FUNCNAME(vec2 tc) { vec4 textureColor = chromaticAberration(tc); vec4 overlay_top = addTopLeft(tc); vec4 outColor = textureColor; outColor.rgb = mix(textureColor.rgb,overlay_top.rgb,overlay_top.a); vec4 overlay_bottom = addBottom(tc); outColor.rgb = mix(outColor.rgb,overlay_bottom.rgb,overlay_bottom.a); return outColor; } 
+
+
+//==== @0001e197
+uniform highp __samplerExternal2DY2YEXT PREFIX(tex); vec4 FUNCNAME(vec2 tc) { vec4 color = texture2D(PREFIX(tex), tc); vec3 rgb = yuv_2_rgb(color.xzy,itu_601_full_range); return vec4(clamp(rgb,0.0,1.0),1.0); }
+
+
+//==== @0001e26a
+uniform highp __samplerExternal2DY2YEXT PREFIX(tex); vec3 yuv_2_rgb_2020(vec3 src) { mat3 color_mat = mat3(1.0, 1.0, 1.0, 0.0, -0.1645, 1.8814, 1.4746, -0.5713, 0.0); vec3 pixel = color_mat * (src - vec3(0.0, 0.5, 0.5)); return pixel; } vec4 FUNCNAME(vec2 tc) { vec4 color = texture2D(PREFIX(tex), tc); vec3 rgb = yuv_2_rgb_2020(color.xyz); return vec4(clamp(rgb,0.0,1.0),1.0); }
+
+
+//==== @0001eaee
+vec3 rgb_2_yuv_2020(vec3 src)
+{
+     mat3 color_mat =
+     mat3(0.2627, -0.1396, 0.5,
+     0.6780, -0.3604, -0.4598,
+     0.0593, 0.5, -0.0402);
+    vec3 pixel = color_mat * src + vec3(0.0,0.5,0.5); 
+    return pixel;
+}
+void main()
+{
+	vec4 ret= INPUT(tc);
+   vec3 yuv = rgb_2_yuv_2020(ret.xyz).xyz;
+	gl_FragColor = vec4(yuv,1.0);
+}
+
+
+//==== @0001f976
+precision highp float; float PREFIX_FUNC_nrand( vec2 n ) { return fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453); } float PREFIX_FUNC_n6rand(vec2 n){ float currentTime = PREFIX(CurrentTime); float t = currentTime * (30.0/60.0)/100.0; float nrnd0 = PREFIX_FUNC_nrand( n + 0.07*t ); float nrnd1 = PREFIX_FUNC_nrand( n + 0.11*t ); float nrnd2 = PREFIX_FUNC_nrand( n + 0.13*t ); float nrnd3 = PREFIX_FUNC_nrand( n + 0.17*t ); float nrnd4 = PREFIX_FUNC_nrand( n + 0.19*t ); float nrnd5 = PREFIX_FUNC_nrand( n + 0.23*t ); return (nrnd0+nrnd1+nrnd2+nrnd3+nrnd4+nrnd5) / 6.0; } float PREFIX_FUNC_lum(vec4 color) { return color.x * 0.299 + color.y *0.114 + color.z * 0.587; } vec4 PREFIX_FUNC_colorNoise(vec4 color, vec2 tc, float noiseStrength) { float its = PREFIX_FUNC_n6rand(tc); its = its * 2.0; vec3 noise = vec3(its*color.r, its*color.g, its*color.b); float brightness = PREFIX_FUNC_lum(color); noiseStrength = noiseStrength * (1.0 - brightness); noiseStrength = step(0.0, noiseStrength) * noiseStrength; vec3 withNoise = mix(color.rgb, noise, noiseStrength); vec3 withVig = mix(withNoise, withNoise, noiseStrength); return vec4(withVig, 1.0); } vec4 PREFIX_FUNC_colorDark(vec4 color, vec2 uv, float darkStrength) { vec3 factor = vec3(0.2125, 0.7154, 0.0721); float Y = dot(vec3(color), factor); uv.x = (uv.x - 0.5) * 0.75 + 0.5; float dist = distance(uv, vec2(0.5,0.5)); float pow = 1.0 / pow(100.0, (1.0 - Y)); float smoothStartValue = PREFIX(SmoothStartValue); float smoothEndValue = PREFIX(SmoothEndValue); float falloff = PREFIX(Falloff); return (color * (1.0 - pow) * smoothstep(smoothStartValue, falloff * smoothEndValue, dist * darkStrength) + color * pow); } vec4 FUNCNAME(vec2 tc) { vec2 uv = tc; vec4 color = INPUT(uv); float noiseStrength = PREFIX(NoiseStrength); if (noiseStrength > 0.0) { color = PREFIX_FUNC_colorNoise(color, uv, noiseStrength); } float darkStrength = PREFIX(DarkStrength); if (darkStrength > 0.0) { color = PREFIX_FUNC_colorDark(color, uv, darkStrength); } return color; } 
+
+
+//==== @000209a4
+void main()
+{
+	vec4 ret= INPUT(tc);
+   vec3 yuv = rgb_2_yuv(ret.xyz,itu_601_full_range).xzy;
+	gl_FragColor = vec4(yuv,1.0);
+}
+
+
+//==== @00020a23
+vec4 FUNCNAME(vec2 tc) { float strength = PREFIX(cube_strength); float type = PREFIX(lut_type); vec4 textureColor = INPUT(tc); float cube_size = float(PREFIX(cube_size)); textureColor = textureColor * ((cube_size - 1.0) / cube_size) + vec4(0.5 / cube_size); if(type > 0.5) { vec4 newColor = texture(PREFIX(cube_lut), textureColor.zyx); return mix(textureColor, vec4(newColor.bgr, 1.0), strength); } vec4 newColor = texture(PREFIX(cube_lut), textureColor.rgb); return mix(textureColor, vec4(newColor.rgb, 1.0), strength); } 
+
+
+//==== @00020cc1
+vec4 FUNCNAME(vec2 tc) { float type = PREFIX(lut_type); vec4 textureColor = INPUT(tc); float blendingRatio = PREFIX(blendingRatio); if (type > 0.5) { vec4 newColor1 = texture(PREFIX(lutTexture1), textureColor.zyx); vec4 newColor2 = texture(PREFIX(lutTexture2), textureColor.zyx); return mix(vec4(newColor1.bgr, 1.0), vec4(newColor2.bgr, 1.0), blendingRatio); } vec4 newColor1 = texture(PREFIX(lutTexture1), textureColor.rgb); vec4 newColor2 = texture(PREFIX(lutTexture2), textureColor.rgb); return mix(newColor1, newColor2, blendingRatio); } 
+
+
+//==== @00022e1f
+#version 300 es
+#define texture2D texture
+#define gl_FragColor  outColor
+ #extension GL_EXT_YUV_target : require
+#extension GL_OES_EGL_image_external_essl3 : require
+precision highp float;
+precision highp int;
+precision highp sampler3D;
+in vec2 tc;
+layout (yuv) out vec4 gl_FragColor;
+ 
+
+//==== @0002453b
+#version 300 es
+layout (location = 0) in vec4 position;
+layout (location = 1) in vec2 texuv;
+out vec2 tc;
+precision highp float;
+uniform mat4 uMVPMatrix; 
+uniform mat4 uSTMatrix; 
+void main()
+{
+	tc = (uSTMatrix * vec4(texuv,0,1)).st;
+   gl_Position = uMVPMatrix * position;
+}
+
+
+//==== @00024bdf
+precision highp float; float nrand( vec2 n ) { return fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453); } float n6rand(vec2 n){ float currentTime = PREFIX(CurrentTime); float t = currentTime * (30.0/60.0)/100.0; float nrnd0 = nrand( n + 0.07*t ); float nrnd1 = nrand( n + 0.11*t ); float nrnd2 = nrand( n + 0.13*t ); float nrnd3 = nrand( n + 0.17*t ); float nrnd4 = nrand( n + 0.19*t ); float nrnd5 = nrand( n + 0.23*t ); return (nrnd0+nrnd1+nrnd2+nrnd3+nrnd4+nrnd5) / 6.0; } vec4 colorDark(vec4 color, vec2 uv) { float width = PREFIX(Width); float height = PREFIX(Height); uv.x = (uv.x - 0.5) * width / height + 0.5; float smoothCoordScale = PREFIX(SmoothCoordScale); uv = (uv - vec2(0.5, 0.5)); float dist = length(uv); dist = dist + 0.004 * n6rand(uv - 0.5) * 10.0 * smoothCoordScale; float smoothStartValue = PREFIX(SmoothStartValue); float smoothEndValue = PREFIX(SmoothEndValue); float vignette = smoothstep(smoothStartValue, smoothEndValue, dist); float L = 0.499 * color.r + 0.387 * color.g + 0.114 * color.b; float Y = 0.299 * color.r + 0.587 * color.g + 0.114 * color.b; float lightDarkPreserveK = PREFIX(LightDarkPreserveK); float lightDarkPreserveB = PREFIX(LightDarkPreserveB); float lightDarkPreserveV = PREFIX(LightDarkPreserveV); float lightDarkPreserveT = PREFIX(LightDarkPreserveT); float preserve_factor = lightDarkPreserveV / (1.0 + exp(lightDarkPreserveK * (-L + lightDarkPreserveB))) + lightDarkPreserveT; vignette = (1.0 - preserve_factor) * vignette + preserve_factor * 1.0; float smoothValueScale = PREFIX(SmoothValueScale); vignette = vignette * smoothValueScale; float delta = Y * (vignette - 1.0); color.r = color.r + delta; color.g = color.g + delta; color.b = color.b + delta; return color; } vec4 FUNCNAME(vec2 tc) { vec2 uv = tc; vec4 color = INPUT(uv); color = colorDark(color, uv); return color; } 
+
+
