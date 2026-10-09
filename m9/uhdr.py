@@ -66,6 +66,40 @@ def iso21496(gm) -> bytes:
     return out
 
 
+_ICC_P3 = None
+# linear sRGB (BT.709, D65) -> linear Display P3 (D65)
+SRGB_TO_P3 = np.array([[0.822462, 0.177538, 0.000000],
+                       [0.033194, 0.966806, 0.000000],
+                       [0.017083, 0.072397, 0.910520]], np.float32)
+
+
+def icc_p3() -> bytes:
+    """Display P3 (sRGB transfer) ICC, as written by the ROM libultrahdr for UHDR_CG_DISPLAY_P3."""
+    global _ICC_P3
+    if _ICC_P3 is None:
+        import os
+        _ICC_P3 = open(os.path.join(os.path.dirname(__file__), "assets", "display_p3.icc"), "rb").read()
+    return _ICC_P3
+
+
+def srgb_to_p3(rgb: np.ndarray) -> np.ndarray:
+    """Re-encode display sRGB values as Display P3 (same colours, sRGB transfer curve)."""
+    x = np.clip(rgb, 0, 1).astype(np.float32)
+    lin = np.where(x <= 0.04045, x / 12.92, ((x + 0.055) / 1.055) ** 2.4)
+    lin = np.clip(lin @ SRGB_TO_P3.T, 0, 1)
+    return np.where(lin <= 0.0031308, lin * 12.92, 1.055 * lin ** (1 / 2.4) - 0.055)
+
+
+def encode_p3_jpeg(rgb: np.ndarray, quality: int) -> bytes:
+    """sRGB float image -> Display P3 JPEG bytes with the ICC profile embedded (APP2)."""
+    u8 = (srgb_to_p3(rgb) * 255.0 + 0.5).astype(np.uint8)
+    ok, j = cv2.imencode(".jpg", u8[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, quality])
+    if not ok:
+        raise RuntimeError("JPEG encode failed")
+    j = j.tobytes()
+    return j[:2] + _seg(0xFFE2, b"ICC_PROFILE\0\x01\x01" + icc_p3()) + j[2:]
+
+
 def _seg(marker: int, payload: bytes) -> bytes:
     return struct.pack(">HH", marker, len(payload) + 2) + payload
 
@@ -113,13 +147,12 @@ def _mpf(primary_size: int, gainmap_size: int, gainmap_offset: int) -> bytes:
 
 
 def write(path: str, sdr_rgb: np.ndarray, gm, quality: int = 95, gm_quality: int = 98):
-    """sdr_rgb: float [0,1] display RGB (primary); gm: m9.gainmap.GainMap."""
-    u8 = (np.clip(sdr_rgb, 0, 1) * 255.0 + 0.5).astype(np.uint8)
-    ok, prim = cv2.imencode(".jpg", u8[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, quality])
+    """sdr_rgb: float [0,1] display sRGB (primary, stored as Display P3 + ICC); gm: m9.gainmap.GainMap."""
+    prim = encode_p3_jpeg(sdr_rgb, quality)
     ok2, gmj = cv2.imencode(".jpg", gm.image, [cv2.IMWRITE_JPEG_QUALITY, gm_quality])
-    if not (ok and ok2):
+    if not ok2:
         raise RuntimeError("JPEG encode failed")
-    prim, gmj = prim.tobytes(), gmj.tobytes()
+    gmj = gmj.tobytes()
     gm_full = gmj[:2] + _seg(0xFFE1, _xmp_gainmap(gm)) + _seg(0xFFE2, ISO_NS + iso21496(gm)) + gmj[2:]
     xmp = _seg(0xFFE1, _xmp_primary(len(gm_full))) + _seg(0xFFE2, ISO_NS + struct.pack(">HH", 0, 0))
     mpf_len = len(_seg(0xFFE2, _mpf(0, 0, 0)))

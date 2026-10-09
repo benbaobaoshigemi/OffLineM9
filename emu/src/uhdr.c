@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
   }
   if (argc >= 6 && !strcmp(argv[1], "enc")) {
     size_t n1, n2; void* b1 = slurp(argv[2], &n1); void* b2 = slurp(argv[3], &n2);
-    uhdr_compressed_image_t base = {b1, n1, n1, 0, 3, 1};     // BT709, sRGB, full
+    uhdr_compressed_image_t base = {b1, n1, n1, argc > 6 ? atoi(argv[6]) : 0, 3, 1};  // cg (0 BT709, 1 P3), sRGB TF, full
     uhdr_compressed_image_t gm = {b2, n2, n2, -1, -1, -1};
     float mb = (float)atof(argv[4]);
     // array layout (probed from the ROM decoder): max[3],min[3],gamma[3],off_sdr[3],off_hdr[3],cap_min,cap_max,use_base_cg

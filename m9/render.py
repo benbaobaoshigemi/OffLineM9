@@ -68,9 +68,9 @@ def _tele_zoom(path: str) -> float:
 
 
 def _save(img: np.ndarray, out: str, quality: int):
-    import cv2
-    u8 = (np.clip(img, 0, 1) * 255.0 + 0.5).astype(np.uint8)
-    cv2.imwrite(out, u8[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, quality])
+    from .uhdr import encode_p3_jpeg
+    with open(out, "wb") as f:
+        f.write(encode_p3_jpeg(img, quality))
 
 
 def main():
