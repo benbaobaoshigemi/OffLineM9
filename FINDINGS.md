@@ -82,18 +82,21 @@
 - 参考包的"改头文件"= 改 5 字节让 15U 手机上的 QNN 加载 17U 模型（仍需 NPU）。离线方案：QAIRT x86 HTP 模拟后端
   直接执行原版上下文二进制（进行中）。
 
-## M9 跨摄像头一致性（2026-10-09）
-- **结论：ISP 层的 M9 调校是分摄像头做的，三颗后摄不一致；三颗共有的只有 AWB 锁定（D50）+ StyleTrans + LeicaFilter。**
-- AE（mi_tuning）：
-  | 摄像头 | Legend Metering base_target | 普通 | AEC_Stylization（Legend） |
-  |---|---|---|---|
-  | 主摄 ovx10500u（wide_i/wide_ii 相同） | 26（夜 18） | 56 | 有，0.6–0.7，仅 mode 37/42 |
-  | 超广 s5kjn5 | 25.5–28 | 35–55 | 无 |
-  | 长焦 s5khpe | 30–55（=普通） | 30–55 | 无 |
-  主摄 Legend Stylization 只在 mode 37/42；其他 mode 落到默认数据（无 enable），故主摄 M9 必然跑 37/42。
-- IPE（chromatix，emu/chromatix 导出到 re/chromatix/modes/{wide_i,ultra_i,tele_i}）M9 vs 普通：
-  主摄 6 张表全不同；超广 cc15/tdl13/ltm21/tmc202 不同、gamma152/cv122 相同；**长焦 6 张全相同（无 M9 IPE 调校）**。
-  三颗之间的 M9 表两两不同。
+## M9 跨摄像头一致性（2026-10-09，已更正）
+- ⚠ 更正：此前"长焦没有 M9 IPE 调校"是查表错误——chromatix 第一层是**传感器模式**，Legend 节点只写在该摄像头
+  Legend 实际用的模式下；用主摄的 mode 1 去查长焦会静默回退到普通节点。长焦 Legend 节点在 sensor mode 2/3/4
+  （导出用 mode 4；mi_tuning 长焦 Legend 也在 mode 4/7）。主摄 M9 表在 mode 1/2/4/11 相同，AE Stylization 在 37/42。
+- **意图在主摄与长焦上一致**（绝对数值是各传感器校准，不可比；风格 = 同一摄像头上 M9 相对普通的差量）：
+  | | LTM#423 | LCE#426 | GTM% | LTM% | cc A 对角均值 |
+  |---|---|---|---|---|---|
+  | 主摄 M9 / 普通 | 0 / 0–0.6 | 0 / 0–1.3 | 100% / 20–40% | 0 / 60–80% | 1.25 / 1.44 |
+  | 长焦 M9 / 普通 | 0 / 0–0.6 | 0 / 0–1.1 | 100% / 20% | 0 / 80% | 1.03 / 1.46 |
+  长焦 M9 gamma 与主摄 M9 gamma 几乎相同。
+- **AE 是唯一真正不一致的**：主摄 Legend base_target 26 × Stylization 0.6–0.7（-1.7~-2.2 EV）；长焦 Legend Metering
+  （mode 4/7）base 55 = 普通，无 Stylization；长焦 Legend 只改人脸目标（×0.5–0.6，按变焦）、关语义权重、曝光表允许更高增益。
+  超广：Metering base 25.5–28（普通 35–55），无 Stylization（超广 IPE 尚未按正确模式重查）。
+- 结构理解：ISP 的 M9 层 = 把每颗摄像头拉到同一张"M9 底片"（全局曲线、无局部提亮、淡色、AWB 锁 D50）的适配器；
+  StyleTrans（单一网络，三摄共用）假定这个输入分布；LeicaFilter 统一调色 + 按焦段暗角。
 - AWB：三颗都有 Legend 的 AiAwb/Preference/StatsMap（模块 4/22/32）数据；锁 D50 的 CalLegendModeGain 是代码逻辑，与摄像头无关。
 - cc15 AI 混合：开关是 cc15 输入 `commonLibInput+0x40`（aiEnable），由 IPE 驱动 CC 模块 `FillDependencyData`
   （libcamxhwlipedriver 0x38b760，camxipehwlcolorcorrection141p.cpp）从每帧 AI 使能（IPE 节点 m_isAIEnabledPerFrame，

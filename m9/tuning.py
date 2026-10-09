@@ -31,16 +31,22 @@ LEVEL_VARS = {
     "ltm21_ipe_v2": ("drc", "lux"),
     "tmc202_sw_v2": ("drc", "gain", "lux"),
 }
-# Tele (s5khpe) trees have their own level layout; the extra last level (regions 0-5 / 10-20 /
-# 30-100...) is the zoom ratio: the continuous optical tele (~3.2-4.3x) always lies in the 0-5
-# region, higher regions are digital zoom. Leading 0 / >=1 two-region levels are the flag.
-LEVEL_VARS_TELE = {
-    "gamma152_ipe_v2": ("flag", "drc", "gain", "one", "lux", "zoom"),
-    "cc15_ipe_v2": ("flag", "one", "one", "lux", "cct", "zoom"),
-    "cv122_ipe_v2": ("one", "gain", "lux", "cct"),
-    "tdl13_ipe_v2": ("one", "one", "flag", "lux", "cct", "zoom"),
-    "ltm21_ipe_v2": ("drc", "gain", "lux", "zoom"),
-    "tmc202_sw_v2": ("drc", "gain", "lux", "zoom"),
+# Tele (s5khpe): the Legend nodes live under the tele's own sensor modes (2/3/4; mode 1 has none
+# and silently falls back to the normal photo node). Exported at sensor mode 4. Each module has its
+# own level layout. The level with regions 0-5 / 10-15 / 20-1000 (0-5 alone in some M9 trees) is
+# taken as the zoom ratio: the continuous optical tele (~3.2-4.3x) lies in 0-5.
+LEVEL_VARS_BY_TAG = {
+    "tele": {
+        "gamma152_ipe_v2": ("drc", "gain", "one", "lux", "one"),
+        "cc15_ipe_v2": ("one", "one", "one", "lux", "cct", "one"),
+        "cv122_ipe_v2": ("one", "gain", "lux", "cct"),
+        "tdl13_ipe_v2": ("one", "one", "flag", "lux", "cct", "zoom"),
+        "ltm21_ipe_v2": ("drc", "gain", "lux", "zoom"),
+        "tmc202_sw_v2": ("drc", "gain", "lux", "zoom"),
+    },
+    "tele_normal": {
+        "cc15_ipe_v2": ("drc", "one", "one", "lux", "cct", "zoom"),
+    },
 }
 OPTICAL_ZOOM = 4.0
 
@@ -93,7 +99,7 @@ def lookup(tag: str, module: str, drc: float = 1.0, gain: float = 1.0, lux: floa
            cct: float = 5000.0, flag: float = 0.0) -> np.ndarray:
     """Interpolated leaf (float array) of `module` for tag 'm9' or 'normal'."""
     m = {"drc": drc, "gain": gain, "lux": lux, "cct": cct, "flag": flag, "zoom": OPTICAL_ZOOM}
-    lv = (LEVEL_VARS_TELE if tag.startswith("tele") else LEVEL_VARS)[module]
+    lv = LEVEL_VARS_BY_TAG.get(tag, LEVEL_VARS)[module] if tag in LEVEL_VARS_BY_TAG else LEVEL_VARS[module]
     vals = [m.get(name, 0.5) if name != "one" else 0.5 for name in lv]
     # single-region 'one' levels: any value inside works; 0.5 lies in [0,2] / [0,64] / [0,1000]
     return _eval(_tree(tag, module), vals, 0)

@@ -185,18 +185,15 @@ def drc_curve(x: np.ndarray, gain: float) -> np.ndarray:
 
 
 # camera -> (IPE table tag in Legend mode, IPE tag of the normal photo mode on the same camera).
-# main: ovx10500u wide_i has its own M9 tables; tele: s5khpe has none (Legend == normal).
-CAMERAS = {"main": ("m9", "normal"), "tele": ("tele", "tele")}
+# main: ovx10500u wide_i (Legend sensor modes 37/42, tables identical in modes 1/2/4/11);
+# tele: s5khpe Legend nodes at sensor mode 4.
+CAMERAS = {"main": ("m9", "normal"), "tele": ("tele", "tele_normal")}
 
 
 def tmc_lut(gain: float, lux: float, n: int = 4096, tag: str = "m9") -> np.ndarray:
     """TMC202 GTM curve (m9.tmc, original knee/Hermite code) sampled on [0,1]."""
     from . import tmc
-    leaf = tuning.lookup(tag, "tmc202_sw_v2", drc=max(gain, 1.0), gain=1.0, lux=lux).copy()
-    # Offline trade-off: no local LTM. Its share of the ADRC gain (ltm_percentage #8, and the
-    # sub-GTM share #4) is folded into the global curve so the total tone lift is kept; the local
-    # contrast part of LTM is dropped. M9 main: GTM 1.0, LTM 0 -> unchanged (exact).
-    leaf[0] = min(1.0, leaf[0] + leaf[4] + leaf[8])
+    leaf = tuning.lookup(tag, "tmc202_sw_v2", drc=max(gain, 1.0), gain=1.0, lux=lux)
     X, Y = tmc.anchor_knees(leaf, max(gain, 1.0))
     return tmc.gtm_curve(np.linspace(0, 1, n), X, Y).astype(np.float32)
 

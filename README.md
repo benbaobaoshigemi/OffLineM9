@@ -3,11 +3,12 @@
 ```
 python -m m9.render input.dng -o out.jpg [--camera main|tele] [--zoom Z] [--ev 0] [--lux-index N] [--cct K] [--half]
 ```
-**两个版本**：17U 的 M9 在 ISP 层是分摄像头调的（见 FINDINGS.md「M9 跨摄像头一致性」），不强行合并：
+**两个版本**（见 FINDINGS.md「M9 跨摄像头一致性」）：
 - `--camera main`（默认）：主摄 ovx10500u 的 Legend 调校——AE 压暗（base 26 × Stylization 0.6–0.7，mode 37/42）、
-  M9 专属 gamma/cc/cv/tdl/tmc、LTM 关闭。
-- `--camera tele`：长焦 s5khpe——Legend 下 AE 与 IPE 均与普通拍照相同（原版就没有 M9 ISP 调校）；
-  M9 只体现在 AWB 锁 D50 + StyleTrans + LeicaFilter（暗角按变焦倍率，默认由 DNG 等效焦距/23mm 推出，限 3.2–4.3x）。
+  M9 gamma/cc/cv/tdl/tmc（LTM 关、GTM 100%）。
+- `--camera tele`：长焦 s5khpe 的 Legend 调校（sensor mode 4）——M9 gamma/cc/cv/tdl/tmc，意图与主摄一致（LTM 关、
+  GTM 100%、降饱和）；AE 按原版长焦 Legend 不整体压暗（只压人脸目标），所以比主摄亮约 1–1.5 EV。
+  暗角按变焦倍率（默认由 DNG 等效焦距/23mm 推出，限 3.2–4.3x）。
 - 三颗共有、两版相同：AWB 锁定、StyleTrans、LeicaFilter。超广角未做。
 真值来源：17U ROM（OS3.0.308）。详细逆向记录见 `M9-style-analysis.md`、`FINDINGS.md`。
 
@@ -20,7 +21,7 @@ python -m m9.render input.dng -o out.jpg [--camera main|tele] [--zoom Z] [--ev 0
 | Anchor / MFNR | 多帧对齐降噪 | 不做 | **必要取舍**：DNG 已是相机合成后的单帧 |
 | AllinOne（libmialgo_aisp） | AI 降噪+BLC/LSC/WB，输出线性 RGB16，NR 路径不施加 ADRC | rawpy 线性解马赛克 | **必要取舍**：AI 降噪模型针对 17U 传感器；DNG 已含 BLC/LSC |
 | B2Y ForRGB – LTM（ltm21） | M9：LTM 曲线强度 #423=0、`lce_strength` #426=0（IPE 与 OFE 均为 0） | 无局部处理 | 精确 |
-| B2Y – TMC202 | 主摄 M9：gtm 100%、ltm 0%；长焦：gtm 20%、ltm 80% | `m9/tmc.py`：原版拐点 + 单调 Hermite 曲线，按 Y 比例增益施加 | 主摄**精确**（qemu 跑原版，4 组 lux/DRC 误差 ≤1.2e-6）；长焦**取舍**：LTM 的 DRC 份额并入全局曲线，局部对比增强不做 |
+| B2Y – TMC202 | 主摄、长焦 M9：gtm 100%、ltm 0% | `m9/tmc.py`：原版拐点 + 单调 Hermite 曲线，按 Y 比例增益施加 | **精确**（qemu 跑原版，4 组 lux/DRC 误差 ≤1.2e-6）；主摄、长焦 M9 均为 GTM 100%、LTM 0，无需局部算子 |
 | B2Y – CC（cc15） | M9 只有一组矩阵（A 弱；B 为 AI 类别矩阵） | DNG 色度矩阵 × `CC_M9·CC_normal⁻¹`（同档） | **必要取舍**：矩阵与传感器绑定，取相对变换；AI 类别混合（需 17U AI 分割）未做 |
 | B2Y – 2D LUT（tdl13） | M9 色相表（度，HSV，15° 格点）+ 饱和度表 | 原表按 lux/CCT/DRC 插值，HSV 双线性 | 精确（色相格点假设均匀 15°） |
 | B2Y – gamma152 | M9 曲线（强光档更平） | 原表插值 | 精确 |
