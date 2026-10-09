@@ -1,9 +1,9 @@
 """RAW front end: DNG -> scene-linear camera-neutral RGB -> display-referred
 sRGB-ish image comparable to what the 17U IPE (offcamb2y) hands to StyleTrans.
 
-The IPE tuning (chromatix) is not reproduced yet; this stage uses DNG colour
-metadata plus a parametric tone curve, kept deliberately simple so it can be
-swapped for the chromatix-derived gamma/LTM later.
+Colour/tone follow the intent decoded from the M9 chromatix (weak colour
+matrix, saturation shoulder, no local tone mapping, flatter bright scenes),
+implemented as our own global operators rather than transplanted tables.
 """
 from __future__ import annotations
 
@@ -118,21 +118,70 @@ def lux_index_from_ev(ev100: float) -> float:
     return float(np.clip(476.0 - 23.45 * ev100, 0, 999))
 
 
-def tone(rgb_lin: np.ndarray, exposure: float = 1.0, contrast: float = 1.0) -> np.ndarray:
-    """Placeholder display rendering: exposure, highlight roll-off, sRGB OETF.
+# --- M9 B2Y-intent rendering (own design, guided by the decoded chromatix; see
+# M9-style-analysis.md). Nothing here is copied live from tuning tables: the curve
+# knots are a smooth read of the M9 gamma152 shape, the colour numbers are ratios
+# between the M9 and normal-photo CC/CV/TDL instances.
 
-    Will be replaced by the 17U chromatix gamma + LTM once parsed.
+# Global tone curve (display-referred, input = linear after exposure). Linear toe,
+# no sRGB shadow lift, slightly fuller mids than sRGB - the shape of M9 gamma152.
+_TONE_X = np.array([0, .05, .10, .15, .20, .25, .30, .40, .50, .60, .70, .80, .90, 1.0], np.float32)
+_TONE_Y = np.array([0, .15, .29, .39, .47, .54, .60, .70, .79, .86, .91, .95, .98, 1.0], np.float32)
+# Bright scenes (lux index < ~207, low DRC): M9 lifts shadows ~+30/1023 and
+# lowers mids/highs ~-22/1023 -> lower contrast. Applied as a bump on the curve.
+_BRIGHT_DY = np.array([0, .02, .03, .03, .02, .0, -.01, -.02, -.022, -.022, -.02, -.015, -.008, 0], np.float32)
+
+# Colour: M9 CC matrix is much weaker than normal (mean |off-diag| ratio ~0.58,
+# diagonal 1.07-1.51 vs 1.61-1.86) and CV chroma gain is 0.49/0.53 = 0.925.
+BASE_SATURATION = 0.85 * 0.925
+# TDL: saturation reduced progressively with saturation, ~-1% (low) to ~-10% (high).
+SAT_SHOULDER = (0.01, 0.09)
+
+
+def _oklab(rgb):
+    m1 = np.array([[0.4122214708, 0.5363325363, 0.0514459929],
+                   [0.2119034982, 0.6806995451, 0.1073969566],
+                   [0.0883024619, 0.2817188376, 0.6299787005]], np.float32)
+    m2 = np.array([[0.2104542553, 0.7936177850, -0.0040720468],
+                   [1.9779984951, -2.4285922050, 0.4505937099],
+                   [0.0259040371, 0.7827717662, -0.8086757660]], np.float32)
+    return np.cbrt(rgb @ m1.T) @ m2.T
+
+
+def _oklab_inv(lab):
+    m2i = np.array([[1.0, 0.3963377774, 0.2158037573],
+                    [1.0, -0.1055613458, -0.0638541728],
+                    [1.0, -0.0894841775, -1.2914855480]], np.float32)
+    m1i = np.array([[4.0767416621, -3.3077115913, 0.2309699292],
+                    [-1.2684380046, 2.6097574011, -0.3413193965],
+                    [-0.0041960863, -0.7034186147, 1.7076147010]], np.float32)
+    return (lab @ m2i.T) ** 3 @ m1i.T
+
+
+def m9_colour(rgb_lin: np.ndarray) -> np.ndarray:
+    """Low base saturation + saturation shoulder (no hue-selective boosts)."""
+    lab = _oklab(np.maximum(rgb_lin, 0.0))
+    ab = lab[..., 1:] * BASE_SATURATION
+    c = np.linalg.norm(ab, axis=-1, keepdims=True)
+    lo, hi = SAT_SHOULDER
+    ab *= 1.0 - lo - hi * np.clip(c / 0.25, 0.0, 1.0)
+    lab = np.concatenate([lab[..., :1], ab], -1)
+    return np.maximum(_oklab_inv(lab), 0.0).astype(np.float32)
+
+
+def tone(rgb_lin: np.ndarray, exposure: float = 1.0, lux_index: float = 300.0) -> np.ndarray:
+    """Global-only tone mapping (M9: LTM/LCE strength 0, TMC 100% to the global curve).
+
+    Highlights above 1.0 are compressed hue-preservingly before the curve; no
+    local/spatially varying operators are used anywhere.
     """
     x = np.maximum(rgb_lin * exposure, 0.0)
-    # Reinhard-style shoulder on max channel, hue preserving
     m = np.max(x, -1, keepdims=True)
     k = 0.25
     shoulder = np.where(m > 1 - k, (1 - k) + k * np.tanh((m - (1 - k)) / k), m)
     x = x * (shoulder / np.maximum(m, 1e-6))
-    srgb = np.where(x <= 0.0031308, 12.92 * x, 1.055 * np.power(np.maximum(x, 1e-12), 1 / 2.4) - 0.055)
-    if contrast != 1.0:
-        srgb = 0.5 + (srgb - 0.5) * contrast
-    return np.clip(srgb, 0.0, 1.0).astype(np.float32)
+    y = _TONE_Y + (_BRIGHT_DY if lux_index < 207 else 0.0)
+    return np.clip(np.interp(x, _TONE_X, y), 0.0, 1.0).astype(np.float32)
 
 
 def auto_exposure(rgb_lin: np.ndarray, target: float = 0.18, pct: float = 50.0) -> float:
