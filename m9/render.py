@@ -9,7 +9,7 @@ import os
 
 import numpy as np
 
-from .frontend import auto_exposure, load_dng, lux_index_from_ev, m9_colour, tone
+from .frontend import auto_exposure, load_dng, lux_index_from_ev, m9_colour, m9_hue, tone
 from .leicafilter import LeicaFilter
 
 
@@ -20,7 +20,7 @@ def render(path: str, out: str, lux_index: float | None = None, cct: float | Non
     li = lux_index if lux_index is not None else (lux_index_from_ev(info.ev100) if info.ev100 else 300.0)
     k = cct if cct is not None else info.cct
     exp = auto_exposure(lin) * (2.0 ** ev)
-    disp = tone(m9_colour(lin), exposure=exp, lux_index=li)
+    disp = m9_hue(tone(m9_colour(lin), exposure=exp, lux_index=li))
 
     # StyleTrans network not yet reconstructed -> use the plugin's own fallback
     # (preview params, which bake in the style approximation).

@@ -188,3 +188,23 @@ def auto_exposure(rgb_lin: np.ndarray, target: float = 0.18, pct: float = 50.0) 
     y = rgb_lin @ np.array([0.2126, 0.7152, 0.0722], np.float32)
     med = float(np.percentile(y[::4, ::4], pct))
     return float(np.clip(target / max(med, 1e-5), 0.25, 16.0))
+
+# TDL hue rotation (degrees, HSV hue axis; IPE 2DLUT131 converts deg/60*2048).
+# M9 table is the same in every lux/CCT bin: a fixed "away from yellow" intent.
+# Index = 15-degree hue knot (0 = red); applies only above ~25% saturation
+# (first 4 of 16 saturation knots are 0).
+_HUE_KNOTS_DEG = np.array([-1, -1, -2, -2, -2, -2, 0, 2, 2, 2, 1, 0,
+                           0, 0, -1, -3, -1, 0, 0, 0, 0, 0, 0, -1], np.float32)
+
+
+def m9_hue(rgb_disp: np.ndarray) -> np.ndarray:
+    """Small hue rotations on display-referred RGB (as the IPE 2D LUT does)."""
+    import cv2
+    hsv = cv2.cvtColor(np.clip(rgb_disp, 0, 1).astype(np.float32), cv2.COLOR_RGB2HSV)
+    h, sat = hsv[..., 0], hsv[..., 1]
+    k = np.append(_HUE_KNOTS_DEG, _HUE_KNOTS_DEG[0])
+    d = np.interp(h, np.arange(25) * 15.0, k)
+    w = np.clip((sat - 3 / 15) / (1 / 15), 0.0, 1.0)
+    hsv[..., 0] = np.mod(h + d * w, 360.0)
+    return cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB)
+
