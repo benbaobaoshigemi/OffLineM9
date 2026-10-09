@@ -11,8 +11,10 @@ from m9 import tmc, tuning  # noqa: E402
 
 ROOT = "F:/OffLineM9-pipeline"
 worst = 0.0
-for lux in (150, 200, 300, 380, 450):
-    for drc in (1.0, 1.15, 1.6, 2.5, 4.5):
+CASES = [tuple(map(float, a.split(","))) for a in sys.argv[1:]] or [(l, d) for l in (150, 200, 300, 380, 450) for d in (1.0, 1.15, 1.6, 2.5, 4.5)]
+for lux, drc in CASES:
+    if True:
+        pass
         leaf = tuning.lookup("m9", "tmc202_sw_v2", drc=drc, gain=1.0, lux=lux).astype(np.float32)
         h = np.zeros(1024, np.uint32); h[200] = 1000
         hdr = np.array([drc, 1.0, lux, lux], np.float32)
@@ -28,5 +30,5 @@ for lux in (150, 200, 300, 380, 450):
         C = np.stack([d[1:6], c2[1:6], c3[1:6]], 1).ravel()
         err = max(np.abs(X - Xo).max(), np.abs(Y - Yo).max(), np.abs(C - Co).max() / max(1, np.abs(Co).max()))
         worst = max(worst, err)
-        print(f"lux {lux:4d} drc {drc:4.2f}  maxerr {err:.2e}  X {np.round(Xo,4)} Y {np.round(Yo,4)}")
+        print(f"lux {lux:4.0f} drc {drc:4.2f}  maxerr {err:.2e}  X {np.round(Xo,4)} Y {np.round(Yo,4)}")
 print("WORST", worst)
