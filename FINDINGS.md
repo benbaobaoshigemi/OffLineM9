@@ -118,3 +118,6 @@
   min 1、max 5、hdrCap 1/5。
 - gainmapPostProc：hl% = g8≥250 占比；extra 100%(≤8%)→80%(≥20%)；maxBoost=hdrCapMax=max(1, extra×5.0×residualGain)；
   灰度 JPEG 质量 98。jpegrAggr 写 XMP + MPF（还写 ISO 21496 元数据、Leica 水印/四边框高度处理）。
+- ROM libultrahdr（vendor/lib64）为数组版元数据（max/min/gamma/offset 各 [3] + cap_min/max + use_base_cg）；
+  jpegrAggr 默认写 ISO 21496-1（persist.vendor.camera.algoengine.jpegrAggr.iso21496_1=1），分数由连分数逼近 float32 值
+  （单通道 flags 0x40，全部分母相同时 0x48 公分母）。`emu/uhdr`：dec/enc/iso 三种模式直接调用 ROM 库。
