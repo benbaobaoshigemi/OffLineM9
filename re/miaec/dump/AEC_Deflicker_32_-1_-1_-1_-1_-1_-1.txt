@@ -1,0 +1,131 @@
+version: "2025-12-15 17:18"
+flicker_detection {
+  auto_flicker_ctrl_enable {
+    value: true
+  }
+  temporal_ctrl_enable {
+  }
+  temporal_conv_speed {
+    value: 0.3
+  }
+  freqency_changed_tolerance {
+    value: 0.5
+  }
+  anti_flicker_frequency_min {
+    value: 60.0
+  }
+  anti_flicker_frequency_max {
+    value: 480.0
+  }
+  shock_percentage_thrd_for_anti_banding {
+    value: 3.0
+  }
+  anti_flicker_amplitude_min {
+    value: 50.0
+  }
+  flicker_amplitude_thrd {
+    value: 100.0
+  }
+  flicker_amplitude_shock_ratio_thrd {
+    value: 4.8
+  }
+  down_freq_unlock_check_frame_cnt_thrd {
+    value: 10
+  }
+  startup_skip_frame_cnt_thrd {
+  }
+  deflicker_magnitude_ratio_thrd {
+    value: 3.0
+  }
+  local_area_default_hz {
+    value: 50.0
+  }
+  outdoor_probability_thrd {
+    value: 80.0
+  }
+  outdoor_tolerance {
+    value: 0.9
+  }
+  outdoor_lux_start {
+    value: 230.0
+  }
+  outdoor_lux_end {
+    value: 260.0
+  }
+  hdr_banding_enable {
+  }
+  heavy_banding_thrd {
+    value: 2.5
+  }
+  special_frequency_case_enable {
+    value: true
+  }
+  special_case_frequency {
+    arr: 60
+    arr: 120
+  }
+}
+deflicker_control {
+  flicker_detected_cnt_threshold {
+  }
+  flicker_detected_cnt_threshold_startup {
+  }
+  flicker_undetected_cnt_threshold {
+    value: 12
+  }
+  deflicker_safe_exposure_node {
+    arr: 0.95
+    arr: 1.0
+  }
+  deflicker_safe_upper_exposure {
+    arr: 1.0
+    arr: 1.0
+  }
+  deflicker_safe_tolerance_ratio {
+    arr: 0.9
+    arr: 0.9
+  }
+  deflicker_safe_control_short_node {
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  deflicker_short_tolerance_ratio {
+    arr: 0.85
+    arr: 0.85
+    arr: 0.85
+    arr: 0.85
+  }
+  deflicker_short_lower_exposure {
+    arr: 0.4
+    arr: 0.3
+    arr: 0.25
+    arr: 0.1
+  }
+}
+tolerance_ratio_for_min_anti_flicker_exp_time {
+  value: 0.6
+}
+deflicker_method_with_fps: DeflickerPriority_max_shutter
+do_de_banding_in_manual_exp_iso_or_gain_mode {
+}
+afd_outdoor_prob_param {
+  enable_afd_outdoor_prob {
+  }
+  outdoor_prob_thd {
+    value: 4096.0
+  }
+  indoor_prob_thd {
+    value: 0.95
+  }
+  outdoor_cnt_thd {
+    value: 3
+  }
+  indoor_cnt_thd {
+    value: 2000
+  }
+}
+deflicker_tolerance {
+  value: 0.6
+}

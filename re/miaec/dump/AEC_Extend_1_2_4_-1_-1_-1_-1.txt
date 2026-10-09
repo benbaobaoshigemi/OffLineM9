@@ -1,0 +1,2779 @@
+version: "2025-10-20 15:21"
+extend {
+  enable {
+    rule {
+      description: "[Bool] enable_use_knee_point"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool] enable_btc_scene"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool] enable_bg_adjust"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool] enable_btc_face"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]tnc_adrc_node"
+      high: 256.0
+      len: "5"
+    }
+    arr: 1.0
+    arr: 1.2
+    arr: 2.0
+    arr: 4.2
+    arr: 5.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]tnc_face_size_thd"
+      high: 0.5
+      len: "2"
+    }
+    arr: 0.0
+    arr: 0.01
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_dt_y_scene"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.35
+      arr: 0.35
+      arr: 0.36
+      arr: 0.35
+      arr: 0.29
+      arr: 0.23
+      arr: 0.1
+    }
+    arr_2d {
+      arr: 0.35
+      arr: 0.35
+      arr: 0.36
+      arr: 0.35
+      arr: 0.29
+      arr: 0.23
+      arr: 0.1
+    }
+    arr_2d {
+      arr: 0.35
+      arr: 0.35
+      arr: 0.36
+      arr: 0.35
+      arr: 0.29
+      arr: 0.23
+      arr: 0.1
+    }
+    arr_2d {
+      arr: 0.33
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.33
+      arr: 0.1
+      arr: 0.1
+    }
+    arr_2d {
+      arr: 0.33
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.33
+      arr: 0.1
+      arr: 0.1
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_mt_y_scene"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.57
+      arr: 0.48
+      arr: 0.43
+      arr: 0.45
+      arr: 0.45
+      arr: 0.25
+      arr: 0.2
+    }
+    arr_2d {
+      arr: 0.57
+      arr: 0.48
+      arr: 0.43
+      arr: 0.45
+      arr: 0.45
+      arr: 0.25
+      arr: 0.2
+    }
+    arr_2d {
+      arr: 0.57
+      arr: 0.48
+      arr: 0.43
+      arr: 0.45
+      arr: 0.45
+      arr: 0.25
+      arr: 0.2
+    }
+    arr_2d {
+      arr: 0.43
+      arr: 0.48
+      arr: 0.49
+      arr: 0.53
+      arr: 0.53
+      arr: 0.2
+      arr: 0.2
+    }
+    arr_2d {
+      arr: 0.43
+      arr: 0.48
+      arr: 0.49
+      arr: 0.53
+      arr: 0.53
+      arr: 0.2
+      arr: 0.2
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_bt_y_scene"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_dt_y_face"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.37
+      arr: 0.36
+      arr: 0.35
+      arr: 0.33
+      arr: 0.35
+      arr: 0.299
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.37
+      arr: 0.36
+      arr: 0.35
+      arr: 0.33
+      arr: 0.35
+      arr: 0.299
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.37
+      arr: 0.36
+      arr: 0.35
+      arr: 0.33
+      arr: 0.35
+      arr: 0.299
+    }
+    arr_2d {
+      arr: 0.299
+      arr: 0.35
+      arr: 0.37
+      arr: 0.33
+      arr: 0.35
+      arr: 0.299
+      arr: 0.299
+    }
+    arr_2d {
+      arr: 0.299
+      arr: 0.35
+      arr: 0.37
+      arr: 0.33
+      arr: 0.35
+      arr: 0.299
+      arr: 0.299
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_mt_y_face"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.55
+      arr: 0.49
+      arr: 0.49
+      arr: 0.45
+      arr: 0.45
+      arr: 0.55
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.55
+      arr: 0.49
+      arr: 0.49
+      arr: 0.45
+      arr: 0.45
+      arr: 0.55
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.55
+      arr: 0.49
+      arr: 0.49
+      arr: 0.45
+      arr: 0.45
+      arr: 0.55
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.42
+      arr: 0.46
+      arr: 0.55
+      arr: 0.4
+      arr: 0.53
+      arr: 0.3
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.42
+      arr: 0.46
+      arr: 0.55
+      arr: 0.4
+      arr: 0.53
+      arr: 0.3
+      arr: 0.3
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_bt_y_face"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+    arr_2d {
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+      arr: 0.71
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_dark_boost_ratio_scene"
+      low: 0.1
+      high: 2.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_dark_boost_ratio_face"
+      low: 0.1
+      high: 2.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_dark_boost_offset_scene"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.34
+      arr: 0.426
+      arr: 0.2
+      arr: 0.15
+      arr: 0.0
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.34
+      arr: 0.426
+      arr: 0.2
+      arr: 0.15
+      arr: 0.0
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.34
+      arr: 0.426
+      arr: 0.2
+      arr: 0.15
+      arr: 0.0
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.27
+      arr: 0.38
+      arr: 0.3
+      arr: 0.15
+      arr: 0.0
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.27
+      arr: 0.38
+      arr: 0.3
+      arr: 0.15
+      arr: 0.0
+      arr: 0.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_dark_boost_offset_face"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.369
+      arr: 0.36
+      arr: 0.2
+      arr: 0.19
+      arr: 0.069
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.369
+      arr: 0.36
+      arr: 0.2
+      arr: 0.19
+      arr: 0.069
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.369
+      arr: 0.36
+      arr: 0.2
+      arr: 0.19
+      arr: 0.069
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 0.16
+      arr: 0.29
+      arr: 0.13
+      arr: 0.15
+      arr: 0.0
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 0.16
+      arr: 0.29
+      arr: 0.13
+      arr: 0.15
+      arr: 0.0
+      arr: 0.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_btc_gain_scene"
+      low: 0.1
+      high: 2.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_btc_gain_face"
+      low: 0.1
+      high: 2.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_weight_lnr_bg"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_dt_bg_ratio"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+    arr_2d {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+    arr_2d {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+    arr_2d {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+    arr_2d {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_mt_bg_ratio"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tnc_knee_mt_bg_ratio"
+      high: 1.0
+      row: "5"
+      col: "7"
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool] enable_overexp_compensation"
+    }
+    value: true
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      high: 999.0
+      len: "11"
+    }
+    arr: 0.1
+    arr: 3.0
+    arr: 0.0
+    arr: 0.5
+    arr: 0.0
+    arr: 0.5
+    arr: 1.0
+    arr: 10.0
+    arr: 1.0
+    arr: 1.25
+    arr: 0.01
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]"
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]enable_lightsensor_Assist"
+    }
+    value: true
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]bright_ratio_vec"
+      high: 999.0
+      len: "6"
+    }
+    arr: 0.05
+    arr: 0.1
+    arr: 0.2
+    arr: 0.3
+    arr: 0.5
+    arr: 1.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]short_exp_blend_weight_vec"
+      high: 999.0
+      len: "6"
+    }
+    arr: 0.1
+    arr: 0.2
+    arr: 0.3
+    arr: 0.5
+    arr: 0.7
+    arr: 0.9
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]safe_exp_blend_weight_vec"
+      high: 999.0
+      len: "6"
+    }
+    arr: 0.0
+    arr: 0.0
+    arr: 0.1
+    arr: 0.2
+    arr: 0.3
+    arr: 0.4
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]lightsensor_assist_bright_ratio_thld"
+      high: 999.0
+      len: "1"
+    }
+    arr: 0.01
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]"
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]enable_discrete_drc"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]enable_state_hold_drc"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]enable_bright_ratio_hold_drc"
+    }
+    value: true
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]discrete_drc_node"
+      high: 999.0
+      len: "129"
+    }
+    arr: 1.0
+    arr: 1.5
+    arr: 3.0
+    arr: 5.0
+    arr: 7.0
+    arr: 9.0
+    arr: 11.0
+    arr: 13.0
+    arr: 15.0
+    arr: 17.0
+    arr: 19.0
+    arr: 21.0
+    arr: 23.0
+    arr: 25.0
+    arr: 27.0
+    arr: 29.0
+    arr: 31.0
+    arr: 33.0
+    arr: 35.0
+    arr: 37.0
+    arr: 39.0
+    arr: 41.0
+    arr: 43.0
+    arr: 45.0
+    arr: 47.0
+    arr: 49.0
+    arr: 51.0
+    arr: 53.0
+    arr: 55.0
+    arr: 57.0
+    arr: 59.0
+    arr: 61.0
+    arr: 63.0
+    arr: 65.0
+    arr: 67.0
+    arr: 69.0
+    arr: 71.0
+    arr: 73.0
+    arr: 75.0
+    arr: 77.0
+    arr: 79.0
+    arr: 81.0
+    arr: 83.0
+    arr: 85.0
+    arr: 87.0
+    arr: 89.0
+    arr: 91.0
+    arr: 93.0
+    arr: 95.0
+    arr: 97.0
+    arr: 99.0
+    arr: 101.0
+    arr: 103.0
+    arr: 105.0
+    arr: 107.0
+    arr: 109.0
+    arr: 111.0
+    arr: 113.0
+    arr: 115.0
+    arr: 117.0
+    arr: 119.0
+    arr: 121.0
+    arr: 123.0
+    arr: 125.0
+    arr: 127.0
+    arr: 129.0
+    arr: 131.0
+    arr: 133.0
+    arr: 135.0
+    arr: 137.0
+    arr: 139.0
+    arr: 141.0
+    arr: 143.0
+    arr: 145.0
+    arr: 147.0
+    arr: 149.0
+    arr: 151.0
+    arr: 153.0
+    arr: 155.0
+    arr: 157.0
+    arr: 159.0
+    arr: 161.0
+    arr: 163.0
+    arr: 165.0
+    arr: 167.0
+    arr: 169.0
+    arr: 171.0
+    arr: 173.0
+    arr: 175.0
+    arr: 177.0
+    arr: 179.0
+    arr: 181.0
+    arr: 183.0
+    arr: 185.0
+    arr: 187.0
+    arr: 189.0
+    arr: 191.0
+    arr: 193.0
+    arr: 195.0
+    arr: 197.0
+    arr: 199.0
+    arr: 201.0
+    arr: 203.0
+    arr: 205.0
+    arr: 207.0
+    arr: 209.0
+    arr: 211.0
+    arr: 213.0
+    arr: 215.0
+    arr: 217.0
+    arr: 219.0
+    arr: 221.0
+    arr: 223.0
+    arr: 225.0
+    arr: 227.0
+    arr: 229.0
+    arr: 231.0
+    arr: 233.0
+    arr: 235.0
+    arr: 237.0
+    arr: 239.0
+    arr: 241.0
+    arr: 243.0
+    arr: 245.0
+    arr: 247.0
+    arr: 249.0
+    arr: 251.0
+    arr: 253.0
+    arr: 255.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]drc_downward_thld,drc_upward_thld"
+      high: 999.0
+      len: "2"
+    }
+    arr: 3.0
+    arr: 2.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]bright_ratio_hold_low_thld,bright_ratio_hold_high_thld"
+      low: -1.0
+      high: 999.0
+      len: "2"
+    }
+    arr: -0.005
+    arr: 0.1
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]"
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]enable_step_smooth"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]is_bright_to_dark_speed_up"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]safe use_face_appraoch"
+    }
+    value: true
+  }
+  enable {
+    rule {
+      description: "[Bool]tone use_face_appraoch"
+    }
+    value: true
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]smooth_frame_count,bright_to_dark_speed_up_ratio"
+      high: 999.0
+      len: "2"
+    }
+    arr: 2.0
+    arr: 1.5
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]step_smooth_weight"
+      high: 1.0
+      len: "2"
+    }
+    arr: 0.3
+    arr: 0.7
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]safe face_exp_idx_diff_vec"
+      low: -999.0
+      high: 999.0
+      len: "5"
+    }
+    arr: -45.0
+    arr: -15.0
+    arr: 0.0
+    arr: 15.0
+    arr: 45.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]tone face_exp_idx_diff_vec"
+      low: -999.0
+      high: 999.0
+      len: "5"
+    }
+    arr: -45.0
+    arr: -15.0
+    arr: 0.0
+    arr: 15.0
+    arr: 45.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]safe face_approach_frame_node"
+      high: 999.0
+      len: "6"
+    }
+    arr: 4.0
+    arr: 12.0
+    arr: 20.0
+    arr: 40.0
+    arr: 60.0
+    arr: 80.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]tone face_approach_frame_node"
+      high: 999.0
+      len: "10"
+    }
+    arr: 4.0
+    arr: 12.0
+    arr: 20.0
+    arr: 28.0
+    arr: 36.0
+    arr: 44.0
+    arr: 52.0
+    arr: 60.0
+    arr: 70.0
+    arr: 80.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]safe face_approach_score_node"
+      high: 999.0
+      len: "2"
+    }
+    arr: 0.0
+    arr: 1.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]tone face_approach_score_node"
+      high: 999.0
+      len: "2"
+    }
+    arr: 0.0
+    arr: 1.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]safe face_approach_stable_score_adjust"
+      high: 1.0
+      row: "5"
+      col: "2"
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tone face_approach_stable_score_adjust"
+      high: 1.0
+      row: "5"
+      col: "2"
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]safe face_approach_unstable_score_adjust"
+      high: 5.0
+      row: "5"
+      col: "2"
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 2.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 3.5
+      arr: 3.5
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tone face_approach_unstable_score_adjust"
+      high: 5.0
+      row: "5"
+      col: "2"
+    }
+    arr_2d {
+      arr: 5.0
+      arr: 5.0
+    }
+    arr_2d {
+      arr: 3.0
+      arr: 3.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]safe face_enter_approch_adjust_2d_vec"
+      high: 1.0
+      row: "5"
+      col: "6"
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.25
+      arr: 0.28
+      arr: 0.32
+      arr: 0.35
+      arr: 0.4
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.23
+      arr: 0.25
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.23
+      arr: 0.25
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.23
+      arr: 0.25
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.28
+      arr: 0.3
+      arr: 0.4
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tone face_enter_approch_adjust_2d_vec"
+      high: 1.0
+      row: "5"
+      col: "10"
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+      arr: 0.4
+      arr: 0.4
+      arr: 0.45
+      arr: 0.5
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.4
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.4
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.4
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.4
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]safe face_central_exit_approach_adjust_2d_vec"
+      high: 1.0
+      row: "5"
+      col: "6"
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.33
+      arr: 0.4
+      arr: 0.5
+      arr: 0.6
+    }
+    arr_2d {
+      arr: 0.15
+      arr: 0.15
+      arr: 0.2
+      arr: 0.28
+      arr: 0.3
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.15
+      arr: 0.15
+      arr: 0.2
+      arr: 0.28
+      arr: 0.3
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.15
+      arr: 0.15
+      arr: 0.2
+      arr: 0.28
+      arr: 0.3
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.23
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+      arr: 0.45
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tone face_central_exit_approach_adjust_2d_vec"
+      high: 1.0
+      row: "5"
+      col: "10"
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.35
+      arr: 0.4
+      arr: 0.45
+      arr: 0.55
+      arr: 0.6
+    }
+    arr_2d {
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.2
+      arr: 0.2
+      arr: 0.25
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.2
+      arr: 0.2
+      arr: 0.25
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.2
+      arr: 0.2
+      arr: 0.25
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.2
+      arr: 0.2
+      arr: 0.25
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]safe face_edge_exit_approch_adjust_2d_vec"
+      high: 1.0
+      row: "5"
+      col: "6"
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.33
+      arr: 0.35
+      arr: 0.45
+      arr: 0.55
+      arr: 0.6
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.23
+      arr: 0.25
+      arr: 0.3
+      arr: 0.33
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.23
+      arr: 0.25
+      arr: 0.3
+      arr: 0.33
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.23
+      arr: 0.25
+      arr: 0.3
+      arr: 0.33
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.45
+      arr: 0.5
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]tone face_edge_exit_approch_adjust_2d_vec"
+      high: 1.0
+      row: "5"
+      col: "10"
+    }
+    arr_2d {
+      arr: 0.25
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.4
+      arr: 0.45
+      arr: 0.5
+      arr: 0.55
+      arr: 0.55
+      arr: 0.6
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+    }
+    arr_2d {
+      arr: 0.2
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool] lls extend exptbl enable"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] F_Number"
+      high: 16.0
+      len: "1"
+    }
+    arr: 1.74
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]exp_tbl[shutter,gain], enable this table instead of lls and normal exptbl"
+      high: 999999.0
+      row: "1"
+      col: "2"
+    }
+    arr_2d {
+      arr: 330000.0
+      arr: 256.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool] coz enable"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] coz first frame comp ratio"
+      high: 10.0
+      len: "1"
+    }
+    arr: 0.8
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]"
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]lux node"
+      high: 12800.0
+      len: "4"
+    }
+    arr: 800.0
+    arr: 6400.0
+    arr: 16.0
+    arr: 256.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]/"
+      high: 999.0
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 1.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]lux node"
+      high: 999.0
+      len: "8"
+    }
+    arr: 0.0
+    arr: 100.0
+    arr: 200.0
+    arr: 250.0
+    arr: 350.0
+    arr: 380.0
+    arr: 410.0
+    arr: 500.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] cct node"
+      high: 10000.0
+      len: "3"
+    }
+    arr: 4000.0
+    arr: 6500.0
+    arr: 7000.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]lux cct adjust ratio"
+      high: 999.0
+      row: "3"
+      col: "8"
+    }
+    arr_2d {
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+    }
+    arr_2d {
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+    }
+    arr_2d {
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]lux node"
+      high: 100.0
+      len: "3"
+    }
+    arr: 50.0
+    arr: 0.3
+    arr: 0.3
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]lux cct adjust ratio"
+      high: 1.0
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]lux node"
+      high: 100.0
+      len: "3"
+    }
+    arr: 50.0
+    arr: 0.3
+    arr: 0.3
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]lux cct adjust ratio"
+      high: 1.0
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+    value: true
+  }
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]lux node"
+      high: 100.0
+      len: "1"
+    }
+    arr: 1.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]lux cct adjust ratio"
+      high: 1.0
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]lux node"
+      high: 100.0
+      len: "3"
+    }
+    arr: 50.0
+    arr: 0.3
+    arr: 0.3
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]lux cct adjust ratio"
+      high: 1.0
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] deflicker_to_dynamic_cg_ratio_drc_node"
+      high: 100.0
+      len: "3"
+    }
+    arr: 2.0
+    arr: 2.0
+    arr: 2.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D] "
+      high: 1.0
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 0.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+    value: true
+  }
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] deflicker_to_dynamic_cg_ratio_drc_node"
+      recommend: "0"
+      high: 1024.0
+      len: "4"
+    }
+    arr: 16.0
+    arr: 32.0
+    arr: 64.0
+    arr: 256.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] deflicker_low_ratio_thld"
+      recommend: "1"
+      high: 100.0
+      len: "4"
+    }
+    arr: 0.1
+    arr: 0.15
+    arr: 0.2
+    arr: 0.2
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] safe_control_anchor_node"
+      recommend: "2"
+      high: 100.0
+      len: "3"
+    }
+    arr: 1.0
+    arr: 8.0
+    arr: 16.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "3"
+      high: 100.0
+      len: "3"
+    }
+    arr: 0.9
+    arr: 0.9
+    arr: 0.9
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "4"
+      high: 100.0
+      len: "3"
+    }
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "5"
+      high: 100.0
+      len: "3"
+    }
+    arr: 0.1
+    arr: 0.1
+    arr: 0.4
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "6"
+      high: 100.0
+      len: "4"
+    }
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "7"
+      high: 100.0
+      len: "4"
+    }
+    arr: 1.0
+    arr: 16.0
+    arr: 19.0
+    arr: 64.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "7"
+      high: 100.0
+      len: "1"
+    }
+    arr: 4.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D] "
+      high: 1.0
+      row: "4"
+      col: "4"
+    }
+    arr_2d {
+      arr: 0.4
+      arr: 0.3
+      arr: 0.25
+      arr: 0.15
+    }
+    arr_2d {
+      arr: 0.4
+      arr: 0.3
+      arr: 0.25
+      arr: 0.15
+    }
+    arr_2d {
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] deflicker_to_dynamic_cg_ratio_drc_node"
+      recommend: "0"
+      high: 1024.0
+      len: "4"
+    }
+    arr: 16.0
+    arr: 32.0
+    arr: 64.0
+    arr: 256.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] deflicker_low_ratio_thld"
+      recommend: "1"
+      high: 100.0
+      len: "4"
+    }
+    arr: 0.1
+    arr: 0.15
+    arr: 0.2
+    arr: 0.2
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] safe_control_anchor_node"
+      recommend: "2"
+      high: 100.0
+      len: "3"
+    }
+    arr: 1.0
+    arr: 8.0
+    arr: 16.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "3"
+      high: 100.0
+      len: "3"
+    }
+    arr: 0.9
+    arr: 0.9
+    arr: 0.9
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "4"
+      high: 100.0
+      len: "3"
+    }
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "5"
+      high: 100.0
+      len: "3"
+    }
+    arr: 0.1
+    arr: 0.1
+    arr: 0.4
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "6"
+      high: 100.0
+      len: "4"
+    }
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr] esti_tolerance_ratio"
+      recommend: "7"
+      high: 100.0
+      len: "4"
+    }
+    arr: 1.0
+    arr: 17.5
+    arr: 20.0
+    arr: 64.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D] "
+      high: 1.0
+      row: "4"
+      col: "4"
+    }
+    arr_2d {
+      arr: 0.4
+      arr: 0.3
+      arr: 0.25
+      arr: 0.15
+    }
+    arr_2d {
+      arr: 0.4
+      arr: 0.3
+      arr: 0.25
+      arr: 0.15
+    }
+    arr_2d {
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]enable hybrid frequency"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      len: "0"
+    }
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]hybrid_frequency_2d_vec"
+      high: 999.0
+      row: "1"
+      col: "3"
+    }
+    arr_2d {
+      arr: 100.0
+      arr: 250.0
+      arr: 50.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]enable hybrid frequency"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      len: "1"
+    }
+    arr: 0.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]hybrid_frequency_2d_vec"
+      high: 999.0
+      row: "1"
+      col: "3"
+    }
+    arr_2d {
+      arr: 100.0
+      arr: 250.0
+      arr: 50.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]enable hybrid frequency"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      len: "1"
+    }
+    arr: 0.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]hybrid_frequency_2d_vec"
+      high: 999.0
+      row: "1"
+      col: "3"
+    }
+    arr_2d {
+      arr: 100.0
+      arr: 250.0
+      arr: 50.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]enable hybrid frequency"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]enable hybrid frequency"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]enable hybrid frequency"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]enable hybrid frequency"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      high: 999.0
+      len: "8"
+    }
+    arr: 0.0
+    arr: 210.0
+    arr: 320.0
+    arr: 400.0
+    arr: 450.0
+    arr: 520.0
+    arr: 550.0
+    arr: 580.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      high: 999.0
+      len: "8"
+    }
+    arr: 21.0
+    arr: 22.0
+    arr: 24.0
+    arr: 25.0
+    arr: 26.0
+    arr: 30.0
+    arr: 36.0
+    arr: 36.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      high: 999.0
+      len: "1"
+    }
+    arr: 0.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]hybrid_frequency_2d_vec"
+      high: 999.0
+      row: "8"
+      col: "8"
+    }
+    arr_2d {
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+    }
+    arr_2d {
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+      arr: 1.4
+    }
+    arr_2d {
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+    }
+    arr_2d {
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+      arr: 1.25
+    }
+    arr_2d {
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+    }
+    arr_2d {
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+    }
+    arr_2d {
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+    }
+    arr_2d {
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+      arr: 1.2
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      high: 999.0
+      len: "1"
+    }
+    arr: 0.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      high: 999.0
+      len: "1"
+    }
+    arr: 21.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]"
+      high: 999.0
+      len: "1"
+    }
+    arr: 0.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]hybrid_frequency_2d_vec"
+      high: 999.0
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 1.0
+    }
+  }
+}
+extend {
+  enable {
+    rule {
+      description: "[Bool]deflicker force lofic"
+    }
+    value: true
+  }
+  enable {
+    rule {
+      description: "[Bool]face hdr lofic"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]LBMF or high temp by pass combine modeswitch drc"
+    }
+    value: true
+  }
+  enable {
+    rule {
+      description: "[Bool]by pass lofic mode switch drc"
+    }
+    value: true
+  }
+  enable {
+    rule {
+      description: "[Bool]drc level 3 mode switch drc"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]drc level 4 mode switch drc"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]drc level 5 mode switch drc"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]drc level 6 mode switch drc"
+    }
+  }
+  enable {
+    rule {
+      description: "[Bool]drc level 7 mode switch drc"
+    }
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]deflicker force lofic lux high thld,first in,second out"
+      high: 999.0
+      len: "2"
+    }
+    arr: 370.0
+    arr: 350.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]deflicker force lofic lux low thld,first in,second out"
+      high: 999.0
+      len: "2"
+    }
+    arr: 220.0
+    arr: 240.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]deflicker force lofic drc b2d thld,first in,second out"
+      high: 999.0
+      len: "2"
+    }
+    arr: 15.0
+    arr: 20.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]deflicker force lofic real drc thld,first in,second out"
+      high: 999.0
+      len: "2"
+    }
+    arr: 2.0
+    arr: 3.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]deflicker force lofic switch drc"
+      high: 999.0
+      len: "1"
+    }
+    arr: 16.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]deflicker force lofic zoom ratio cap"
+      high: 999.0
+      len: "1"
+    }
+    arr: 2.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]face hdr force lofic mode switch drc"
+      high: 999.0
+      len: "1"
+    }
+    arr: 16.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]face hdr force lofic  ,first hdr in count, second hdr out count"
+      high: 999.0
+      len: "2"
+    }
+    arr: 10.0
+    arr: 3.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]face hdr force lofic hdr zoom ratio cap"
+      high: 999.0
+      len: "1"
+    }
+    arr: 2.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]drc level mode switch drc"
+      high: 999.0
+      len: "7"
+    }
+    arr: 3.0
+    arr: 13.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  reserve {
+    rule {
+      description: "[FloatArr]drc level zoom ratio cap"
+      high: 999.0
+      len: "7"
+    }
+    arr: 2.0
+    arr: 2.0
+    arr: 2.0
+    arr: 2.0
+    arr: 2.0
+    arr: 2.0
+    arr: 2.0
+  }
+  reserve_2d {
+    rule {
+      description: "[FloatArr2D]"
+      high: 999.0
+      row: "1"
+      col: "1"
+    }
+    arr_2d {
+      arr: 1.0
+    }
+  }
+}

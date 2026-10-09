@@ -1,0 +1,206 @@
+version: "20240915"
+touch_scn_mon {
+  is_touch_scn_monitor_on {
+    value: true
+  }
+  luma_temporal_filter_cnt {
+    value: 8
+  }
+  frame_luma_stable_cnt_thrd {
+    value: 5
+  }
+  luma_changed_thrd {
+    value: 16.0
+  }
+  luma_avg_fac_thrd {
+    value: 0.05
+  }
+  luma_avg_changed_thrd {
+    value: 10.0
+  }
+}
+face_scn_mon {
+  face_monitor_enable {
+    value: true
+  }
+  face_enter_size_thrd {
+    value: 0.025
+  }
+  face_exit_size_thrd {
+    value: 0.015
+  }
+  face_enter_count_thrd {
+    value: 3
+  }
+  face_enter_unstable_count_thrd {
+    value: 15
+  }
+  face_stable_count_thrd {
+    value: 5
+  }
+  face_disappear_count_thrd {
+    value: 5
+  }
+  small_face_disappear_count_thrd {
+    value: 15
+  }
+  face_exit_count_thrd {
+    value: 10
+  }
+  face_size_stable_thrd {
+    value: 1.0
+  }
+  face_position_stable_thrd {
+    value: 0.05
+  }
+  face_3d_pose_stable_thrd {
+    arr: 15.0
+    arr: 30.0
+    arr: 30.0
+  }
+  face_landmark_stable_thrd {
+    value: 0.15
+  }
+  enable_center_face_dealy {
+  }
+  face_center_thrd {
+    value: 0.4
+  }
+  face_center_enter_count_thrd {
+    value: 10
+  }
+  face_center_enter_unstable_count_thrd {
+    value: 20
+  }
+  face_center_stable_count_thrd {
+    value: 20
+  }
+  face_center_disappear_count_thrd {
+    value: 30
+  }
+  face_center_exit_count_thrd {
+    value: 20
+  }
+  enable_head_info_in_face_scene {
+    value: true
+  }
+}
+skipping_mon {
+  is_adaptive_frame_skipping_on {
+  }
+  adaptive_exp_index_tolerance {
+    value: 1.0
+  }
+  adaptive_skipping_max_que_size {
+    value: 5
+  }
+  high_frame_skipping_enable {
+  }
+  high_frame_skipping_number {
+  }
+  high_frame_skipping_shift {
+  }
+}
+adaptive_skipping {
+  stable_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 2.0
+    arr: 3.0
+  }
+  max_countdown {
+    arr: 0.0
+    arr: 0.0
+    arr: 1.0
+    arr: 2.0
+  }
+  ref_fps {
+    arr: 0.0
+    arr: 15.1
+    arr: 30.1
+    arr: 120.0
+  }
+}
+ae_stableness {
+  ae_stable_tolerance_adj_ratio_rapid {
+    value: 2
+  }
+  ae_stable_tolerance_adj_ratio_launch {
+    value: 2
+  }
+  is_stable_cnt_thrd {
+    value: 4
+  }
+}
+seamless {
+  enable_seamless {
+  }
+  seamless_params {
+    arr: 24040401
+    arr: 20
+    arr: 10
+    arr: 3000
+    arr: 8000
+    arr: 3000
+    arr: 8000
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 4000
+    arr: 5000
+    arr: 3
+    arr: 3
+    arr: 5
+    arr: 5
+    arr: 3
+    arr: 3
+    arr: 5
+    arr: 5
+    arr: 8
+    arr: 8
+    arr: -40
+    arr: -25
+    arr: 10
+    arr: 30
+    arr: 10
+    arr: 2560
+    arr: 3584
+    arr: 20
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: -1
+    arr: -1
+    arr: 0
+    arr: -1
+    arr: 64
+    arr: 64
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 0
+    arr: 64
+    arr: 8
+    arr: 0
+  }
+}
+use_conv_out_without_manual_ev {
+}

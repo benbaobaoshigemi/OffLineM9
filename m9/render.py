@@ -1,6 +1,9 @@
 """Offline Leica Moment M9 renderer (17 Ultra pipeline, reimplemented).
 
-  python -m m9.render input.dng -o out.jpg [--lux-index N] [--cct K] [--scene common]
+  python -m m9.render input.dng -o out.jpg [--lux-index N] [--cct K] [--ev E] [--half]
+
+Stages (17U legendsnapshot): B2Y front end (m9.frontend) -> StyleTrans (pluggable, see
+m9.styletrans) -> LeicaFilter (m9.leicafilter) -> JPEG.
 """
 from __future__ import annotations
 
@@ -9,27 +12,33 @@ import os
 
 import numpy as np
 
-from .frontend import auto_exposure, load_dng, lux_index_from_ev, m9_colour, m9_hue, tone
+from .frontend import b2y
 from .leicafilter import LeicaFilter
 
 
 def render(path: str, out: str, lux_index: float | None = None, cct: float | None = None,
-           scene: str = "common", ev: float = 0.0, style: str = "auto", quality: int = 95,
-           half: bool = False, verbose: bool = True) -> np.ndarray:
-    lin, info = load_dng(path, half=half)
-    li = lux_index if lux_index is not None else (lux_index_from_ev(info.ev100) if info.ev100 else 300.0)
-    k = cct if cct is not None else info.cct
-    exp = auto_exposure(lin) * (2.0 ** ev)
-    disp = m9_hue(tone(m9_colour(lin), exposure=exp, lux_index=li))
-
-    # StyleTrans network not yet reconstructed -> use the plugin's own fallback
-    # (preview params, which bake in the style approximation).
-    style_on = style == "snapshot"
-    lf = LeicaFilter()
-    img = lf(disp, lux_index=li, cct=k, zoom=1.0, scene=scene, style_trans_on=style_on)
+           scene: str = "common", ev: float = 0.0, quality: int = 95, half: bool = False,
+           verbose: bool = True) -> np.ndarray:
+    fe = b2y(path, lux_index, cct, ev=ev, half=half)
+    img = fe.rgb
+    style_on = False
+    try:
+        from . import styletrans
+        st = styletrans.load()
+        if st is not None:
+            img = st(img, fe.lux_index, fe.cct)
+            style_on = True
+    except ImportError:
+        pass
+    img = LeicaFilter()(img, lux_index=fe.lux_index, cct=fe.cct, zoom=1.0, scene=scene,
+                        style_trans_on=style_on)
     if verbose:
-        print(f"{os.path.basename(path)}: {info.make} {info.model} EV100={info.ev100:.2f} "
-              f"lux_index={li:.0f} cct={k:.0f} exposure={exp:.2f} params={'snapshot' if style_on else 'preview'}")
+        a = fe.ae
+        print(f"{os.path.basename(path)}: {fe.info.make} {fe.info.model} EV100={fe.info.ev100:.2f} "
+              f"lux_index={fe.lux_index:.0f} cct={fe.cct:.0f} | AE base={a.base_target:.1f} "
+              f"style={a.style_scale:.2f} mid={a.mid_target:.1f} dr={a.dr_b2d:.1f} "
+              f"exp_mid={a.exp_mid:.2f} exp_short={a.exp_short:.2f} adrc={a.adrc_gain:.2f} "
+              f"| StyleTrans={'on' if style_on else 'off (LeicaFilter preview params)'}")
     _save(img, out, quality)
     return img
 
@@ -49,12 +58,10 @@ def main():
     ap.add_argument("--scene", default="common",
                     choices=["common", "protrait", "night", "plants", "food", "sunrise_sunset"])
     ap.add_argument("--ev", type=float, default=0.0, help="exposure compensation (stops)")
-    ap.add_argument("--style", default="auto", choices=["auto", "preview", "snapshot"],
-                    help="LeicaFilter params: preview (bakes style approx) or snapshot (expects StyleTrans)")
     ap.add_argument("--half", action="store_true", help="half-size demosaic (fast preview)")
     a = ap.parse_args()
     out = a.output or os.path.splitext(a.input)[0] + "_M9.jpg"
-    render(a.input, out, a.lux_index, a.cct, a.scene, a.ev, a.style, half=a.half)
+    render(a.input, out, a.lux_index, a.cct, a.scene, a.ev, half=a.half)
 
 
 if __name__ == "__main__":

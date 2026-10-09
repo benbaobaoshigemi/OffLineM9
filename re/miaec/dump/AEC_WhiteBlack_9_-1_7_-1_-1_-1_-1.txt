@@ -1,0 +1,323 @@
+version: "2025-11-02 16:27"
+white_black_adjustment {
+  enable_whiteblack_adjust {
+    value: true
+  }
+  lux_node {
+    arr: 0.0
+    arr: 150.0
+    arr: 180.0
+    arr: 210.0
+    arr: 390.0
+    arr: 450.0
+    arr: 500.0
+    arr: 550.0
+  }
+  albedo_node {
+    arr: 0.0
+    arr: 14.0
+    arr: 15.0
+    arr: 16.0
+    arr: 19.0
+    arr: 22.0
+    arr: 26.0
+    arr: 36.0
+  }
+  ae_adjust_value {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.02
+      arr: 1.0
+    }
+  }
+  tone_adjust_value {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve1_node1 {
+    arr: 0.25
+    arr: 0.2
+    arr: 0.08
+    arr: 0.08
+    arr: 0.16
+    arr: 0.03
+    arr: 0.03
+    arr: 1.0
+  }
+  reserve1_node2 {
+    arr: 80.0
+    arr: 18.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  reserve1_value {
+    arr_2d {
+      arr: 1.0
+    }
+  }
+  reserve2_node1 {
+    arr: 0.0
+    arr: 14.0
+    arr: 15.0
+    arr: 16.0
+    arr: 20.0
+    arr: 21.0
+    arr: 26.0
+    arr: 36.0
+  }
+  reserve2_node2 {
+    arr: 1.0
+    arr: 3.0
+    arr: 5.0
+    arr: 7.0
+    arr: 8.0
+    arr: 9.0
+    arr: 10.0
+    arr: 11.0
+  }
+  reserve2_value {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  reserve3_value {
+    arr: false
+    arr: true
+    arr: true
+    arr: true
+  }
+}

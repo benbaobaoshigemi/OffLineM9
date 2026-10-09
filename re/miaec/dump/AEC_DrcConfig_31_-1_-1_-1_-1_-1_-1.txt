@@ -1,0 +1,436 @@
+version: "2025-09-23 17:49"
+enable_drc {
+  value: true
+}
+normal_drc_ctrl {
+  nor_drc_lux_node {
+    arr: 0.0
+    arr: 118.0
+    arr: 168.0
+    arr: 278.0
+    arr: 450.0
+    arr: 480.0
+    arr: 490.0
+    arr: 520.0
+    arr: 540.0
+    arr: 580.0
+  }
+  nor_drc_zoom_ratio_node {
+    arr: 1.0
+  }
+  max_drc_gain {
+    arr_2d {
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.0
+      arr: 3.0
+      arr: 1.0
+    }
+  }
+  max_mid_tone_gain {
+    arr_2d {
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.0
+      arr: 3.0
+      arr: 1.0
+    }
+  }
+  max_dark_tone_gain {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+face_drc_ctrl {
+  enable_face_drc {
+    value: true
+  }
+  face_drc_lux_node {
+    arr: 0.0
+    arr: 118.0
+    arr: 168.0
+    arr: 278.0
+    arr: 450.0
+    arr: 480.0
+    arr: 490.0
+    arr: 520.0
+    arr: 540.0
+    arr: 580.0
+  }
+  face_drc_zoom_ratio_node {
+    arr: 1.0
+  }
+  face_max_drc_gain {
+    arr_2d {
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.0
+      arr: 3.0
+      arr: 1.0
+    }
+  }
+  face_max_mid_tone_gain {
+    arr_2d {
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.0
+      arr: 3.0
+      arr: 1.0
+    }
+  }
+  face_max_dark_tone_gain {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+mfhdr_drc_ctrl {
+  enable_mfhdr_drc {
+  }
+  max_mid_tone_gain {
+    value: 4.0
+  }
+  enable_blending {
+    value: true
+  }
+  hdr_lux_node {
+    arr: 0.0
+    arr: 168.0
+    arr: 293.0
+    arr: 305.0
+    arr: 345.0
+    arr: 446.0
+    arr: 508.0
+  }
+  hdr_shutter_ratio {
+    arr: 0.86
+    arr: 0.86
+    arr: 0.86
+    arr: 0.86
+    arr: 0.86
+    arr: 0.86
+    arr: 0.86
+  }
+}
+dcghdr_drc_ctrl {
+  enable_dcghdr_drc {
+    value: true
+  }
+  dcghdr_drc_lux_node {
+    arr: 0.0
+    arr: 118.0
+    arr: 168.0
+    arr: 278.0
+    arr: 450.0
+    arr: 480.0
+    arr: 490.0
+    arr: 520.0
+    arr: 540.0
+    arr: 580.0
+  }
+  dcghdr_drc_zoom_ratio_node {
+    arr: 1.0
+  }
+  dcghdr_max_drc_gain {
+    arr_2d {
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.0
+      arr: 3.0
+      arr: 1.0
+    }
+  }
+  dcghdr_max_mid_tone_gain {
+    arr_2d {
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.0
+      arr: 3.0
+      arr: 1.0
+    }
+  }
+  dcghdr_max_dark_tone_gain {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+dcghdr_face_drc_ctrl {
+  enable_dcghdr_face_drc {
+    value: true
+  }
+  dcghdr_face_drc_lux_node {
+    arr: 0.0
+    arr: 118.0
+    arr: 168.0
+    arr: 278.0
+    arr: 450.0
+    arr: 480.0
+    arr: 490.0
+    arr: 520.0
+    arr: 540.0
+    arr: 580.0
+  }
+  dcghdr_face_drc_zoom_ratio_node {
+    arr: 1.0
+  }
+  dcghdr_face_max_drc_gain {
+    arr_2d {
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.0
+      arr: 3.0
+      arr: 1.0
+    }
+  }
+  dcghdr_face_max_mid_tone_gain {
+    arr_2d {
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.5
+      arr: 4.0
+      arr: 3.0
+      arr: 1.0
+    }
+  }
+  dcghdr_face_max_dark_tone_gain {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+zoom_ratio_ctrl {
+  zoom_ratio_enable {
+  }
+  zoom_ratio_thld {
+    value: 1.0
+  }
+  zoom_ratio_node {
+    arr: 0.6
+    arr: 1.0
+    arr: 1.4
+    arr: 2.0
+  }
+  ctrl_type_node {
+    arr: 1.0
+    arr: 2.0
+  }
+  zoom_ratio_ctrl_value {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+panshot_drc_ctrl {
+  enable_panshot_drc {
+  }
+  panshot_drc_lux_node {
+    arr: 0.0
+    arr: 260.0
+    arr: 280.0
+    arr: 350.0
+    arr: 380.0
+    arr: 420.0
+    arr: 450.0
+  }
+  panshot_drc_zoom_ratio_node {
+    arr: 1.0
+  }
+  panshot_max_drc_gain {
+    arr_2d {
+      arr: 2.3
+      arr: 2.3
+      arr: 2.3
+      arr: 2.3
+      arr: 2.3
+      arr: 2.3
+      arr: 1.0
+    }
+  }
+  panshot_max_mid_tone_gain {
+    arr_2d {
+      arr: 2.3
+      arr: 2.3
+      arr: 2.3
+      arr: 2.3
+      arr: 2.3
+      arr: 2.3
+      arr: 1.0
+    }
+  }
+  panshot_max_dark_tone_gain {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+drc_smooth {
+  drc_smooth_lux_node {
+    arr: 168.0
+    arr: 468.0
+  }
+  drc_smooth_factor {
+    arr: 1.0
+    arr: 1.0
+  }
+}
+min_drc_ctrl {
+  enable_min_drc {
+  }
+  lux_index_node {
+    arr: 100.0
+    arr: 400.0
+  }
+  normal_min_drc_gain {
+    arr: 1.0
+    arr: 1.0
+  }
+  fire_min_drc_gain {
+    arr: 1.0
+    arr: 1.0
+  }
+  sparks_min_drc_gain {
+    arr: 1.0
+    arr: 1.0
+  }
+  lantern_min_drc_gain {
+    arr: 1.0
+    arr: 1.0
+  }
+  concert_min_drc_gain {
+    arr: 1.0
+    arr: 1.0
+  }
+}
+high_temp_drc_ctrl {
+  enable_high_temp_drc {
+  }
+  high_temp_drc_lux_node {
+    arr: 0.0
+    arr: 210.0
+    arr: 440.0
+    arr: 530.0
+    arr: 600.0
+  }
+  high_temp_drc_zoom_ratio_node {
+    arr: 1.0
+  }
+  high_temp_drc_max_drc_gain {
+    arr_2d {
+      arr: 13.0
+      arr: 13.0
+      arr: 12.0
+      arr: 4.0
+      arr: 1.0
+    }
+  }
+  high_temp_drc_max_mid_tone_gain {
+    arr_2d {
+      arr: 13.0
+      arr: 13.0
+      arr: 12.0
+      arr: 4.0
+      arr: 1.0
+    }
+  }
+  high_temp_drc_max_dark_tone_gain {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}

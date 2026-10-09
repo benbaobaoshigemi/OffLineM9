@@ -1,0 +1,40 @@
+version: "20240915"
+enable_lls {
+}
+enable_extended_sensitivity {
+}
+enable_drc {
+}
+lls_trigger_idx_exit {
+  value: 340.0
+}
+lls_trigger_idx_enter {
+  value: 360.0
+}
+max_extended_gain {
+  value: 256.0
+}
+lux_node_stable {
+  arr: 433.0
+  arr: 473.0
+  arr: 483.0
+  arr: 503.0
+}
+extend_shutter_tbl_stable {
+  arr: 80000.0
+  arr: 80000.0
+  arr: 100000.0
+  arr: 100000.0
+}
+lux_node_unstable {
+  arr: 433.0
+  arr: 473.0
+  arr: 483.0
+  arr: 503.0
+}
+extend_shutter_tbl_unstable {
+  arr: 80000.0
+  arr: 80000.0
+  arr: 100000.0
+  arr: 100000.0
+}

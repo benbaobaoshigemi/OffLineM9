@@ -1,0 +1,821 @@
+version: "2025-07-16 20:50"
+aperture_ctrl {
+  available_aperture_list {
+    arr: 1.4
+    arr: 1.75
+    arr: 2.4
+    arr: 4.0
+  }
+}
+exp_tbl_sensitivity_correction_factor {
+  value: 1.0
+}
+min_vertical_blanking_time {
+  value: 117.6
+}
+enable_max_gain_for_positive_ev_ctrl {
+  value: true
+}
+max_gain_for_positive_ev_ctrl {
+  value: 1024.0
+}
+clamp_manual_exp_setting_by_exp_table {
+}
+iso_100_gain {
+  value: 2.0
+}
+adjust_shutter_by_gyro_info {
+  enable_extend_shutter_by_gyro {
+  }
+  shutter_trigger_node {
+    arr: 0.0
+    arr: 10000.0
+    arr: 40000.0
+  }
+  extended_shutter_node {
+    arr: 0.0
+    arr: 10000.0
+    arr: 40000.0
+  }
+}
+gyro_stable_condition {
+  velocity_thrd {
+    value: 0.03
+  }
+  stable_frame_cnt_thrd {
+    value: 50
+  }
+  unstable_frame_cnt_thrd {
+    value: 50
+  }
+}
+the_n_value_for_iso_to_exif_sv_conversion {
+  value: 0.3
+}
+flash_trigger_thrd {
+  flash_trigger_idx_exit {
+    value: 490.0
+  }
+  flash_trigger_idx_enter {
+    value: 500.0
+  }
+  torch_off_delay_count {
+    value: 3
+  }
+}
+mfhdr_param {
+  outdoor_cnt_thd {
+    value: 3.0
+  }
+  indoor_cnt_thd {
+    value: 5.0
+  }
+  outdoor_lux_thd {
+    value: 340.0
+  }
+  indoor_lux_thd {
+    value: 370.0
+  }
+  autohdr_shutter_align_strategy {
+  }
+  autohdr_debanding_ratio {
+  }
+  exp_count_smooth_in_cnt {
+  }
+  exp_count_smooth_out_cnt {
+  }
+  enable_dol_withdraw_with_banding {
+  }
+  enable_short_shutter_limit {
+  }
+  short_shutter_limit_value {
+  }
+  enable_drc_warm_up {
+  }
+}
+exposure_limit {
+  min_exp_time {
+    value: 11.76
+  }
+  max_exp_time {
+    value: 70000.0
+  }
+  min_exp_gain {
+    value: 10.0
+  }
+  max_exp_gain {
+    value: 256.0
+  }
+}
+bv_offset {
+}
+auto_hdr_params {
+  enable_autohdr {
+    value: true
+  }
+  enable_align_shutter_in_dcg {
+    value: true
+  }
+  autohdr_zoom_ratio_zone {
+    zoom_ratio_thld {
+      rule {
+        description: "[FloatArr]"
+        high: 180.0
+        len: "2"
+      }
+      arr: 0.5
+      arr: 5.0
+    }
+    autohdr_lux_zone {
+      lux_thld {
+        rule {
+          description: "[FloatArr]"
+          high: 1000.0
+          len: "2"
+        }
+        arr: 0.0
+        arr: 450.0
+      }
+      drc_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 0.0
+          arr: 3.5
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 2.5
+          arr: 16.0
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+          value: 4
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 14.0
+          arr: 66.0
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 2
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+          value: 5
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_face_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 0.0
+          arr: 3.5
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_face_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 2.5
+          arr: 16.0
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+          value: 4
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_face_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 14.0
+          arr: 66.0
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 2
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+          value: 5
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+    }
+    autohdr_lux_zone {
+      lux_thld {
+        rule {
+          description: "[FloatArr]"
+          high: 1000.0
+          len: "2"
+        }
+        arr: 420.0
+        arr: 520.0
+      }
+      drc_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 0.0
+          arr: 3.5
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 2.5
+          arr: 17.0
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+          value: 4
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_face_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 0.0
+          arr: 3.5
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_face_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 2.5
+          arr: 17.0
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+          value: 4
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+    }
+    autohdr_lux_zone {
+      lux_thld {
+        rule {
+          description: "[FloatArr]"
+          high: 1000.0
+          len: "2"
+        }
+        arr: 490.0
+        arr: 1000.0
+      }
+      drc_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 0.0
+          arr: 4.5
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+      drc_face_zone {
+        drc_thld {
+          rule {
+            description: "[FloatArr]"
+            high: 100.0
+            len: "2"
+          }
+          arr: 0.0
+          arr: 4.5
+        }
+        exposure_count {
+          rule {
+            description: "[UInt32]"
+            high: 2
+          }
+          value: 1
+        }
+        hdr_dcg_mode {
+          rule {
+            description: "[UInt32]"
+            high: 5
+          }
+        }
+        drop_short {
+          rule {
+            description: "[UInt32]"
+            high: 1
+          }
+        }
+        under_exposure {
+          rule {
+            description: "[UInt32Arr]"
+            high: 32
+            len: "4"
+          }
+          arr: 1
+          arr: 1
+          arr: 1
+          arr: 1
+        }
+      }
+    }
+  }
+  enable_mid_gain_cap {
+    value: true
+  }
+  enable_cg_ratio_cap {
+  }
+  min_mid_gain_cap {
+    value: 4.0
+  }
+  cg_ratio_cap {
+    value: 1.0
+  }
+}
+enable_extend_ev_output {
+}
+enable_manual_full_adrc {
+  value: true
+}
+min_fps_cap {
+  value: 1.0
+}
+special_exposure_config {
+  lofic_drc_priority {
+  }
+  lofic_drc_cap {
+    value: 4.0
+  }
+  cg_ratio_priority {
+  }
+  real_cg_ratio_cap {
+    value: 16.0
+  }
+  dynamic_cg_ratio_lux_node {
+    arr: 200.0
+    arr: 300.0
+  }
+  dynamic_cg_ratio {
+    arr: 8.0
+    arr: 16.0
+  }
+  min_gain_cap {
+    value: 2.0
+  }
+  max_gain_cap {
+    value: 128.0
+  }
+  lofic_ratio {
+    value: 11.5
+  }
+  enable_under_exposure {
+  }
+  enable_short_exposure_factor {
+  }
+  enable_third_exposure {
+  }
+  night_video_custom_drc {
+  }
+  enable_lcg_deflicker_adjsut {
+  }
+  deflicker_low_ratio_thld {
+    arr: 0.55
+    arr: 0.55
+  }
+  deflicker_tolerance {
+    arr: 0.93
+    arr: 0.93
+  }
+}
+adjust_exp_by_overexp {
+  enable_overexp_adj {
+  }
+  overexp_adj_thld {
+    value: 0.6
+  }
+}
+adjust_exp_by_dmbr_factor {
+  enable_dmbr_calc {
+  }
+  enable_dmbr_adjust {
+  }
+  plane_width {
+    value: 1920.0
+  }
+  plane_height {
+    value: 1080.0
+  }
+  focal_length {
+    value: 1290.0
+  }
+  multiply_ratio {
+    value: 960.0
+  }
+  weight_close_to_zero {
+    value: 3.0
+  }
+  weight_away_from_zero {
+    value: 5.0
+  }
+  integral_ms {
+    value: 1.0
+  }
+  adj_by_dmbr_min_exp_time {
+    value: 10000.0
+  }
+  shrink_ratio_by_dmbr_node {
+    arr: 0.0
+    arr: 0.12
+    arr: 0.12001
+    arr: 0.5
+    arr: 0.50001
+  }
+  shrink_ratio_by_dmbr_value {
+    arr: 1.0
+    arr: 1.0
+    arr: 0.5
+    arr: 0.5
+    arr: 0.333334
+  }
+}
+continuous_optical_zoom_ctrl {
+  coz_enable {
+  }
+  coz_cali_enable {
+  }
+  coz_base_f_num {
+    value: 2.26
+  }
+  coz_zoom_ratio_table {
+    arr: 3.07
+    arr: 3.17
+    arr: 3.27
+    arr: 3.37
+    arr: 3.47
+    arr: 3.57
+    arr: 3.67
+    arr: 3.77
+    arr: 3.87
+    arr: 3.97
+    arr: 4.07
+    arr: 4.17
+    arr: 4.27
+    arr: 4.37
+  }
+  coz_f_number_table {
+    arr: 2.26
+    arr: 2.33
+    arr: 2.39
+    arr: 2.49
+    arr: 2.51
+    arr: 2.56
+    arr: 2.62
+    arr: 2.68
+    arr: 2.73
+    arr: 2.77
+    arr: 2.82
+    arr: 2.88
+    arr: 2.93
+    arr: 2.98
+  }
+  coz_first_frame_comp_enable {
+  }
+}

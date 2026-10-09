@@ -1,0 +1,391 @@
+version: "2025-08-04 16:59"
+pre_flash {
+  skip_num_in {
+    value: 2
+  }
+  skip_num_out {
+    value: 2
+  }
+  min_conv_frames {
+    value: 8
+  }
+  max_conv_frames {
+    value: 30
+  }
+}
+led {
+  is_dual_led {
+  }
+  projected_line_slope {
+    value: 1.0
+  }
+  current_low {
+    value: 100
+  }
+  current_high {
+    value: 450
+  }
+  power_level_number {
+    value: 9
+  }
+  set_num_per_level {
+    value: 2
+  }
+  dual_led_cct_table {
+    arr_2d {
+      arr: 100.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 100.0
+      arr: 0.5
+      arr: 0.5
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 200.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 2.6726305
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 200.0
+      arr: 0.5
+      arr: 0.5
+      arr: 2.6726305
+    }
+    arr_2d {
+      arr: 300.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 3.4244037
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 300.0
+      arr: 0.5
+      arr: 0.5
+      arr: 3.4244037
+    }
+    arr_2d {
+      arr: 400.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 3.8516307
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 400.0
+      arr: 0.5
+      arr: 0.5
+      arr: 3.8516307
+    }
+    arr_2d {
+      arr: 500.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.1271644
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 500.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.1271644
+    }
+    arr_2d {
+      arr: 600.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.3196154
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 600.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.3196154
+    }
+    arr_2d {
+      arr: 700.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.461639
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 700.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.461639
+    }
+    arr_2d {
+      arr: 800.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.570759
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 800.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.570759
+    }
+    arr_2d {
+      arr: 900.0
+      arr: 0.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.657223
+    }
+    arr_2d {
+      arr: 0.0
+      arr: 900.0
+      arr: 0.5
+      arr: 0.5
+      arr: 4.657223
+    }
+  }
+}
+base_flash {
+  lux_index_node {
+    arr: 0.0
+    arr: 171.0
+    arr: 211.0
+    arr: 251.0
+    arr: 291.0
+    arr: 331.0
+    arr: 351.0
+    arr: 371.0
+    arr: 391.0
+    arr: 431.0
+    arr: 451.0
+    arr: 999.0
+  }
+  base_target_by_lux {
+    arr: 52.0
+    arr: 52.0
+    arr: 52.0
+    arr: 52.0
+    arr: 53.0
+    arr: 53.0
+    arr: 53.0
+    arr: 51.0
+    arr: 48.0
+    arr: 44.0
+    arr: 44.0
+    arr: 35.0
+  }
+  face_target_by_lux {
+    arr: 60.0
+    arr: 60.0
+    arr: 57.0
+    arr: 57.0
+    arr: 57.0
+    arr: 57.0
+    arr: 56.0
+    arr: 56.0
+    arr: 56.0
+    arr: 55.0
+    arr: 54.0
+    arr: 50.0
+  }
+}
+featureflash_type: FeatureFlashType_smart_flash
+smart_flash {
+  bright_saturation_th {
+  }
+  speckle_strength_start {
+    value: 0.05
+  }
+  speckle_strength_end {
+    value: 0.35
+  }
+  k_floor_pct {
+    value: 0.65
+  }
+  normalize_k_node {
+    arr: 1.0
+    arr: 5.0
+    arr: 7.0
+    arr: 8.5
+    arr: 10.0
+    arr: 14.0
+    arr: 17.0
+    arr: 20.0
+    arr: 24.0
+    arr: 30.0
+    arr: 50.0
+  }
+  normalize_k_value {
+    arr: 1.0
+    arr: 1.0033464
+    arr: 1.023713
+    arr: 1.0912127
+    arr: 1.25
+    arr: 1.5965879
+    arr: 1.7779292
+    arr: 1.8862127
+    arr: 1.9560317
+    arr: 1.9899607
+    arr: 2.0
+  }
+}
+precision_flash {
+  lux_index_node {
+    arr: 223.0
+    arr: 373.0
+    arr: 423.0
+    arr: 473.0
+    arr: 523.0
+    arr: 673.0
+  }
+  frgrd_target_by_lux {
+    arr: 63.0
+    arr: 63.0
+    arr: 58.0
+    arr: 58.0
+    arr: 53.0
+    arr: 53.0
+  }
+  bkgrd_target_by_lux {
+    arr: 48.0
+    arr: 43.0
+    arr: 43.0
+    arr: 43.0
+    arr: 43.0
+    arr: 38.0
+  }
+  face_target_by_lux {
+    arr: 63.0
+    arr: 63.0
+    arr: 63.0
+    arr: 63.0
+    arr: 63.0
+    arr: 63.0
+  }
+  enable_map_filter {
+    value: true
+  }
+  luma_delta_upper {
+    value: 0.02
+  }
+  frgrd_thrd_start {
+    value: 0.6
+  }
+  frgrd_thrd_end {
+    value: 0.61
+  }
+  bkgrd_thrd_start {
+    value: 0.2
+  }
+  bkgrd_thrd_end {
+    value: 0.21
+  }
+  frgrd_confid_thrd {
+    value: 0.04
+  }
+  bkgrd_confid_thrd {
+    value: 0.5
+  }
+  fr2bk_influence_thrd {
+  }
+  bk_target_by_fr_upper {
+    value: 1.5
+  }
+  bk_target_by_fr_lower {
+    value: 0.2
+  }
+  bkgrd_target_maxmin {
+    value: 10.0
+  }
+  max_gain {
+    value: 128.0
+  }
+  max_shutter {
+    value: 250000
+  }
+  min_flashtime {
+    value: 6000
+  }
+  rolling_shutter_skew {
+    value: 40000
+  }
+}
+blending_setting {
+  touch_luma_blending_weight {
+    value: 0.5
+  }
+  face_flash_effect_start {
+    value: 0.1
+  }
+  face_flash_effect_end {
+    value: 0.2
+  }
+  flash_influence_effect_start {
+    value: 2.0
+  }
+  flash_influence_effect_end {
+    value: 5.0
+  }
+  main_flash_adrc_upper {
+    value: 1.0
+  }
+}
+flash_duty {
+  enable_flash_duty {
+  }
+  main_flash_duty {
+    value: 15
+  }
+  pre_flash_duty {
+    value: 15
+  }
+  flash_duty_table {
+    arr: 23
+    arr: 47
+    arr: 70
+    arr: 105
+    arr: 129
+    arr: 152
+    arr: 176
+    arr: 199
+    arr: 222
+    arr: 246
+    arr: 269
+    arr: 305
+    arr: 328
+    arr: 351
+    arr: 398
+    arr: 445
+    arr: 504
+    arr: 551
+    arr: 609
+    arr: 656
+    arr: 703
+    arr: 750
+    arr: 797
+    arr: 844
+    arr: 902
+    arr: 949
+    arr: 996
+    arr: 1055
+    arr: 1102
+    arr: 1149
+    arr: 1196
+    arr: 1254
+  }
+}

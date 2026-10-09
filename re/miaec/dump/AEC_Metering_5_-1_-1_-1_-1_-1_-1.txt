@@ -1,0 +1,5926 @@
+version: "2025-12-10 16:21"
+base_target_by_lux {
+  base_target_lux_node {
+    arr: 0.0
+    arr: 123.0
+    arr: 173.0
+    arr: 283.0
+    arr: 343.0
+    arr: 423.0
+    arr: 483.0
+    arr: 513.0
+    arr: 583.0
+  }
+  base_target_dr_node {
+    arr: 1.0
+  }
+  base_target {
+    arr_2d {
+      arr: 56.0
+      arr: 55.0
+      arr: 54.0
+      arr: 54.0
+      arr: 52.0
+      arr: 46.0
+      arr: 40.0
+      arr: 36.0
+      arr: 32.0
+    }
+  }
+  base_target_upper_limit {
+    arr: 1.7
+    arr: 1.6
+    arr: 1.5
+    arr: 1.5
+    arr: 1.45
+    arr: 1.35
+    arr: 1.2
+    arr: 1.0
+    arr: 1.0
+  }
+  base_target_lower_limit {
+    arr: 0.86
+    arr: 0.86
+    arr: 0.77
+    arr: 0.77
+    arr: 0.75
+    arr: 0.8
+    arr: 0.8
+    arr: 0.8
+    arr: 0.85
+  }
+  base_target_zoom_node {
+    arr: 1.0
+  }
+  base_target_zoom_adjust_ratio {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+spot_light_detection {
+  enable_spot_light {
+  }
+  spot_lux_idx_in_thrd {
+    value: 1300.0
+  }
+  spot_lux_in_node {
+    arr: 0.0
+    arr: 103.0
+    arr: 103.0
+    arr: 83.0
+    arr: 353.0
+    arr: 423.0
+    arr: 523.0
+  }
+  spot_luma_in_thrd {
+    arr: 1.0
+    arr: 4.0
+    arr: 8.0
+    arr: 15.0
+    arr: 1.0
+    arr: 0.15
+    arr: 0.07
+    arr: 0.02
+  }
+  spot_luma_diff_in_thrd {
+    arr: 50.0
+    arr: 50.0
+    arr: 50.0
+    arr: 50.0
+    arr: 25.0
+    arr: 25.0
+    arr: 25.0
+  }
+  spot_lux_idx_out_thrd {
+    value: 1024.0
+  }
+  spot_lux_out_node {
+    arr: 0.0
+    arr: 123.0
+    arr: 173.0
+    arr: 283.0
+    arr: 353.0
+    arr: 423.0
+    arr: 523.0
+  }
+  spot_luma_diff_out_thrd {
+    arr: 1.0
+    arr: 1.0
+  }
+  spot_luma_diff_out_range {
+    arr: 1.0
+    arr: 1.0
+  }
+  spot_lux_diff_out_thrd {
+    arr: 2048.0
+    arr: 0.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  spot_lux_diff_out_range {
+    arr: 0.5
+    arr: 0.5
+    arr: 0.5
+    arr: 0.5
+    arr: 0.5
+    arr: 0.5
+    arr: 0.5
+  }
+}
+hist_target_by_lux {
+  enable_hist_target {
+    value: true
+  }
+  target_smooth {
+    temperal_target_smooth_factor {
+      value: 1.0
+    }
+  }
+  hist_short_long_adjustment {
+    enable_dynamic_bright_pct {
+      value: true
+    }
+    hist_lux_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 200.0
+      arr: 280.0
+      arr: 350.0
+      arr: 450.0
+      arr: 480.0
+    }
+    hist_dr_node {
+      arr: 0.0
+      arr: 10.0
+      arr: 25.0
+      arr: 50.0
+      arr: 70.0
+      arr: 100.0
+      arr: 150.0
+      arr: 220.0
+      arr: 250.0
+      arr: 300.0
+    }
+    hist_bright_tone_start_pct {
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+    }
+    hist_bright_tone_end_pct {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_dark_tone_start_pct {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    hist_dark_tone_end_pct {
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.15
+      arr: 0.18
+      arr: 0.18
+      arr: 0.18
+    }
+    hist_base_bright_start_pct {
+      arr: 0.97
+      arr: 0.97
+      arr: 0.974
+      arr: 0.978
+      arr: 0.978
+      arr: 0.978
+      arr: 0.978
+      arr: 0.975
+    }
+    hist_base_bright_end_pct {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_bright_start_pct_low {
+      arr: 0.968
+      arr: 0.968
+      arr: 0.968
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+    }
+    hist_bright_start_pct_high {
+      arr: 0.973
+      arr: 0.973
+      arr: 0.973
+      arr: 0.978
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+    }
+    hist_bright_thrd_weight {
+      arr: 0.68
+      arr: 0.68
+      arr: 0.68
+      arr: 0.68
+      arr: 0.62
+      arr: 0.62
+      arr: 0.62
+      arr: 0.68
+    }
+    hist_bright_tone_ref_target {
+      arr_2d {
+        arr: 135.0
+        arr: 132.0
+        arr: 134.0
+        arr: 120.0
+        arr: 108.0
+        arr: 100.0
+        arr: 90.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 138.0
+        arr: 134.0
+        arr: 120.0
+        arr: 105.0
+        arr: 100.0
+        arr: 90.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 138.0
+        arr: 134.0
+        arr: 120.0
+        arr: 105.0
+        arr: 95.0
+        arr: 85.0
+        arr: 85.0
+      }
+      arr_2d {
+        arr: 150.0
+        arr: 145.0
+        arr: 140.0
+        arr: 125.0
+        arr: 108.0
+        arr: 90.0
+        arr: 85.0
+        arr: 85.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 145.0
+        arr: 145.0
+        arr: 125.0
+        arr: 115.0
+        arr: 90.0
+        arr: 85.0
+        arr: 85.0
+      }
+      arr_2d {
+        arr: 165.0
+        arr: 150.0
+        arr: 145.0
+        arr: 125.0
+        arr: 110.0
+        arr: 90.0
+        arr: 85.0
+        arr: 85.0
+      }
+      arr_2d {
+        arr: 170.0
+        arr: 160.0
+        arr: 150.0
+        arr: 130.0
+        arr: 110.0
+        arr: 95.0
+        arr: 90.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 170.0
+        arr: 160.0
+        arr: 150.0
+        arr: 130.0
+        arr: 110.0
+        arr: 100.0
+        arr: 90.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 170.0
+        arr: 160.0
+        arr: 150.0
+        arr: 130.0
+        arr: 110.0
+        arr: 100.0
+        arr: 90.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 175.0
+        arr: 160.0
+        arr: 150.0
+        arr: 130.0
+        arr: 110.0
+        arr: 100.0
+        arr: 90.0
+        arr: 90.0
+      }
+    }
+    hist_dark_tone_ref_target {
+      arr_2d {
+        arr: 7.0
+        arr: 7.0
+        arr: 7.0
+        arr: 7.0
+        arr: 6.0
+        arr: 4.0
+        arr: 2.0
+        arr: 2.0
+      }
+      arr_2d {
+        arr: 7.8
+        arr: 7.8
+        arr: 7.0
+        arr: 7.0
+        arr: 6.0
+        arr: 4.0
+        arr: 2.0
+        arr: 2.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 4.0
+        arr: 3.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.0
+        arr: 9.0
+        arr: 9.0
+        arr: 9.0
+        arr: 7.5
+        arr: 5.0
+        arr: 3.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.0
+        arr: 9.0
+        arr: 9.0
+        arr: 9.0
+        arr: 8.0
+        arr: 5.0
+        arr: 3.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 9.5
+        arr: 9.5
+        arr: 8.0
+        arr: 5.0
+        arr: 3.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 9.5
+        arr: 9.5
+        arr: 8.0
+        arr: 5.0
+        arr: 3.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 9.5
+        arr: 9.5
+        arr: 8.0
+        arr: 5.0
+        arr: 3.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 9.5
+        arr: 9.0
+        arr: 7.5
+        arr: 5.0
+        arr: 3.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 9.5
+        arr: 9.0
+        arr: 7.5
+        arr: 5.0
+        arr: 3.0
+        arr: 3.0
+      }
+    }
+    hist_face_base_bright_start_pct {
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+    }
+    hist_face_base_bright_end_pct {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_face_bright_start_pct_low {
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+    }
+    hist_face_bright_start_pct_high {
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+      arr: 0.975
+    }
+    hist_face_bright_thrd_weight {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.56
+      arr: 0.56
+      arr: 0.56
+      arr: 0.56
+    }
+    hist_face_bright_tone_ref {
+      arr_2d {
+        arr: 145.0
+        arr: 142.0
+        arr: 144.0
+        arr: 135.0
+        arr: 122.0
+        arr: 110.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 150.0
+        arr: 148.0
+        arr: 144.0
+        arr: 135.0
+        arr: 125.0
+        arr: 110.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 150.0
+        arr: 148.0
+        arr: 144.0
+        arr: 135.0
+        arr: 125.0
+        arr: 110.0
+        arr: 97.0
+        arr: 97.0
+      }
+      arr_2d {
+        arr: 160.0
+        arr: 155.0
+        arr: 150.0
+        arr: 140.0
+        arr: 122.0
+        arr: 110.0
+        arr: 95.0
+        arr: 95.0
+      }
+      arr_2d {
+        arr: 170.0
+        arr: 155.0
+        arr: 155.0
+        arr: 140.0
+        arr: 122.0
+        arr: 100.0
+        arr: 95.0
+        arr: 95.0
+      }
+      arr_2d {
+        arr: 175.0
+        arr: 160.0
+        arr: 160.0
+        arr: 140.0
+        arr: 122.0
+        arr: 100.0
+        arr: 95.0
+        arr: 95.0
+      }
+      arr_2d {
+        arr: 185.0
+        arr: 170.0
+        arr: 160.0
+        arr: 145.0
+        arr: 130.0
+        arr: 115.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 185.0
+        arr: 170.0
+        arr: 160.0
+        arr: 145.0
+        arr: 130.0
+        arr: 110.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 185.0
+        arr: 170.0
+        arr: 160.0
+        arr: 150.0
+        arr: 135.0
+        arr: 110.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 185.0
+        arr: 170.0
+        arr: 160.0
+        arr: 150.0
+        arr: 135.0
+        arr: 110.0
+        arr: 100.0
+        arr: 100.0
+      }
+    }
+  }
+  hist_core_adjustment {
+    hist_core_lux_node {
+      arr: 0.0
+      arr: 123.0
+      arr: 173.0
+      arr: 273.0
+      arr: 353.0
+      arr: 423.0
+      arr: 523.0
+    }
+    hist_core_dr_node {
+      arr: 4.0
+      arr: 10.0
+      arr: 25.0
+      arr: 50.0
+      arr: 70.0
+      arr: 100.0
+      arr: 150.0
+      arr: 220.0
+      arr: 250.0
+      arr: 300.0
+    }
+    hist_core_bright_tone_low_start_pct {
+      arr: 0.92
+      arr: 0.92
+      arr: 0.93
+      arr: 0.94
+      arr: 0.94
+      arr: 0.94
+      arr: 0.94
+    }
+    hist_core_bright_tone_low_end_pct {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_core_bright_tone_low_ref_target {
+      arr_2d {
+        arr: 125.0
+        arr: 125.0
+        arr: 120.0
+        arr: 115.0
+        arr: 115.0
+        arr: 110.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 130.0
+        arr: 130.0
+        arr: 130.0
+        arr: 125.0
+        arr: 125.0
+        arr: 120.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 130.0
+        arr: 130.0
+        arr: 130.0
+        arr: 130.0
+        arr: 135.0
+        arr: 120.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 135.0
+        arr: 135.0
+        arr: 135.0
+        arr: 135.0
+        arr: 135.0
+        arr: 110.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 140.0
+        arr: 140.0
+        arr: 130.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 150.0
+        arr: 150.0
+        arr: 145.0
+        arr: 140.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 155.0
+        arr: 150.0
+        arr: 145.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 155.0
+        arr: 150.0
+        arr: 145.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 155.0
+        arr: 150.0
+        arr: 145.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 155.0
+        arr: 150.0
+        arr: 145.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+    }
+    hist_core_dark_tone_low_start_pct {
+      arr: 0.05
+      arr: 0.05
+      arr: 0.05
+      arr: 0.05
+      arr: 0.05
+      arr: 0.02
+      arr: 0.02
+    }
+    hist_core_dark_tone_low_end_pct {
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.15
+      arr: 0.18
+    }
+    hist_core_dark_tone_low_ref_target {
+      arr_2d {
+        arr: 6.0
+        arr: 6.0
+        arr: 6.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+        arr: 2.0
+      }
+      arr_2d {
+        arr: 7.8
+        arr: 7.5
+        arr: 7.0
+        arr: 7.5
+        arr: 5.0
+        arr: 4.0
+        arr: 2.0
+      }
+      arr_2d {
+        arr: 7.0
+        arr: 7.0
+        arr: 7.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 7.5
+        arr: 7.5
+        arr: 7.0
+        arr: 6.5
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 7.5
+        arr: 7.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 7.5
+        arr: 7.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 7.5
+        arr: 7.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 7.5
+        arr: 7.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 7.5
+        arr: 7.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 8.0
+        arr: 7.5
+        arr: 7.0
+        arr: 3.0
+      }
+    }
+    hist_core_bright_tone_high_start_pct {
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+    }
+    hist_core_bright_tone_high_end_pct {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_core_bright_tone_high_ref_target {
+      arr_2d {
+        arr: 125.0
+        arr: 122.0
+        arr: 124.0
+        arr: 120.0
+        arr: 120.0
+        arr: 115.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 130.0
+        arr: 128.0
+        arr: 124.0
+        arr: 125.0
+        arr: 120.0
+        arr: 120.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 130.0
+        arr: 128.0
+        arr: 124.0
+        arr: 120.0
+        arr: 118.0
+        arr: 108.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 135.0
+        arr: 132.0
+        arr: 128.0
+        arr: 120.0
+        arr: 115.0
+        arr: 115.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 140.0
+        arr: 140.0
+        arr: 120.0
+        arr: 115.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 150.0
+        arr: 150.0
+        arr: 145.0
+        arr: 120.0
+        arr: 115.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 155.0
+        arr: 150.0
+        arr: 140.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 155.0
+        arr: 150.0
+        arr: 145.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 155.0
+        arr: 150.0
+        arr: 145.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 155.0
+        arr: 155.0
+        arr: 150.0
+        arr: 145.0
+        arr: 125.0
+        arr: 100.0
+        arr: 100.0
+      }
+    }
+    hist_core_dark_tone_high_start_pct {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    hist_core_dark_tone_high_end_pct {
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.15
+      arr: 0.18
+      arr: 0.18
+    }
+    hist_core_dark_tone_high_ref_target {
+      arr_2d {
+        arr: 7.0
+        arr: 7.0
+        arr: 7.0
+        arr: 8.0
+        arr: 7.0
+        arr: 7.0
+        arr: 2.0
+      }
+      arr_2d {
+        arr: 7.0
+        arr: 7.0
+        arr: 9.0
+        arr: 12.0
+        arr: 10.0
+        arr: 7.0
+        arr: 2.0
+      }
+      arr_2d {
+        arr: 8.0
+        arr: 8.0
+        arr: 9.0
+        arr: 12.0
+        arr: 10.0
+        arr: 7.0
+        arr: 2.5
+      }
+      arr_2d {
+        arr: 9.0
+        arr: 9.0
+        arr: 11.0
+        arr: 12.0
+        arr: 11.0
+        arr: 8.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.0
+        arr: 9.0
+        arr: 11.0
+        arr: 12.0
+        arr: 11.0
+        arr: 8.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 11.0
+        arr: 13.0
+        arr: 11.0
+        arr: 8.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 12.0
+        arr: 13.0
+        arr: 11.0
+        arr: 8.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 12.0
+        arr: 13.0
+        arr: 11.0
+        arr: 8.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 12.0
+        arr: 13.0
+        arr: 11.0
+        arr: 8.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 9.5
+        arr: 9.5
+        arr: 12.0
+        arr: 13.0
+        arr: 11.0
+        arr: 8.0
+        arr: 3.0
+      }
+    }
+    hist_core_dr_b2m_node {
+      arr: 2.0
+      arr: 5.0
+      arr: 10.0
+      arr: 20.0
+      arr: 50.0
+    }
+    hist_core_dr_m2d_node {
+      arr: 3.0
+      arr: 5.0
+      arr: 10.0
+      arr: 20.0
+      arr: 50.0
+    }
+    hist_core_dark_tone_adj_raito_cap {
+      arr_2d {
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.85
+        arr: 0.8
+        arr: 0.7
+        arr: 0.7
+      }
+      arr_2d {
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.8
+        arr: 0.8
+        arr: 0.7
+        arr: 0.7
+      }
+      arr_2d {
+        arr: 0.95
+        arr: 0.95
+        arr: 0.95
+        arr: 0.9
+        arr: 0.8
+        arr: 0.7
+        arr: 0.7
+      }
+      arr_2d {
+        arr: 0.95
+        arr: 0.95
+        arr: 0.95
+        arr: 0.93
+        arr: 0.8
+        arr: 0.7
+        arr: 0.7
+      }
+      arr_2d {
+        arr: 0.95
+        arr: 0.95
+        arr: 0.95
+        arr: 0.93
+        arr: 0.88
+        arr: 0.83
+        arr: 0.82
+      }
+      arr_2d {
+        arr: 0.92
+        arr: 0.92
+        arr: 0.94
+        arr: 0.9
+        arr: 0.88
+        arr: 0.83
+        arr: 0.82
+      }
+      arr_2d {
+        arr: 0.92
+        arr: 0.92
+        arr: 0.94
+        arr: 0.9
+        arr: 0.88
+        arr: 0.83
+        arr: 0.82
+      }
+      arr_2d {
+        arr: 0.92
+        arr: 0.92
+        arr: 0.94
+        arr: 0.9
+        arr: 0.88
+        arr: 0.83
+        arr: 0.82
+      }
+      arr_2d {
+        arr: 0.92
+        arr: 0.92
+        arr: 0.94
+        arr: 0.9
+        arr: 0.88
+        arr: 0.83
+        arr: 0.82
+      }
+      arr_2d {
+        arr: 0.92
+        arr: 0.92
+        arr: 0.94
+        arr: 0.9
+        arr: 0.88
+        arr: 0.83
+        arr: 0.82
+      }
+    }
+    hist_core_bright_tone_adj_ratio_cap {
+      arr_2d {
+        arr: 1.2
+        arr: 1.2
+        arr: 1.2
+        arr: 1.35
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+      }
+      arr_2d {
+        arr: 1.1
+        arr: 1.1
+        arr: 1.1
+        arr: 1.28
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+      }
+      arr_2d {
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+      }
+      arr_2d {
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+      }
+      arr_2d {
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+        arr: 1.3
+      }
+    }
+  }
+  hist_adaptive_adjustment {
+    enable_hist_adaptive_target {
+      value: true
+    }
+    hist_adaptive_lux_node {
+      arr: 0.0
+      arr: 123.0
+      arr: 173.0
+      arr: 215.0
+      arr: 285.0
+      arr: 343.0
+      arr: 423.0
+      arr: 470.0
+      arr: 523.0
+    }
+    hist_adaptive_dr_node {
+      arr: 3.0
+      arr: 10.0
+      arr: 25.0
+      arr: 50.0
+      arr: 70.0
+      arr: 100.0
+      arr: 150.0
+      arr: 220.0
+      arr: 250.0
+      arr: 300.0
+    }
+    hist_adaptive_bright_tone_start_pct {
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    hist_adaptive_bright_tone_end_pct {
+      arr: 0.964
+      arr: 0.964
+      arr: 0.964
+      arr: 0.964
+      arr: 0.964
+      arr: 0.964
+      arr: 0.965
+      arr: 0.965
+      arr: 0.965
+    }
+    hist_adaptive_bright_tone_ref_target {
+      arr_2d {
+        arr: 130.0
+        arr: 130.0
+        arr: 125.0
+        arr: 123.0
+        arr: 120.0
+        arr: 116.0
+        arr: 100.0
+        arr: 90.0
+        arr: 90.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 135.0
+        arr: 130.0
+        arr: 126.0
+        arr: 125.0
+        arr: 123.0
+        arr: 114.0
+        arr: 95.0
+        arr: 95.0
+      }
+      arr_2d {
+        arr: 150.0
+        arr: 145.0
+        arr: 135.0
+        arr: 130.0
+        arr: 128.0
+        arr: 125.0
+        arr: 116.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 160.0
+        arr: 160.0
+        arr: 150.0
+        arr: 134.0
+        arr: 132.0
+        arr: 130.0
+        arr: 120.0
+        arr: 110.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 165.0
+        arr: 170.0
+        arr: 155.0
+        arr: 145.0
+        arr: 142.0
+        arr: 140.0
+        arr: 125.0
+        arr: 115.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 175.0
+        arr: 180.0
+        arr: 160.0
+        arr: 160.0
+        arr: 155.0
+        arr: 150.0
+        arr: 135.0
+        arr: 120.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 185.0
+        arr: 200.0
+        arr: 185.0
+        arr: 165.0
+        arr: 165.0
+        arr: 165.0
+        arr: 150.0
+        arr: 130.0
+        arr: 110.0
+      }
+      arr_2d {
+        arr: 200.0
+        arr: 200.0
+        arr: 190.0
+        arr: 185.0
+        arr: 170.0
+        arr: 165.0
+        arr: 140.0
+        arr: 120.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 200.0
+        arr: 200.0
+        arr: 200.0
+        arr: 195.0
+        arr: 185.0
+        arr: 160.0
+        arr: 140.0
+        arr: 120.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 220.0
+        arr: 220.0
+        arr: 220.0
+        arr: 205.0
+        arr: 170.0
+        arr: 140.0
+        arr: 140.0
+        arr: 120.0
+        arr: 100.0
+      }
+    }
+    hist_adaptive_mid_tone_start_pct {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+    hist_adaptive_mid_tone_end_pct {
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+    }
+    hist_adaptive_mid_tone_ref_target {
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.66
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.5
+        arr: 4.0
+      }
+    }
+    hist_adaptive_dark_tone_start_pct {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.02
+      arr: 0.02
+      arr: 0.04
+      arr: 0.04
+      arr: 0.04
+    }
+    hist_adaptive_dark_tone_end_pct {
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.12
+      arr: 0.12
+      arr: 0.16
+      arr: 0.16
+      arr: 0.16
+    }
+    hist_adaptive_dark_tone_ref_target {
+      arr_2d {
+        arr: 9.0
+        arr: 9.0
+        arr: 8.5
+        arr: 8.5
+        arr: 9.0
+        arr: 7.0
+        arr: 5.0
+        arr: 3.5
+        arr: 2.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 10.0
+        arr: 9.5
+        arr: 9.33
+        arr: 10.0
+        arr: 7.5
+        arr: 6.0
+        arr: 4.0
+        arr: 3.5
+      }
+      arr_2d {
+        arr: 11.0
+        arr: 10.0
+        arr: 9.5
+        arr: 9.4
+        arr: 9.2
+        arr: 8.0
+        arr: 6.0
+        arr: 4.0
+        arr: 3.5
+      }
+      arr_2d {
+        arr: 12.0
+        arr: 11.0
+        arr: 10.5
+        arr: 9.0
+        arr: 9.0
+        arr: 9.0
+        arr: 6.5
+        arr: 4.0
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 12.0
+        arr: 12.0
+        arr: 10.5
+        arr: 9.0
+        arr: 9.0
+        arr: 9.0
+        arr: 7.0
+        arr: 4.5
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 13.0
+        arr: 12.0
+        arr: 11.0
+        arr: 10.0
+        arr: 10.2
+        arr: 10.0
+        arr: 7.5
+        arr: 5.2
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 14.0
+        arr: 13.0
+        arr: 12.0
+        arr: 10.0
+        arr: 10.0
+        arr: 10.0
+        arr: 8.5
+        arr: 6.0
+        arr: 5.0
+      }
+      arr_2d {
+        arr: 14.0
+        arr: 13.0
+        arr: 12.0
+        arr: 11.0
+        arr: 11.0
+        arr: 11.0
+        arr: 9.0
+        arr: 6.0
+        arr: 6.0
+      }
+      arr_2d {
+        arr: 14.0
+        arr: 13.0
+        arr: 12.0
+        arr: 11.0
+        arr: 11.0
+        arr: 9.5
+        arr: 7.5
+        arr: 6.0
+        arr: 6.0
+      }
+      arr_2d {
+        arr: 14.0
+        arr: 13.0
+        arr: 12.0
+        arr: 11.0
+        arr: 11.5
+        arr: 7.0
+        arr: 7.0
+        arr: 6.0
+        arr: 6.0
+      }
+    }
+    hist_adaptive_low_start {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.48
+      arr: 0.45
+      arr: 0.3
+      arr: 0.2
+      arr: 0.15
+      arr: 0.1
+    }
+    hist_adaptive_low_end {
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.73
+      arr: 0.7
+      arr: 0.65
+      arr: 0.7
+      arr: 0.85
+      arr: 0.75
+    }
+    hist_adaptive_high_start {
+      arr: 1.2
+      arr: 1.25
+      arr: 1.35
+      arr: 1.38
+      arr: 1.4
+      arr: 1.6
+      arr: 1.8
+      arr: 1.9
+      arr: 2.0
+    }
+    hist_adaptive_high_end {
+      arr: 2.8
+      arr: 3.2
+      arr: 3.8
+      arr: 3.85
+      arr: 3.88
+      arr: 4.6
+      arr: 4.6
+      arr: 5.05
+      arr: 5.5
+    }
+    hist_adaptive_extra_high_start {
+      arr: 3.8
+      arr: 4.2
+      arr: 4.4
+      arr: 4.6
+      arr: 4.85
+      arr: 4.85
+      arr: 4.85
+      arr: 5.17
+      arr: 5.5
+    }
+    hist_adaptive_extra_high_end {
+      arr: 5.0
+      arr: 6.0
+      arr: 6.5
+      arr: 6.5
+      arr: 7.0
+      arr: 8.0
+      arr: 10.0
+      arr: 11.0
+      arr: 12.0
+    }
+    hist_adaptive_extra_high_ratio {
+      arr: 1.2
+      arr: 1.2
+      arr: 1.18
+      arr: 1.16
+      arr: 1.15
+      arr: 1.15
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_adaptive_extra_low_start {
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+      arr: 0.35
+    }
+    hist_adaptive_extra_low_end {
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+    }
+    hist_adaptive_extra_low_ratio {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.85
+      arr: 0.9
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_adaptive_dr_b2m_node {
+      arr: 2.0
+      arr: 5.0
+      arr: 10.0
+      arr: 20.0
+      arr: 50.0
+    }
+    hist_adaptive_dr_m2d_node {
+      arr: 2.0
+      arr: 5.0
+      arr: 10.0
+      arr: 20.0
+      arr: 50.0
+    }
+    hist_adaptive_dt_adjust_ratio_normal_cap {
+      arr_2d {
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+    }
+    hist_adaptive_bt_adjust_ratio_normal_cap {
+      arr_2d {
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.45
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+    }
+    hist_adaptive_adjust_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.75
+        arr: 0.65
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.7
+        arr: 0.6
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.7
+        arr: 0.5
+        arr: 0.3
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.65
+        arr: 0.5
+        arr: 0.3
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.6
+        arr: 0.5
+        arr: 0.3
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.6
+        arr: 0.4
+        arr: 0.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.6
+        arr: 0.4
+        arr: 0.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.6
+        arr: 0.4
+        arr: 0.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.6
+        arr: 0.4
+        arr: 0.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 0.9
+        arr: 0.6
+        arr: 0.4
+        arr: 0.2
+      }
+    }
+    hist_adaptive_adjust_ratio_high_cap {
+      arr: 2.0
+      arr: 2.0
+      arr: 2.0
+      arr: 2.0
+      arr: 2.0
+      arr: 1.8
+      arr: 1.4
+      arr: 1.4
+      arr: 1.3
+    }
+    hist_adaptive_adjust_ratio_low_cap {
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+      arr: 0.75
+      arr: 0.8
+      arr: 0.8
+      arr: 0.81
+      arr: 0.83
+    }
+  }
+  mid_tone_adjustment {
+    midtone_enable {
+    }
+    midtone_enable_bright_cal {
+    }
+    midtone_enable_dark_cal {
+    }
+    midtone_enable_mid_cal {
+      value: true
+    }
+    midtone_lux_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 280.0
+      arr: 350.0
+      arr: 450.0
+    }
+    midtone_bright_tone_pct_start {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    midtone_bright_tone_pct_end {
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+    }
+    midtone_mid_tone_pct_start {
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+    }
+    midtone_mid_tone_pct_end {
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+    }
+    midtone_dark_tone_pct_start {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    midtone_dark_tone_pct_end {
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+    }
+    midtone_upper_cap_thld {
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+    }
+    midtone_lower_cap_thld {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+    midtone_dr_b2d_node {
+      arr: 5.0
+      arr: 10.0
+      arr: 30.0
+      arr: 40.0
+      arr: 50.0
+      arr: 60.0
+    }
+    midtone_dr_b2m_node {
+      arr: 1.0
+      arr: 3.0
+      arr: 6.0
+      arr: 8.0
+      arr: 13.0
+      arr: 20.0
+    }
+    midtone_dr_m2d_node {
+      arr: 1.0
+      arr: 3.0
+      arr: 5.0
+      arr: 10.0
+      arr: 15.0
+      arr: 20.0
+    }
+    midtone_dr_mm2bd_node {
+      arr: 0.1
+      arr: 0.3
+      arr: 1.0
+      arr: 2.0
+      arr: 6.0
+      arr: 10.0
+      arr: 13.0
+    }
+    midtone_b2m_correc_weight {
+      arr_2d {
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+      }
+      arr_2d {
+        arr: 0.2
+        arr: 0.2
+        arr: 0.2
+        arr: 0.2
+        arr: 0.2
+        arr: 0.2
+        arr: 0.2
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 2.0
+        arr: 2.0
+        arr: 2.0
+        arr: 2.0
+        arr: 1.5
+        arr: 1.5
+        arr: 1.5
+      }
+      arr_2d {
+        arr: 2.0
+        arr: 2.0
+        arr: 2.0
+        arr: 2.0
+        arr: 1.5
+        arr: 1.5
+        arr: 1.5
+      }
+      arr_2d {
+        arr: 2.5
+        arr: 2.5
+        arr: 2.5
+        arr: 2.5
+        arr: 2.0
+        arr: 2.0
+        arr: 2.0
+      }
+    }
+    midtone_bright_tone_ref_target {
+      arr_2d {
+        arr: 140.0
+        arr: 120.0
+        arr: 120.0
+        arr: 100.0
+        arr: 100.0
+        arr: 80.0
+        arr: 70.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 120.0
+        arr: 120.0
+        arr: 100.0
+        arr: 100.0
+        arr: 80.0
+        arr: 70.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 120.0
+        arr: 120.0
+        arr: 100.0
+        arr: 100.0
+        arr: 80.0
+        arr: 70.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 120.0
+        arr: 120.0
+        arr: 100.0
+        arr: 100.0
+        arr: 80.0
+        arr: 70.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 120.0
+        arr: 120.0
+        arr: 100.0
+        arr: 100.0
+        arr: 80.0
+        arr: 70.0
+      }
+      arr_2d {
+        arr: 140.0
+        arr: 120.0
+        arr: 120.0
+        arr: 100.0
+        arr: 100.0
+        arr: 80.0
+        arr: 70.0
+      }
+    }
+    midtone_mid_tone_ref_target {
+      arr_2d {
+        arr: 55.0
+        arr: 55.0
+        arr: 55.0
+        arr: 53.0
+        arr: 40.0
+        arr: 15.0
+        arr: 10.0
+      }
+      arr_2d {
+        arr: 65.0
+        arr: 65.0
+        arr: 65.0
+        arr: 60.0
+        arr: 30.0
+        arr: 20.0
+        arr: 16.0
+      }
+      arr_2d {
+        arr: 65.0
+        arr: 65.0
+        arr: 65.0
+        arr: 60.0
+        arr: 30.0
+        arr: 20.0
+        arr: 16.0
+      }
+      arr_2d {
+        arr: 65.0
+        arr: 65.0
+        arr: 65.0
+        arr: 60.0
+        arr: 30.0
+        arr: 20.0
+        arr: 16.0
+      }
+      arr_2d {
+        arr: 65.0
+        arr: 65.0
+        arr: 65.0
+        arr: 60.0
+        arr: 30.0
+        arr: 20.0
+        arr: 16.0
+      }
+      arr_2d {
+        arr: 65.0
+        arr: 65.0
+        arr: 65.0
+        arr: 60.0
+        arr: 30.0
+        arr: 20.0
+        arr: 16.0
+      }
+    }
+    midtone_dark_tone_ref_target {
+      arr_2d {
+        arr: 18.0
+        arr: 16.0
+        arr: 15.0
+        arr: 14.0
+        arr: 12.0
+        arr: 11.0
+        arr: 8.0
+      }
+      arr_2d {
+        arr: 18.0
+        arr: 16.0
+        arr: 15.0
+        arr: 14.0
+        arr: 12.0
+        arr: 11.0
+        arr: 8.0
+      }
+      arr_2d {
+        arr: 18.0
+        arr: 16.0
+        arr: 15.0
+        arr: 14.0
+        arr: 12.0
+        arr: 11.0
+        arr: 8.0
+      }
+      arr_2d {
+        arr: 18.0
+        arr: 16.0
+        arr: 15.0
+        arr: 14.0
+        arr: 12.0
+        arr: 11.0
+        arr: 8.0
+      }
+      arr_2d {
+        arr: 18.0
+        arr: 16.0
+        arr: 15.0
+        arr: 14.0
+        arr: 12.0
+        arr: 11.0
+        arr: 8.0
+      }
+      arr_2d {
+        arr: 18.0
+        arr: 16.0
+        arr: 15.0
+        arr: 14.0
+        arr: 12.0
+        arr: 11.0
+        arr: 8.0
+      }
+    }
+    midtone_bright_tone_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+    midtone_mid_tone_weight {
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+        arr: 0.1
+      }
+      arr_2d {
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.38
+      }
+      arr_2d {
+        arr: 0.6
+        arr: 0.63
+        arr: 0.65
+        arr: 0.67
+        arr: 0.67
+        arr: 0.7
+      }
+      arr_2d {
+        arr: 0.8
+        arr: 0.78
+        arr: 0.77
+        arr: 0.77
+        arr: 0.67
+        arr: 0.7
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 0.98
+        arr: 0.83
+        arr: 0.83
+        arr: 0.7
+      }
+    }
+    midtone_dark_tone_weight {
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+    }
+  }
+  flat_scene_adjustment {
+    enable_flat_scene {
+    }
+    fs_grid_diff_node {
+      arr: 6.0
+      arr: 10.0
+    }
+    fs_grid_diff_weight {
+      arr: 1.0
+      arr: 1.8
+    }
+    fs_lux_node {
+      arr: 0.0
+      arr: 100.0
+      arr: 150.0
+      arr: 200.0
+      arr: 310.0
+      arr: 450.0
+      arr: 500.0
+    }
+    fs_target {
+      arr: 65.0
+      arr: 60.0
+      arr: 58.0
+      arr: 55.0
+      arr: 55.0
+      arr: 45.0
+      arr: 33.0
+    }
+    fs_bright_tone_pct_start {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    fs_bright_tone_pct_end {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    fs_dark_tone_pct_start {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    fs_dark_tone_pct_end {
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+    }
+    fs_detect_ratio_node {
+      arr: 3.5
+      arr: 4.5
+      arr: 4.8
+      arr: 5.0
+      arr: 5.2
+      arr: 5.5
+      arr: 6.0
+    }
+    fs_dr_b2d_node {
+      arr: 5.0
+      arr: 10.0
+      arr: 15.0
+    }
+    fs_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 0.98
+        arr: 0.8
+        arr: 0.7
+        arr: 0.4
+        arr: 0.2
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.4
+        arr: 0.3
+        arr: 0.2
+        arr: 0.1
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+    }
+    fs_upper_cap_thld {
+      arr: 2.5
+      arr: 2.5
+      arr: 2.5
+      arr: 2.5
+      arr: 2.5
+      arr: 2.5
+      arr: 2.5
+    }
+    fs_lower_cap_thld {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+    fs_bright_tone_ref_target {
+      arr: 110.0
+      arr: 100.0
+      arr: 90.0
+      arr: 90.0
+      arr: 90.0
+      arr: 80.0
+      arr: 80.0
+    }
+    fs_dark_tone_ref_target {
+      arr: 80.0
+      arr: 80.0
+      arr: 80.0
+      arr: 70.0
+      arr: 60.0
+      arr: 50.0
+      arr: 50.0
+    }
+  }
+  night_scene_adjustment {
+    enable_night_scene {
+      value: true
+    }
+    ns_lux_node {
+      arr: 0.0
+      arr: 123.0
+      arr: 173.0
+      arr: 283.0
+      arr: 353.0
+      arr: 423.0
+      arr: 523.0
+    }
+    ns_lux_weight {
+      arr: 0.6
+      arr: 0.6
+      arr: 0.7
+      arr: 0.8
+      arr: 1.0
+      arr: 0.9
+      arr: 0.5
+    }
+    ns_dr_node {
+      arr: 0.0
+      arr: 30.0
+      arr: 60.0
+      arr: 90.0
+      arr: 120.0
+      arr: 150.0
+      arr: 180.0
+      arr: 210.0
+    }
+    ns_dr_weight {
+      arr: 0.1
+      arr: 0.3
+      arr: 0.4
+      arr: 0.4
+      arr: 0.2
+      arr: 0.2
+      arr: 0.1
+      arr: 0.0
+    }
+    ns_dark_tone_start_pct {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    ns_dark_tone_end_pct {
+      arr: 0.4
+      arr: 0.4
+      arr: 0.4
+      arr: 0.4
+      arr: 0.4
+      arr: 0.4
+      arr: 0.4
+    }
+    ns_dark_tone_ref_target {
+      arr: 6.5
+      arr: 6.5
+      arr: 6.5
+      arr: 6.0
+      arr: 6.0
+      arr: 5.0
+      arr: 4.0
+    }
+    ns_cap_thld {
+      arr: 1.5
+      arr: 1.5
+      arr: 1.5
+      arr: 1.5
+      arr: 1.5
+      arr: 1.5
+      arr: 1.5
+    }
+  }
+  saturation_prevent_adjustment {
+    enable_saturation_prevent {
+      rule {
+        description: "[Bool]"
+        recommend: "None"
+      }
+    }
+    sp_lux_node {
+      rule {
+        description: "[FloatArr]"
+        recommend: "None"
+        order: 1
+        high: 9999.0
+        len: "7"
+      }
+      arr: 0.0
+      arr: 123.0
+      arr: 173.0
+      arr: 283.0
+      arr: 353.0
+      arr: 423.0
+      arr: 523.0
+    }
+    sp_lux_weight {
+      rule {
+        description: "[FloatArr]"
+        recommend: "None"
+        high: 2.0
+        len: "hist_target_by_lux.saturation_prevent_adjustment.0.sp_lux_node.rule.len"
+      }
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    sp_luma_dark_node {
+      rule {
+        description: "[FloatArr]"
+        recommend: "None"
+        order: 1
+        high: 1.0
+        len: "7"
+      }
+      arr: 0.0
+      arr: 0.1
+      arr: 0.2
+      arr: 0.4
+      arr: 0.6
+      arr: 0.8
+      arr: 1.0
+    }
+    sp_luma_bright_node {
+      rule {
+        description: "[FloatArr]"
+        recommend: "None"
+        order: 1
+        high: 1.0
+        len: "7"
+      }
+      arr: 0.0
+      arr: 0.01
+      arr: 0.03
+      arr: 0.09
+      arr: 0.15
+      arr: 0.3
+      arr: 1.0
+    }
+    sp_luma_dark_bright_weight {
+      rule {
+        description: "[FloatArr2D]"
+        high: 1.0
+        row: "hist_target_by_lux.saturation_prevent_adjustment.0.sp_luma_dark_node.rule.len"
+        col: "hist_target_by_lux.saturation_prevent_adjustment.0.sp_luma_bright_node.rule.len"
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+    }
+    sp_bright_tone_start_pct {
+      rule {
+        description: "[FloatArr]"
+        recommend: "None"
+        high: 1.0
+        len: "hist_target_by_lux.saturation_prevent_adjustment.0.sp_lux_node.rule.len"
+      }
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+    }
+    sp_bright_tone_end_pct {
+      rule {
+        description: "[FloatArr]"
+        recommend: "None"
+        high: 1.0
+        len: "hist_target_by_lux.saturation_prevent_adjustment.0.sp_lux_node.rule.len"
+      }
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    sp_bright_tone_ref_target {
+      rule {
+        description: "[FloatArr]"
+        recommend: "None"
+        high: 255.0
+        len: "hist_target_by_lux.saturation_prevent_adjustment.0.sp_lux_node.rule.len"
+      }
+      arr: 200.0
+      arr: 190.0
+      arr: 190.0
+      arr: 180.0
+      arr: 160.0
+      arr: 140.0
+      arr: 120.0
+    }
+    sp_lux_cap_threshold {
+      rule {
+        description: "[FloatArr]"
+        recommend: "None"
+        high: 1.0
+        len: "hist_target_by_lux.saturation_prevent_adjustment.0.sp_lux_node.rule.len"
+      }
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+  }
+  safe_saturate_prevent_adjustment {
+    enable_safe_saturation_prevent {
+    }
+    safe_sp_lux_node {
+      arr: 0.0
+      arr: 123.0
+      arr: 173.0
+      arr: 283.0
+      arr: 353.0
+      arr: 423.0
+      arr: 523.0
+    }
+    safe_sp_lux_weight {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    safe_sp_luma_dark_node {
+      arr: 0.0
+      arr: 0.1
+      arr: 0.2
+      arr: 0.4
+      arr: 0.6
+      arr: 0.8
+      arr: 1.0
+    }
+    safe_sp_luma_bright_node {
+      arr: 0.0
+      arr: 0.01
+      arr: 0.03
+      arr: 0.09
+      arr: 0.15
+      arr: 0.3
+      arr: 1.0
+    }
+    safe_sp_luma_dark_bright_weight {
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.4
+        arr: 0.5
+        arr: 0.5
+        arr: 0.6
+        arr: 0.7
+        arr: 1.0
+      }
+    }
+    safe_sp_bright_tone_start_pct {
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+    }
+    safe_sp_bright_tone_end_pct {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    safe_sp_bright_tone_ref_target {
+      arr: 200.0
+      arr: 190.0
+      arr: 190.0
+      arr: 180.0
+      arr: 160.0
+      arr: 140.0
+      arr: 120.0
+    }
+    safe_sp_lux_cap_threshold {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+  }
+  super_moon_adjustment {
+    enable_supermoon_adjustment {
+    }
+    supermoon_remove_stats_thld {
+      value: 2.0
+    }
+    supermoon_bright_count_thld {
+      value: 2.0
+    }
+    supermoon_extra_weight_low_thld {
+      value: 1.8
+    }
+    supermoon_extra_weight_high_thld {
+      value: 2.0
+    }
+    supermoon_extra_small_moon_low_thld {
+      value: 0.01
+    }
+    supermoon_extra_small_moon_high_thld {
+      value: 0.015
+    }
+    supermoon_weight_lux_node {
+      arr: 0.0
+      arr: 200.0
+      arr: 300.0
+      arr: 350.0
+      arr: 400.0
+    }
+    supermoon_weight_brightratio_node {
+      arr: 0.0
+      arr: 0.001
+      arr: 0.003
+      arr: 0.007
+      arr: 0.01
+      arr: 0.1
+      arr: 1.0
+    }
+    supermoon_aggregation_weight {
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.2
+        arr: 0.2
+        arr: 0.3
+        arr: 0.3
+        arr: 0.3
+        arr: 0.4
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+    supermoon_small_moon_compensate_low_thld {
+      value: 0.04
+    }
+    supermoon_small_moon_compensate_high_thld {
+      value: 0.1
+    }
+    supermoon_small_moon_compensate_max_ratio {
+      value: 1.5
+    }
+    supermoon_zoomratio_node {
+      arr: 5.0
+      arr: 10.0
+      arr: 30.0
+      arr: 50.0
+      arr: 100.0
+    }
+    supermoon_brightratio_node {
+      arr: 0.05
+      arr: 0.06
+      arr: 0.08
+      arr: 0.1
+      arr: 1.0
+    }
+    supermoon_start_pct {
+      arr_2d {
+        arr: 0.998
+        arr: 0.998
+        arr: 0.993
+        arr: 0.993
+        arr: 0.993
+      }
+      arr_2d {
+        arr: 0.998
+        arr: 0.997
+        arr: 0.993
+        arr: 0.993
+        arr: 0.993
+      }
+      arr_2d {
+        arr: 0.995
+        arr: 0.995
+        arr: 0.993
+        arr: 0.993
+        arr: 0.993
+      }
+      arr_2d {
+        arr: 0.995
+        arr: 0.995
+        arr: 0.99
+        arr: 0.99
+        arr: 0.99
+      }
+      arr_2d {
+        arr: 0.995
+        arr: 0.995
+        arr: 0.99
+        arr: 0.99
+        arr: 0.99
+      }
+    }
+    supermoon_end_pct {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+    supermoon_ref_target {
+      arr_2d {
+        arr: 30.0
+        arr: 30.0
+        arr: 60.0
+        arr: 60.0
+        arr: 60.0
+      }
+      arr_2d {
+        arr: 30.0
+        arr: 40.0
+        arr: 60.0
+        arr: 60.0
+        arr: 60.0
+      }
+      arr_2d {
+        arr: 40.0
+        arr: 60.0
+        arr: 70.0
+        arr: 70.0
+        arr: 70.0
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 60.0
+        arr: 70.0
+        arr: 70.0
+        arr: 70.0
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 70.0
+        arr: 70.0
+        arr: 70.0
+        arr: 70.0
+      }
+    }
+    supermoon_ratio_cap_threshold {
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+    }
+  }
+  dark_prevent_adjustment {
+    enable_dark_prevent {
+      value: true
+    }
+    dp_lux_node {
+      arr: 0.0
+      arr: 123.0
+      arr: 173.0
+      arr: 283.0
+      arr: 353.0
+      arr: 423.0
+      arr: 480.0
+      arr: 523.0
+    }
+    dp_lux_weight {
+      arr: 0.0
+      arr: 0.3
+      arr: 0.6
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.5
+      arr: 0.3
+    }
+    dp_luma_dark_node {
+      arr: 0.0
+      arr: 0.05
+      arr: 0.1
+      arr: 0.2
+      arr: 0.3
+      arr: 0.4
+      arr: 0.5
+    }
+    dp_luma_bright_node {
+      arr: 0.0
+      arr: 0.01
+      arr: 0.03
+      arr: 0.09
+      arr: 0.15
+      arr: 0.3
+      arr: 0.4
+    }
+    dp_luma_dark_bright_weight {
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.8
+        arr: 0.6
+        arr: 0.2
+        arr: 0.2
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.9
+        arr: 0.9
+        arr: 0.4
+        arr: 0.4
+        arr: 0.2
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.9
+        arr: 1.0
+        arr: 1.0
+        arr: 0.6
+        arr: 0.4
+        arr: 0.0
+        arr: 0.0
+      }
+    }
+    dp_dark_tone_start_pct {
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.05
+      arr: 0.05
+      arr: 0.05
+      arr: 0.05
+    }
+    dp_dark_tone_end_pct {
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.25
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+    }
+    dp_dark_tone_ref_target {
+      arr: 10.0
+      arr: 10.0
+      arr: 10.0
+      arr: 8.0
+      arr: 5.0
+      arr: 3.0
+      arr: 2.0
+    }
+    dp_lux_cap_threshold {
+      arr: 3.0
+      arr: 3.0
+      arr: 3.0
+      arr: 3.0
+      arr: 3.0
+      arr: 3.0
+      arr: 3.0
+      arr: 3.0
+    }
+  }
+  color_scene_adjustment {
+    enable_color_considered {
+      value: true
+    }
+    enable_long_short_color_scene_adjust {
+      value: true
+    }
+    enable_multi_color {
+      value: true
+    }
+    threshold_r {
+      value: 2.296092
+    }
+    range_r {
+      value: 0.07
+    }
+    threshold_g_on_rg_axis {
+      value: 1.184641
+    }
+    range_g_on_rg_axis {
+      value: 0.05
+    }
+    threshold_g_on_bg_axis {
+      value: 1.144491
+    }
+    range_g_on_bg_axis {
+      value: 0.05
+    }
+    threshold_g_center {
+      value: 0.114131
+    }
+    range_g_center {
+      value: 0.08
+    }
+    threshold_b {
+      value: 1.30335
+    }
+    range_b {
+      value: 0.07
+    }
+    luma_thrd_low {
+      value: 25.0
+    }
+    luma_thrd_high {
+      value: 255.0
+    }
+    color_lux_node {
+      arr: 0.0
+      arr: 223.0
+      arr: 278.0
+      arr: 363.0
+      arr: 423.0
+      arr: 523.0
+    }
+    color_dr_b2d_node {
+      arr: 10.0
+      arr: 30.0
+      arr: 50.0
+    }
+    color_r_target {
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+    }
+    color_g_target {
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+    }
+    color_b_target {
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+        arr: 50.0
+      }
+    }
+    color_r_lux_dr_adjust_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.1
+        arr: 1.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.1
+        arr: 1.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.1
+        arr: 1.2
+      }
+    }
+    color_g_lux_dr_adjust_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.05
+        arr: 1.05
+        arr: 1.1
+        arr: 1.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.05
+        arr: 1.05
+        arr: 1.1
+        arr: 1.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.05
+        arr: 1.05
+        arr: 1.1
+        arr: 1.2
+      }
+    }
+    color_b_lux_dr_adjust_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.1
+        arr: 1.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.1
+        arr: 1.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.1
+        arr: 1.2
+      }
+    }
+    color_r_for_stats_node {
+      arr: 0.05
+      arr: 0.15
+      arr: 0.3
+      arr: 0.4
+      arr: 0.5
+      arr: 0.6
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+    color_g_for_stats_node {
+      arr: 0.05
+      arr: 0.15
+      arr: 0.3
+      arr: 0.4
+      arr: 0.5
+      arr: 0.6
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+    color_b_for_stats_node {
+      arr: 0.05
+      arr: 0.15
+      arr: 0.3
+      arr: 0.4
+      arr: 0.5
+      arr: 0.6
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+    color_r_for_allcolor_node {
+      arr: 0.1
+      arr: 0.2
+      arr: 0.3
+      arr: 0.4
+      arr: 0.5
+      arr: 0.6
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+    color_g_for_allcolor_node {
+      arr: 0.1
+      arr: 0.2
+      arr: 0.3
+      arr: 0.4
+      arr: 0.5
+      arr: 0.6
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+    color_b_for_allcolor_node {
+      arr: 0.1
+      arr: 0.2
+      arr: 0.3
+      arr: 0.4
+      arr: 0.5
+      arr: 0.6
+      arr: 0.7
+      arr: 0.8
+      arr: 0.9
+      arr: 1.0
+    }
+    color_r_adjust_ratio {
+      arr_2d {
+        arr: 1.0
+        arr: 0.95
+        arr: 0.7
+        arr: 0.7
+        arr: 0.68
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.8
+        arr: 0.6
+        arr: 0.7
+        arr: 0.68
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.85
+        arr: 0.65
+        arr: 0.7
+        arr: 0.68
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.8
+        arr: 0.8
+        arr: 0.73
+        arr: 0.68
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.75
+        arr: 0.75
+        arr: 0.75
+        arr: 0.7
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.8
+        arr: 0.7
+        arr: 0.75
+        arr: 0.7
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.75
+        arr: 0.7
+        arr: 0.75
+        arr: 0.68
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.75
+        arr: 0.7
+        arr: 0.7
+        arr: 0.65
+        arr: 0.6
+        arr: 0.6
+        arr: 0.6
+        arr: 0.6
+        arr: 0.6
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.8
+        arr: 0.75
+        arr: 0.75
+        arr: 0.65
+        arr: 0.55
+        arr: 0.55
+        arr: 0.55
+        arr: 0.55
+        arr: 0.55
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.85
+        arr: 0.75
+        arr: 0.72
+        arr: 0.65
+        arr: 0.55
+        arr: 0.55
+        arr: 0.68
+        arr: 0.75
+        arr: 0.75
+      }
+    }
+    color_g_adjust_ratio {
+      arr_2d {
+        arr: 1.0
+        arr: 0.97
+        arr: 0.86
+        arr: 0.7
+        arr: 0.68
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.95
+        arr: 0.8
+        arr: 0.7
+        arr: 0.68
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.9
+        arr: 0.75
+        arr: 0.7
+        arr: 0.68
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.88
+        arr: 0.8
+        arr: 0.73
+        arr: 0.68
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.82
+        arr: 0.8
+        arr: 0.75
+        arr: 0.7
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.85
+        arr: 0.8
+        arr: 0.75
+        arr: 0.7
+        arr: 0.7
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.88
+        arr: 0.75
+        arr: 0.72
+        arr: 0.68
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.9
+        arr: 0.75
+        arr: 0.72
+        arr: 0.65
+        arr: 0.6
+        arr: 0.6
+        arr: 0.6
+        arr: 0.6
+        arr: 0.6
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.95
+        arr: 0.8
+        arr: 0.73
+        arr: 0.63
+        arr: 0.6
+        arr: 0.55
+        arr: 0.6
+        arr: 0.65
+        arr: 0.65
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.9
+        arr: 0.86
+        arr: 0.72
+        arr: 0.6
+        arr: 0.62
+        arr: 0.7
+        arr: 0.8
+        arr: 0.8
+        arr: 0.8
+      }
+    }
+    color_b_adjust_ratio {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 0.92
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.97
+        arr: 0.91
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.95
+        arr: 0.95
+        arr: 0.94
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.98
+        arr: 0.97
+        arr: 0.97
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.95
+        arr: 0.98
+        arr: 0.97
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.9
+        arr: 0.98
+        arr: 0.97
+        arr: 0.92
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.9
+        arr: 0.98
+        arr: 0.98
+        arr: 0.93
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.9
+        arr: 0.95
+        arr: 0.98
+        arr: 0.94
+        arr: 0.92
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.95
+        arr: 0.95
+        arr: 1.0
+        arr: 0.94
+        arr: 0.92
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 0.93
+        arr: 0.98
+        arr: 0.91
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+        arr: 0.9
+      }
+    }
+    single_chanel_r_thrd {
+      arr: 220.0
+      arr: 250.0
+    }
+    single_chanel_g_thrd {
+      arr: 220.0
+      arr: 250.0
+    }
+    single_chanel_b_thrd {
+      arr: 220.0
+      arr: 250.0
+    }
+    single_chanel_r_ratio {
+      arr: 1.0
+      arr: 1.5
+    }
+    single_chanel_g_ratio {
+      arr: 1.0
+      arr: 1.5
+    }
+    single_chanel_b_ratio {
+      arr: 1.0
+      arr: 1.5
+    }
+    enable_single_channel_considered {
+    }
+  }
+  adjust_ratio_aggregation {
+    lux_node {
+      arr: 0.0
+      arr: 123.0
+      arr: 173.0
+      arr: 283.0
+      arr: 343.0
+      arr: 423.0
+      arr: 523.0
+    }
+    aggregation_upper_limit {
+      arr: 1.7
+      arr: 1.65
+      arr: 1.65
+      arr: 1.6
+      arr: 1.55
+      arr: 1.45
+      arr: 1.4
+    }
+    aggregation_lower_limit {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.7
+      arr: 0.65
+    }
+    using_logic_long_ratio {
+    }
+    using_logic_short_ratio {
+    }
+    luma_diff_pct_thld {
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+    }
+    using_short_cap_safe {
+    }
+    enable_face_color_asd_adjust {
+    }
+  }
+  safe_hist_adaptive_adjustment {
+    enable_hist_adaptive_target {
+    }
+    hist_adaptive_lux_node {
+      arr: 0.0
+      arr: 123.0
+      arr: 173.0
+      arr: 283.0
+      arr: 353.0
+      arr: 423.0
+      arr: 523.0
+    }
+    hist_adaptive_dr_node {
+      arr: 0.0
+      arr: 10.0
+      arr: 25.0
+      arr: 50.0
+      arr: 70.0
+      arr: 100.0
+      arr: 150.0
+      arr: 220.0
+      arr: 250.0
+      arr: 300.0
+    }
+    hist_adaptive_bright_tone_start_pct {
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    hist_adaptive_bright_tone_end_pct {
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+      arr: 0.97
+    }
+    hist_adaptive_bright_tone_ref_target {
+      arr_2d {
+        arr: 130.0
+        arr: 130.0
+        arr: 130.0
+        arr: 125.0
+        arr: 120.0
+        arr: 100.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 145.0
+        arr: 140.0
+        arr: 130.0
+        arr: 125.0
+        arr: 120.0
+        arr: 120.0
+        arr: 110.0
+      }
+      arr_2d {
+        arr: 150.0
+        arr: 145.0
+        arr: 135.0
+        arr: 135.0
+        arr: 120.0
+        arr: 115.0
+        arr: 110.0
+      }
+      arr_2d {
+        arr: 160.0
+        arr: 160.0
+        arr: 155.0
+        arr: 145.0
+        arr: 130.0
+        arr: 120.0
+        arr: 110.0
+      }
+      arr_2d {
+        arr: 165.0
+        arr: 170.0
+        arr: 155.0
+        arr: 155.0
+        arr: 140.0
+        arr: 130.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 175.0
+        arr: 180.0
+        arr: 160.0
+        arr: 160.0
+        arr: 145.0
+        arr: 140.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 185.0
+        arr: 200.0
+        arr: 175.0
+        arr: 165.0
+        arr: 150.0
+        arr: 140.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 200.0
+        arr: 200.0
+        arr: 200.0
+        arr: 175.0
+        arr: 165.0
+        arr: 140.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 200.0
+        arr: 200.0
+        arr: 200.0
+        arr: 185.0
+        arr: 160.0
+        arr: 140.0
+        arr: 100.0
+      }
+      arr_2d {
+        arr: 220.0
+        arr: 220.0
+        arr: 220.0
+        arr: 170.0
+        arr: 140.0
+        arr: 140.0
+        arr: 100.0
+      }
+    }
+    hist_adaptive_mid_tone_start_pct {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+    hist_adaptive_mid_tone_end_pct {
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+    }
+    hist_adaptive_mid_tone_ref_target {
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 9.0
+        arr: 8.0
+        arr: 7.0
+        arr: 6.0
+        arr: 5.0
+        arr: 4.0
+      }
+    }
+    hist_adaptive_dark_tone_start_pct {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    hist_adaptive_dark_tone_end_pct {
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+      arr: 0.1
+    }
+    hist_adaptive_dark_tone_ref_target {
+      arr_2d {
+        arr: 9.0
+        arr: 9.0
+        arr: 8.5
+        arr: 8.5
+        arr: 7.0
+        arr: 5.0
+        arr: 2.0
+      }
+      arr_2d {
+        arr: 10.0
+        arr: 10.0
+        arr: 8.5
+        arr: 8.5
+        arr: 7.0
+        arr: 6.0
+        arr: 3.5
+      }
+      arr_2d {
+        arr: 11.0
+        arr: 10.0
+        arr: 8.5
+        arr: 8.5
+        arr: 7.0
+        arr: 6.0
+        arr: 3.5
+      }
+      arr_2d {
+        arr: 13.0
+        arr: 13.0
+        arr: 11.0
+        arr: 9.5
+        arr: 8.5
+        arr: 6.5
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 14.0
+        arr: 15.0
+        arr: 12.5
+        arr: 12.5
+        arr: 11.0
+        arr: 7.5
+        arr: 3.0
+      }
+      arr_2d {
+        arr: 15.0
+        arr: 16.0
+        arr: 14.0
+        arr: 14.0
+        arr: 11.0
+        arr: 8.0
+        arr: 4.0
+      }
+      arr_2d {
+        arr: 16.0
+        arr: 17.0
+        arr: 15.0
+        arr: 15.0
+        arr: 13.0
+        arr: 12.0
+        arr: 6.0
+      }
+      arr_2d {
+        arr: 17.0
+        arr: 17.0
+        arr: 17.0
+        arr: 16.5
+        arr: 14.5
+        arr: 14.0
+        arr: 8.0
+      }
+      arr_2d {
+        arr: 17.0
+        arr: 17.0
+        arr: 17.0
+        arr: 15.0
+        arr: 12.0
+        arr: 9.0
+        arr: 6.0
+      }
+      arr_2d {
+        arr: 17.0
+        arr: 17.0
+        arr: 17.0
+        arr: 11.5
+        arr: 9.0
+        arr: 9.0
+        arr: 3.0
+      }
+    }
+    hist_adaptive_low_start {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.45
+      arr: 0.3
+      arr: 0.2
+      arr: 0.1
+    }
+    hist_adaptive_low_end {
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.7
+      arr: 0.65
+      arr: 0.55
+      arr: 0.3
+    }
+    hist_adaptive_high_start {
+      arr: 1.2
+      arr: 1.25
+      arr: 1.4
+      arr: 1.4
+      arr: 1.6
+      arr: 1.8
+      arr: 2.0
+    }
+    hist_adaptive_high_end {
+      arr: 3.8
+      arr: 4.2
+      arr: 4.5
+      arr: 4.5
+      arr: 4.6
+      arr: 4.6
+      arr: 5.5
+    }
+    hist_adaptive_extra_high_start {
+      arr: 3.8
+      arr: 4.2
+      arr: 4.6
+      arr: 4.6
+      arr: 4.6
+      arr: 4.6
+      arr: 5.5
+    }
+    hist_adaptive_extra_high_end {
+      arr: 7.0
+      arr: 7.0
+      arr: 8.0
+      arr: 8.0
+      arr: 10.0
+      arr: 10.0
+      arr: 12.0
+    }
+    hist_adaptive_extra_high_ratio {
+      arr: 1.35
+      arr: 1.35
+      arr: 1.18
+      arr: 1.13
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_adaptive_extra_low_start {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    hist_adaptive_extra_low_end {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    hist_adaptive_extra_low_ratio {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    hist_adaptive_dr_b2m_node {
+      arr: 2.0
+      arr: 5.0
+      arr: 10.0
+      arr: 20.0
+      arr: 50.0
+    }
+    hist_adaptive_dr_m2d_node {
+      arr: 2.0
+      arr: 5.0
+      arr: 10.0
+      arr: 20.0
+      arr: 50.0
+    }
+    hist_adaptive_dt_adjust_ratio_normal_cap {
+      arr_2d {
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+        arr: 0.4
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+      }
+    }
+    hist_adaptive_bt_adjust_ratio_normal_cap {
+      arr_2d {
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+      }
+      arr_2d {
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+      }
+      arr_2d {
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+      }
+      arr_2d {
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+      }
+      arr_2d {
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+        arr: 0.15
+      }
+    }
+    hist_adaptive_adjust_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+    hist_adaptive_adjust_ratio_high_cap {
+      arr: 1.7
+      arr: 1.6
+      arr: 1.5
+      arr: 1.5
+      arr: 1.45
+      arr: 1.35
+      arr: 1.2
+    }
+    hist_adaptive_adjust_ratio_low_cap {
+      arr: 0.86
+      arr: 0.86
+      arr: 0.77
+      arr: 0.77
+      arr: 0.76
+      arr: 0.8
+      arr: 0.83
+    }
+  }
+  hist_indoor_adjustment {
+    enable_indoor_detect {
+      value: true
+    }
+    indoor_dr_b2d_node {
+      arr: 8.0
+      arr: 10.0
+      arr: 15.0
+      arr: 20.0
+      arr: 25.0
+      arr: 40.0
+      arr: 60.0
+      arr: 80.0
+      arr: 100.0
+    }
+    indoor_dr_m2d_node {
+      arr: 1.0
+      arr: 2.0
+      arr: 3.0
+      arr: 5.0
+      arr: 8.0
+      arr: 10.0
+    }
+    indoor_adjust_ratio {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.05
+        arr: 1.1
+        arr: 1.05
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.1
+        arr: 1.15
+        arr: 1.1
+        arr: 1.05
+        arr: 1.0
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.1
+        arr: 1.15
+        arr: 1.15
+        arr: 1.1
+        arr: 1.1
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.25
+        arr: 1.3
+        arr: 1.2
+        arr: 1.15
+        arr: 1.1
+        arr: 1.0
+      }
+      arr_2d {
+        arr: 1.25
+        arr: 1.3
+        arr: 1.25
+        arr: 1.2
+        arr: 1.18
+        arr: 1.08
+      }
+      arr_2d {
+        arr: 1.25
+        arr: 1.25
+        arr: 1.2
+        arr: 1.2
+        arr: 1.18
+        arr: 1.08
+      }
+      arr_2d {
+        arr: 1.2
+        arr: 1.2
+        arr: 1.15
+        arr: 1.1
+        arr: 1.05
+        arr: 1.05
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+    indoor_lux_node {
+      arr: 0.0
+      arr: 100.0
+      arr: 200.0
+      arr: 250.0
+      arr: 350.0
+      arr: 380.0
+      arr: 410.0
+      arr: 500.0
+    }
+    indoor_lux_adjust_ratio {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.4
+      arr: 1.4
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    indoor_bright_tone_avg_start_pct {
+      arr: 0.91
+      arr: 0.91
+      arr: 0.91
+      arr: 0.91
+      arr: 0.91
+      arr: 0.91
+      arr: 0.91
+      arr: 0.91
+    }
+    indoor_bright_tone_avg_end_pct {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    indoor_mid_tone_avg_start_pct {
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+    }
+    indoor_mid_tone_avg_end_pct {
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+    }
+    indoor_dark_tone_avg_start_pct {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    indoor_dark_tone_avg_end_pct {
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+      arr: 0.2
+    }
+    indoor_adjust_ratio_smooth_node {
+      arr: 0.3
+      arr: 0.5
+      arr: 0.8
+      arr: 1.0
+      arr: 1.1
+      arr: 1.2
+      arr: 1.8
+      arr: 2.0
+    }
+    indoor_adjust_ratio_smooth_count {
+      arr: 20.0
+      arr: 15.0
+      arr: 10.0
+      arr: 1.0
+      arr: 5.0
+      arr: 10.0
+      arr: 15.0
+      arr: 20.0
+    }
+    enable_use_deflicker_detect {
+    }
+    enable_use_asd_indoor_detect {
+    }
+    indoor_detect_ir_thrd {
+      value: 0.15
+    }
+    indoor_detect_ir_thrd_ratio {
+      value: 0.1
+    }
+    indoor_detect_lux_low_thrd {
+      value: 200.0
+    }
+    indoor_detect_lux_upper_thrd {
+      value: 380.0
+    }
+    indoor_detect_lux_thrd_ratio {
+      value: 0.1
+    }
+    indoor_detect_cct_thrd {
+      value: 10000.0
+    }
+    indoor_detect_cct_thrd_ratio {
+      value: 0.02
+    }
+    asd_indoor_detect_count_thrd {
+      value: 10
+    }
+  }
+}
+histgram_stretch {
+  enable_histgram_stretch {
+  }
+  hs_lux_node {
+    arr: 0.0
+    arr: 123.0
+    arr: 173.0
+    arr: 283.0
+    arr: 353.0
+    arr: 423.0
+    arr: 523.0
+  }
+  hs_bright_pct {
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+  }
+  hs_dark_pct {
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+    arr: 0.005
+  }
+  hs_clamp_ratio {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  hs_scaling_ratio {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+}
+touch_metering {
+  touch_luma_calculation {
+    touch_roi_concentration_ratio {
+      value: 1.0
+    }
+    touch_luma_blending_weight {
+      value: 0.1
+    }
+  }
+  touch_target_calculation {
+    touch_target_lux_node {
+      arr: 0.0
+      arr: 223.0
+      arr: 353.0
+      arr: 453.0
+      arr: 523.0
+    }
+    touch_ref_target {
+      arr: 60.0
+      arr: 40.0
+      arr: 30.0
+      arr: 20.0
+      arr: 20.0
+    }
+    enable_touch_tone_consideration_adjust {
+      value: true
+    }
+    enable_precision_touch_adjust {
+    }
+    touch_precision_pct {
+      arr: 0.1
+      arr: 0.2
+      arr: 0.2
+      arr: 0.1
+      arr: 0.1
+    }
+    touch_max_ratio {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    touch_min_ratio {
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.7
+      arr: 0.7
+    }
+    touch_bt_start_pct {
+      arr: 0.55
+      arr: 0.55
+      arr: 0.55
+      arr: 0.55
+      arr: 0.55
+    }
+    touch_bt_end_pct {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    touch_bt_ref_target {
+      arr: 255.0
+      arr: 245.0
+      arr: 235.0
+      arr: 225.0
+      arr: 215.0
+    }
+    touch_dt_start_pct {
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+      arr: 0.0
+    }
+    touch_dt_end_pct {
+      arr: 0.45
+      arr: 0.45
+      arr: 0.45
+      arr: 0.45
+      arr: 0.45
+    }
+    touch_dt_ref_target {
+      arr: 10.0
+      arr: 9.0
+      arr: 8.0
+      arr: 5.0
+      arr: 3.0
+    }
+    touch_target_blending_weight {
+      value: 0.2
+    }
+  }
+}
+tone_curve_calculation {
+  enable_tone_curve {
+  }
+  enable_ai_tone {
+  }
+  enable_use_face_weight {
+  }
+  curve_mode {
+    value: true
+  }
+  tone_mode {
+  }
+  tnc_lux_node {
+    arr: 0.0
+    arr: 123.0
+    arr: 173.0
+    arr: 283.0
+    arr: 363.0
+    arr: 453.0
+    arr: 523.0
+  }
+  tnc_dr_node {
+    arr: 0.0
+    arr: 30.0
+    arr: 70.0
+    arr: 100.0
+    arr: 200.0
+  }
+  tnc_dark_tone_start_pct {
+    arr: 0.1
+    arr: 0.1
+    arr: 0.1
+    arr: 0.1
+    arr: 0.1
+    arr: 0.1
+    arr: 0.1
+  }
+  tnc_dark_tone_end_pct {
+    arr: 0.2
+    arr: 0.2
+    arr: 0.2
+    arr: 0.2
+    arr: 0.2
+    arr: 0.2
+    arr: 0.2
+  }
+  tnc_mid_tone_start_pct {
+    arr: 0.55
+    arr: 0.55
+    arr: 0.55
+    arr: 0.55
+    arr: 0.55
+    arr: 0.55
+    arr: 0.55
+  }
+  tnc_mid_tone_end_pct {
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+  }
+  tnc_bright_tone_start_pct {
+    arr: 0.95
+    arr: 0.95
+    arr: 0.95
+    arr: 0.95
+    arr: 0.95
+    arr: 0.95
+    arr: 0.95
+  }
+  tnc_bright_tone_end_pct {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  tnc_face_lux_node {
+    arr: 0.0
+    arr: 123.0
+    arr: 173.0
+    arr: 283.0
+    arr: 363.0
+    arr: 453.0
+    arr: 523.0
+  }
+  tnc_face_lux_weight {
+    arr: 0.9
+    arr: 0.8
+    arr: 0.7
+    arr: 0.6
+    arr: 0.6
+    arr: 0.5
+    arr: 0.5
+  }
+  tnc_face_backlight_ratio_node {
+    arr: 0.1
+    arr: 0.3
+    arr: 0.7
+    arr: 1.0
+    arr: 3.0
+  }
+  tnc_face_size_weight_node {
+    arr: 0.1
+    arr: 0.2
+    arr: 0.3
+    arr: 0.4
+    arr: 0.6
+    arr: 0.8
+    arr: 0.9
+  }
+  tnc_face_size_backlight_weight {
+    arr_2d {
+      arr: 0.7
+      arr: 0.7
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.5
+    }
+    arr_2d {
+      arr: 0.7
+      arr: 0.7
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.6
+      arr: 0.5
+    }
+    arr_2d {
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.4
+      arr: 0.3
+    }
+    arr_2d {
+      arr: 0.4
+      arr: 0.4
+      arr: 0.4
+      arr: 0.4
+      arr: 0.5
+      arr: 0.3
+      arr: 0.2
+    }
+    arr_2d {
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.3
+      arr: 0.5
+      arr: 0.2
+      arr: 0.2
+    }
+  }
+  tnc_dark_tone_reference_target {
+    arr_2d {
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+    }
+    arr_2d {
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+    }
+    arr_2d {
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+    }
+    arr_2d {
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+    }
+    arr_2d {
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+      arr: 100.0
+    }
+  }
+  tnc_mid_tone_reference_target {
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+      arr: 150.0
+    }
+  }
+}
+highlight_prior {
+  enable_highlightprior {
+  }
+  highlight_lux_node {
+    arr: 0.0
+    arr: 380.0
+    arr: 420.0
+    arr: 470.0
+  }
+  highlight_cap_ratio {
+    arr: 1.0
+    arr: 1.0
+    arr: 2.0
+    arr: 4.0
+  }
+}
+etr_short_target {
+  enable_etr_short_target {
+    value: true
+  }
+  using_short_stats_cal_etr_short_target {
+    value: true
+  }
+  enable_etr_dynamic_short_target {
+  }
+  hist_etr_lux_node {
+    arr: 0.0
+    arr: 50.0
+    arr: 100.0
+    arr: 200.0
+    arr: 280.0
+    arr: 350.0
+    arr: 430.0
+  }
+  hist_etr_dr_node {
+    arr: 0.0
+    arr: 10.0
+    arr: 25.0
+    arr: 50.0
+    arr: 70.0
+    arr: 100.0
+    arr: 150.0
+    arr: 220.0
+    arr: 250.0
+    arr: 300.0
+  }
+  hist_etr_bt_pct_start {
+    arr: 0.98
+    arr: 0.98
+    arr: 0.986
+    arr: 0.988
+    arr: 0.988
+    arr: 0.988
+    arr: 0.99
+  }
+  hist_etr_bt_pct_end {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  hist_etr_bt_ref {
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 136.0
+      arr: 95.0
+      arr: 78.0
+      arr: 50.0
+      arr: 38.0
+    }
+  }
+  hist_etr_base_bright_start_pct {
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+  }
+  hist_etr_base_bright_end_pct {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  hist_etr_bright_start_pct_low {
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+  }
+  hist_etr_bright_start_pct_high {
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+  }
+  hist_etr_bright_thrd_weight {
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+  }
+  hist_etr_face_base_bright_start_pct {
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+  }
+  hist_etr_face_base_bright_end_pct {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  hist_etr_face_bright_start_pct_low {
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+    arr: 0.975
+  }
+  hist_etr_face_bright_start_pct_high {
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+    arr: 0.98
+  }
+  hist_etr_face_bright_thrd_weight {
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+    arr: 0.75
+  }
+  hist_etr_face_bright_tone_ref {
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+    arr_2d {
+      arr: 150.0
+      arr: 150.0
+      arr: 130.0
+      arr: 100.0
+      arr: 78.0
+      arr: 50.0
+      arr: 50.0
+    }
+  }
+  hist_etr_hdr_decline_ratio_cap {
+    arr: 4.0
+    arr: 4.0
+    arr: 4.0
+    arr: 4.0
+    arr: 4.0
+    arr: 4.0
+    arr: 4.0
+  }
+  hist_etr_reserve1_value {
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+  }
+  hist_etr_reserve2_value {
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+  }
+  hist_etr_reserve3_value {
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+    arr: 3.0
+  }
+}

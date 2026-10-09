@@ -1,0 +1,297 @@
+version: "2025-06-27 18:42"
+stats_processing {
+  ratio_of_rgb2y {
+    arr: 0.2988
+    arr: 0.5869
+    arr: 0.1137
+  }
+  apply_wb_gain_on_bg_stats_processing {
+  }
+  apply_wb_gain_on_hist_stats_processing {
+    value: true
+  }
+  threshold_for_bright_stats {
+    value: 220.0
+  }
+  threshold_for_dark_stats {
+    value: 5.0
+  }
+  threshold_for_metering_bright_stats {
+    value: 250.0
+  }
+  stats_valid_cnt_thld {
+  }
+  enable_conv_bright_ratio_for_short {
+    value: true
+  }
+  enable_mtr_bright_ratio_for_short {
+    value: true
+  }
+}
+lux_index_calculation {
+  enable_lux_idx_correction {
+    value: true
+  }
+  lux_idx_temporal_filter_factor {
+    value: 0.5
+  }
+  module_sensitivity_correction_factor {
+    value: 1801.0
+  }
+  enable_saturated_light_sensor_assist {
+  }
+  saturation_thrd_node {
+    arr: 0.95
+    arr: 1.0
+  }
+  light_sensor_lux_confidence {
+    arr: 0.0
+    arr: 1.0
+  }
+  keep_no_tmporal_filter_luxindex {
+  }
+}
+grid_stats {
+  max_stats_chn_saturated_thrd {
+    arr: 0.97656
+    arr: 0.97656
+    arr: 0.97656
+    arr: 0.97656
+  }
+  min_stats_chn_saturated_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  y_computation_color_weight {
+    arr: 0.2988
+    arr: 0.5869
+    arr: 0.1137
+  }
+  bit_depth {
+    value: 16
+  }
+  hw_stats_skip_factor {
+  }
+  is_enable_y_computed_stats {
+  }
+  is_enable_saturated_stats {
+  }
+  roi_cfg_control: StatsROICfgType_cropped_fov
+}
+hist_stats {
+  roi_cfg_control: StatsROICfgType_cropped_fov
+  color_channel: HistStatsCfgColorChannel_y
+  is_bin_uniform {
+    value: true
+  }
+}
+grid_stats_config {
+  num_of_regions_horizontal {
+    value: 64
+  }
+  num_of_regions_vertical {
+    value: 48
+  }
+  enable_stats_quad_sync {
+  }
+  enable_saturated_stats {
+    value: true
+  }
+  enable_y_computed_stats {
+  }
+  y_computation_color_weight {
+    arr: 0.299
+    arr: 0.587
+    arr: 0.114
+  }
+  min_stats_channel_threshold {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  max_stats_channel_threshold {
+    arr: 0.97656
+    arr: 0.97656
+    arr: 0.97656
+    arr: 0.97656
+  }
+  hw_stats_skip_factor {
+  }
+  roi_config_control: ROIConfigControlType_croppedfov
+  bit_depth {
+    value: 16
+  }
+  enable_grid_stats_config {
+    value: true
+  }
+}
+hist_stats_config {
+  channel: HistStatsCfgColor_y
+  roi_config_control: ROIConfigControlType_croppedfov
+  segment_control_base_table {
+    arr: 2048
+    arr: 4096
+    arr: 6144
+    arr: 8192
+    arr: 10240
+    arr: 12288
+    arr: 14336
+    arr: 16383
+  }
+  segment_control_slope_table {
+    arr: 4
+    arr: 4
+    arr: 4
+    arr: 4
+    arr: 4
+    arr: 4
+    arr: 4
+    arr: 4
+  }
+  segment_control_start_bin_table {
+    arr: 128
+    arr: 256
+    arr: 384
+    arr: 512
+    arr: 640
+    arr: 768
+    arr: 896
+  }
+  y_computation_color_weight {
+    arr: 0.3125
+    arr: 0.5625
+    arr: 0.125
+  }
+  enable_hist_stats_config {
+    value: true
+  }
+}
+bfw_stats_config {
+  enable_stats_quad_sync {
+  }
+  y_computation_color_weight {
+    arr: 0.299
+    arr: 0.587
+    arr: 0.114
+  }
+  min_stats_channel_threshold {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  max_stats_channel_threshold {
+    arr: 0.97656
+    arr: 0.97656
+    arr: 0.97656
+    arr: 0.97656
+    arr: 0.97656
+  }
+  bfw_black_level_config_enable {
+    value: true
+  }
+  bfw_black_level_config_offset {
+    value: 10
+  }
+  bfw_sensor_resolution_width {
+    value: 4624
+  }
+  bfw_sensor_resolution_height {
+    value: 3472
+  }
+  bfw_roi_combo_number {
+    value: 5
+  }
+  bfw_roi_combo_reference_id1 {
+    left {
+      value: 0.3
+    }
+    top {
+      value: 0.2
+    }
+    width {
+      value: 256.0
+    }
+    height {
+      value: 256.0
+    }
+  }
+  bfw_roi_combo_reference_id2 {
+    left {
+      value: 0.7
+    }
+    top {
+      value: 0.2
+    }
+    width {
+      value: 256.0
+    }
+    height {
+      value: 256.0
+    }
+  }
+  bfw_roi_combo_reference_id3 {
+    left {
+      value: 0.3
+    }
+    top {
+      value: 0.7
+    }
+    width {
+      value: 256.0
+    }
+    height {
+      value: 256.0
+    }
+  }
+  bfw_roi_combo_reference_id4 {
+    left {
+      value: 0.7
+    }
+    top {
+      value: 0.7
+    }
+    width {
+      value: 256.0
+    }
+    height {
+      value: 256.0
+    }
+  }
+  bfw_roi_combo_reference_id5 {
+    left {
+      value: 0.45
+    }
+    top {
+      value: 0.45
+    }
+    width {
+      value: 256.0
+    }
+    height {
+      value: 256.0
+    }
+  }
+  enable_hist_stats_config {
+    value: true
+  }
+}
+long_stats_mtr_config {
+  enable_long_stats_metering {
+    value: true
+  }
+  long_stats_valid_cnt_thld {
+  }
+  long_stats_invalid_cnt_thld {
+  }
+  using_short_stats_cal_short_target {
+    value: true
+  }
+}
+enable_use_synced_stats {
+  value: true
+}

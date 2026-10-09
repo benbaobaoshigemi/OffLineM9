@@ -1,9 +1,17 @@
-"""RAW front end: DNG -> scene-linear camera-neutral RGB -> display-referred
-sRGB-ish image comparable to what the 17U IPE (offcamb2y) hands to StyleTrans.
+"""RAW front end = the 17U M9 snapshot path up to the StyleTrans input (B2Y "ForRGB" node).
 
-Colour/tone follow the intent decoded from the M9 chromatix (weak colour
-matrix, saturation shoulder, no local tone mapping, flatter bright scenes),
-implemented as our own global operators rather than transplanted tables.
+17U chain (odm/etc/camera/xiaomi/legendsnapshot.json):
+  Anchor -> MFNR -> B2Y(SigFrame) -> FormatConvertor -> AllinOne(AISP, RAW16 -> linear RGB16,
+  BLC/LSC/WB, dgain_apply_adrc=0) -> B2Y ForRGB (IPE: LTM, CC, 2D-LUT, gamma, CV) -> StyleTrans ...
+
+Here:
+  DNG -> linear white-balanced camera RGB (rawpy)          ~ AllinOne output (offline: the DNG is
+                                                              already merged/denoised by its camera)
+  M9 AE re-metering (m9.ae)                                 -> short exposure + ADRC gain
+  LTM: ADRC applied as a global luma curve                  (M9: ltm/lce strength 0, TMC 100 % global)
+  CC : DNG colour matrix x M9 relative matrix               (sensor-specific -> relative transform)
+  2D LUT (tdl13), gamma152, CV (cv122)                      M9 tables, used as decoded
+Output: display-referred RGB in [0,1] (what B2Y writes as BT.601 full-range NV12).
 """
 from __future__ import annotations
 
@@ -12,9 +20,12 @@ from dataclasses import dataclass, field
 import numpy as np
 import rawpy
 
-XYZ_TO_SRGB = np.array([[3.2404542, -1.5371385, -0.4985314],
-                        [-0.9692660, 1.8760108, 0.0415560],
-                        [0.0556434, -0.2040259, 1.0572252]], np.float32)
+from . import tuning
+from .ae import AEResult, meter
+
+SRGB_TO_XYZ = np.array([[0.4124564, 0.3575761, 0.1804375],
+                        [0.2126729, 0.7151522, 0.0721750],
+                        [0.0193339, 0.1191920, 0.9503041]])
 
 
 @dataclass
@@ -25,19 +36,18 @@ class RawInfo:
     as_shot_neutral: np.ndarray | None = None
     cct: float = 5000.0
     ev100: float = 0.0
+    baseline_exposure: float = 0.0
     make: str = ""
     model: str = ""
     extra: dict = field(default_factory=dict)
 
 
 def _xy_to_cct(x: float, y: float) -> float:
-    # McCamy
-    n = (x - 0.3320) / (0.1858 - y)
+    n = (x - 0.3320) / (0.1858 - y)  # McCamy
     return float(449 * n ** 3 + 3525 * n ** 2 + 6823.3 * n + 5520.33)
 
 
 def _num(v) -> float:
-    """tifffile rational (num, den) / scalar / sequence -> float."""
     if v is None:
         return 0.0
     if isinstance(v, (tuple, list)):
@@ -52,16 +62,14 @@ def _num(v) -> float:
 
 def _rationals(v) -> np.ndarray:
     a = np.asarray(v, np.float64).ravel()
-    return a[0::2] / a[1::2]
+    return a[0::2] / a[1::2] if a.size % 2 == 0 and a.size >= 6 else a
 
 
 def dng_tags(path: str) -> dict:
-    """IFD0 + EXIF tags of a DNG as {name: value}."""
     import tifffile
     out = {}
     with tifffile.TiffFile(path) as tf:
-        p = tf.pages[0]
-        for t in p.tags.values():
+        for t in tf.pages[0].tags.values():
             out[t.name] = t.value
         exif = out.get("ExifTag")
         if isinstance(exif, dict):
@@ -69,142 +77,171 @@ def dng_tags(path: str) -> dict:
     return out
 
 
-def load_dng(path: str, half: bool = False) -> tuple[np.ndarray, RawInfo]:
-    """Return linear sRGB-primaries image (white balanced, 1.0 = sensor white) + info."""
+_ILLUM_CCT = {17: 2856.0, 21: 6504.0, 20: 5503.0, 22: 7504.0, 23: 5003.0, 1: 5500.0, 2: 4200.0,
+              3: 2856.0, 10: 6500.0, 11: 7500.0, 12: 6400.0, 13: 5000.0, 14: 4150.0, 15: 3450.0,
+              18: 4874.0, 19: 6774.0, 24: 3200.0}
+
+
+def _mat(v):
+    return _rationals(v).reshape(3, 3) if v is not None else None
+
+
+def dng_color(tags: dict, neutral: np.ndarray):
+    """DNG colour model: ColorMatrix1/2 blended by 1/CCT; CCT solved iteratively from the
+    as-shot neutral. Returns (XYZ->camera matrix, cct)."""
+    cm1, cm2 = _mat(tags.get("ColorMatrix1")), _mat(tags.get("ColorMatrix2"))
+    if cm1 is None:
+        raise ValueError("DNG without ColorMatrix1")
+    if cm2 is None:
+        return cm1, 5000.0
+    t1 = _ILLUM_CCT.get(int(_num(tags.get("CalibrationIlluminant1"))), 6504.0)
+    t2 = _ILLUM_CCT.get(int(_num(tags.get("CalibrationIlluminant2"))), 2856.0)
+    cct = 5000.0
+    for _ in range(30):
+        w = np.clip((1 / cct - 1 / t2) / (1 / t1 - 1 / t2), 0, 1) if t1 != t2 else 1.0
+        cm = w * cm1 + (1 - w) * cm2
+        xyz = np.linalg.solve(cm, neutral)
+        new = _xy_to_cct(xyz[0] / xyz.sum(), xyz[1] / xyz.sum())
+        if abs(new - cct) < 1:
+            cct = new
+            break
+        cct = float(np.clip(new, 1500, 20000))
+    return cm, cct
+
+
+def load_dng(path: str, half: bool = False) -> tuple[np.ndarray, np.ndarray, RawInfo]:
+    """Return (linear WB'd camera RGB with 1.0 = clip, WB'd camera -> linear sRGB, info)."""
     info = RawInfo()
     with rawpy.imread(path) as raw:
         rgb = raw.postprocess(
             gamma=(1, 1), no_auto_bright=True, output_bps=16, use_camera_wb=True,
-            output_color=rawpy.ColorSpace.sRGB, demosaic_algorithm=rawpy.DemosaicAlgorithm.AHD,
+            output_color=rawpy.ColorSpace.raw, demosaic_algorithm=rawpy.DemosaicAlgorithm.AHD,
             half_size=half, highlight_mode=rawpy.HighlightMode.Clip)
         rgb = rgb.astype(np.float32) / 65535.0
         wb = np.array(raw.camera_whitebalance[:3], np.float64)
-        neutral = wb[1] / np.maximum(wb, 1e-6)
+
     tags = dng_tags(path)
+    neutral = wb[1] / np.maximum(wb, 1e-6)
     if "AsShotNeutral" in tags:
-        neutral = _rationals(tags["AsShotNeutral"]) if np.asarray(tags["AsShotNeutral"]).size == 6 \
-            else np.asarray(tags["AsShotNeutral"], np.float64)
+        neutral = _rationals(tags["AsShotNeutral"])
     info.as_shot_neutral = neutral
-    # CCT from the neutral through the D65-ish ColorMatrix (XYZ -> camera)
-    for key in ("ColorMatrix2", "ColorMatrix1"):
-        if key in tags:
-            cm = np.asarray(tags[key], np.float64)
-            cm = (cm.reshape(-1, 2)[:, 0] / cm.reshape(-1, 2)[:, 1]) if cm.size == 18 else cm
-            try:
-                xyz = np.linalg.solve(cm.reshape(3, 3), neutral)
-                s = xyz.sum()
-                info.cct = _xy_to_cct(xyz[0] / s, xyz[1] / s)
-            except np.linalg.LinAlgError:
-                pass
-            break
+    xyz2cam, info.cct = dng_color(tags, neutral)
+    # white-balanced camera space: camWB = diag(1/neutral) cam ; rows normalised so that
+    # sRGB white maps to camWB white (dcraw convention), then inverted
+    srgb2cam = np.diag(1.0 / neutral) @ xyz2cam @ SRGB_TO_XYZ
+    srgb2cam /= srgb2cam.sum(axis=1, keepdims=True)
+    cam2srgb = np.linalg.inv(srgb2cam)
+
     info.exposure_time = _num(tags.get("ExposureTime"))
     info.fnumber = _num(tags.get("FNumber"))
     info.iso = _num(tags.get("ISOSpeedRatings") or tags.get("PhotographicSensitivity"))
+    info.baseline_exposure = _num(tags.get("BaselineExposure"))
     info.make = str(tags.get("Make", "")).strip()
     info.model = str(tags.get("Model", "")).strip()
     if info.exposure_time > 0 and info.fnumber > 0 and info.iso > 0:
         info.ev100 = float(np.log2(info.fnumber ** 2 / info.exposure_time) - np.log2(info.iso / 100.0))
-    return rgb, info
+    return rgb, cam2srgb.astype(np.float32), info
 
 
 def lux_index_from_ev(ev100: float) -> float:
-    """Approximate Qualcomm AEC lux index from scene EV100.
-
-    lux index grows ~ 1/log10(1.03) ≈ 77.9 per decade of exposure, i.e. ≈ 23.45/EV.
-    Anchored so that EV100 ≈ 7.5 (bright indoor) -> ≈ 300 and EV100 ≈ 13 (daylight)
-    -> ≈ 170, matching the bin layout of the LeicaFilter/StyleTrans tables
-    (daytime threshold 260). Uncalibrated: override from the CLI when known.
-    """
-    return float(np.clip(476.0 - 23.45 * ev100, 0, 999))
+    """Qualcomm lux index from scene EV100: +1 index per 1.03x exposure (23.45 / EV),
+    anchored at EV100 13 -> 170 (bright daylight bins of the 17U tables start below 173)."""
+    return float(np.clip(474.9 - 23.45 * ev100, 0, 999))
 
 
-# --- M9 B2Y-intent rendering (own design, guided by the decoded chromatix; see
-# M9-style-analysis.md). Nothing here is copied live from tuning tables: the curve
-# knots are a smooth read of the M9 gamma152 shape, the colour numbers are ratios
-# between the M9 and normal-photo CC/CV/TDL instances.
+# ---------------------------------------------------------------- IPE stages
 
-# Global tone curve (display-referred, input = linear after exposure). Linear toe,
-# no sRGB shadow lift, slightly fuller mids than sRGB - the shape of M9 gamma152.
-_TONE_X = np.array([0, .05, .10, .15, .20, .25, .30, .40, .50, .60, .70, .80, .90, 1.0], np.float32)
-_TONE_Y = np.array([0, .15, .29, .39, .47, .54, .60, .70, .79, .86, .91, .95, .98, 1.0], np.float32)
-# Bright scenes (lux index < ~207, low DRC): M9 lifts shadows ~+30/1023 and
-# lowers mids/highs ~-22/1023 -> lower contrast. Applied as a bump on the curve.
-_BRIGHT_DY = np.array([0, .02, .03, .03, .02, .0, -.01, -.02, -.022, -.022, -.02, -.015, -.008, 0], np.float32)
-
-# Colour: M9 CC matrix is much weaker than normal (mean |off-diag| ratio ~0.58,
-# diagonal 1.07-1.51 vs 1.61-1.86) and CV chroma gain is 0.49/0.53 = 0.925.
-BASE_SATURATION = 0.85 * 0.925
-# TDL: saturation reduced progressively with saturation, ~-1% (low) to ~-10% (high).
-SAT_SHOULDER = (0.01, 0.09)
+def drc_curve(x: np.ndarray, gain: float) -> np.ndarray:
+    """Global ADRC curve: slope `gain` in shadows/mids, rolls off to 1.0 at 1.0."""
+    if gain <= 1.0 + 1e-6:
+        return x
+    return gain * x / (1.0 + (gain - 1.0) * x)
 
 
-def _oklab(rgb):
-    m1 = np.array([[0.4122214708, 0.5363325363, 0.0514459929],
-                   [0.2119034982, 0.6806995451, 0.1073969566],
-                   [0.0883024619, 0.2817188376, 0.6299787005]], np.float32)
-    m2 = np.array([[0.2104542553, 0.7936177850, -0.0040720468],
-                   [1.9779984951, -2.4285922050, 0.4505937099],
-                   [0.0259040371, 0.7827717662, -0.8086757660]], np.float32)
-    return np.cbrt(rgb @ m1.T) @ m2.T
+def ltm_global(rgb_lin: np.ndarray, gain: float) -> np.ndarray:
+    """LTM block with ltm/lce strength 0: only the global luma curve, as a hue-preserving gain."""
+    y = rgb_lin @ np.array([0.299, 0.587, 0.114], np.float32)
+    g = drc_curve(np.maximum(y, 0.0), gain) / np.maximum(y, 1e-6)
+    return rgb_lin * g[..., None]
 
 
-def _oklab_inv(lab):
-    m2i = np.array([[1.0, 0.3963377774, 0.2158037573],
-                    [1.0, -0.1055613458, -0.0638541728],
-                    [1.0, -0.0894841775, -1.2914855480]], np.float32)
-    m1i = np.array([[4.0767416621, -3.3077115913, 0.2309699292],
-                    [-1.2684380046, 2.6097574011, -0.3413193965],
-                    [-0.0041960863, -0.7034186147, 1.7076147010]], np.float32)
-    return (lab @ m2i.T) ** 3 @ m1i.T
+def cc_m9(cam2srgb: np.ndarray, lux: float, cct: float, drc: float) -> np.ndarray:
+    """Camera -> M9 output matrix: DNG colorimetric matrix with the 17U M9/normal relation
+    M_rel = CC_m9 * CC_normal^-1 (both act on the same 17U camera RGB) applied on top."""
+    cond = dict(drc=max(drc, 1.0), lux=lux, cct=cct, flag=0.0)
+    rel = tuning.cc_matrix("m9", **cond) @ np.linalg.inv(tuning.cc_matrix("normal", **cond))
+    return (rel @ cam2srgb).astype(np.float32)
 
 
-def m9_colour(rgb_lin: np.ndarray) -> np.ndarray:
-    """Low base saturation + saturation shoulder (no hue-selective boosts)."""
-    lab = _oklab(np.maximum(rgb_lin, 0.0))
-    ab = lab[..., 1:] * BASE_SATURATION
-    c = np.linalg.norm(ab, axis=-1, keepdims=True)
-    lo, hi = SAT_SHOULDER
-    ab *= 1.0 - lo - hi * np.clip(c / 0.25, 0.0, 1.0)
-    lab = np.concatenate([lab[..., :1], ab], -1)
-    return np.maximum(_oklab_inv(lab), 0.0).astype(np.float32)
-
-
-def tone(rgb_lin: np.ndarray, exposure: float = 1.0, lux_index: float = 300.0) -> np.ndarray:
-    """Global-only tone mapping (M9: LTM/LCE strength 0, TMC 100% to the global curve).
-
-    Highlights above 1.0 are compressed hue-preservingly before the curve; no
-    local/spatially varying operators are used anywhere.
-    """
-    x = np.maximum(rgb_lin * exposure, 0.0)
-    m = np.max(x, -1, keepdims=True)
-    k = 0.25
-    shoulder = np.where(m > 1 - k, (1 - k) + k * np.tanh((m - (1 - k)) / k), m)
-    x = x * (shoulder / np.maximum(m, 1e-6))
-    y = _TONE_Y + (_BRIGHT_DY if lux_index < 207 else 0.0)
-    return np.clip(np.interp(x, _TONE_X, y), 0.0, 1.0).astype(np.float32)
-
-
-def auto_exposure(rgb_lin: np.ndarray, target: float = 0.18, pct: float = 50.0) -> float:
-    y = rgb_lin @ np.array([0.2126, 0.7152, 0.0722], np.float32)
-    med = float(np.percentile(y[::4, ::4], pct))
-    return float(np.clip(target / max(med, 1e-5), 0.25, 16.0))
-
-# TDL hue rotation (degrees, HSV hue axis; IPE 2DLUT131 converts deg/60*2048).
-# M9 table is the same in every lux/CCT bin: a fixed "away from yellow" intent.
-# Index = 15-degree hue knot (0 = red); applies only above ~25% saturation
-# (first 4 of 16 saturation knots are 0).
-_HUE_KNOTS_DEG = np.array([-1, -1, -2, -2, -2, -2, 0, 2, 2, 2, 1, 0,
-                           0, 0, -1, -3, -1, 0, 0, 0, 0, 0, 0, -1], np.float32)
-
-
-def m9_hue(rgb_disp: np.ndarray) -> np.ndarray:
-    """Small hue rotations on display-referred RGB (as the IPE 2D LUT does)."""
+def tdl_apply(rgb: np.ndarray, hue_tab: np.ndarray, sat_tab: np.ndarray) -> np.ndarray:
+    """2D LUT: HSV hue/sat grid, 24 hue knots (15 deg) x 16 sat knots."""
     import cv2
-    hsv = cv2.cvtColor(np.clip(rgb_disp, 0, 1).astype(np.float32), cv2.COLOR_RGB2HSV)
-    h, sat = hsv[..., 0], hsv[..., 1]
-    k = np.append(_HUE_KNOTS_DEG, _HUE_KNOTS_DEG[0])
-    d = np.interp(h, np.arange(25) * 15.0, k)
-    w = np.clip((sat - 3 / 15) / (1 / 15), 0.0, 1.0)
-    hsv[..., 0] = np.mod(h + d * w, 360.0)
-    return cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB)
+    x = np.clip(rgb, 0, None).astype(np.float32)
+    v = x.max(-1)
+    scale = np.maximum(v, 1e-6)
+    hsv = cv2.cvtColor(x / scale[..., None], cv2.COLOR_RGB2HSV)
+    h, s = hsv[..., 0], hsv[..., 1]
+    hi = h / 15.0
+    si = s * 15.0
+    h0 = np.floor(hi).astype(int) % 24
+    h1 = (h0 + 1) % 24
+    fh = hi - np.floor(hi)
+    s0 = np.clip(np.floor(si).astype(int), 0, 15)
+    s1 = np.clip(s0 + 1, 0, 15)
+    fs = np.clip(si - s0, 0, 1)
 
+    def bil(t):
+        return ((1 - fh) * ((1 - fs) * t[h0, s0] + fs * t[h0, s1])
+                + fh * ((1 - fs) * t[h1, s0] + fs * t[h1, s1]))
+    hsv[..., 0] = np.mod(h + bil(hue_tab), 360.0)
+    hsv[..., 1] = np.clip(s * (1.0 + bil(sat_tab)), 0, 1)
+    out = cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB) * scale[..., None]
+    return out
+
+
+def gamma_apply(rgb_lin: np.ndarray, lut: np.ndarray) -> np.ndarray:
+    xs = np.linspace(0.0, 1.0, lut.size)
+    return np.interp(np.clip(rgb_lin, 0, 1), xs, lut).astype(np.float32)
+
+
+def cv_apply(rgb: np.ndarray, p: np.ndarray) -> np.ndarray:
+    """cv122: Y = ry R + gy G + by B ; Cb = a[(B-G) + b(R-G)], Cr = c[(R-G) + d(B-G)]
+    (p/m pairs by sign of the result). Output re-expanded with the BT.601 full-range inverse,
+    i.e. the RGB a downstream NV12 consumer sees."""
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    y = p[0] * r + p[1] * g + p[2] * b
+    cb_ = (b - g) + np.where((b - g) >= 0, p[6], p[7]) * (r - g)
+    cr_ = (r - g) + np.where((r - g) >= 0, p[10], p[11]) * (b - g)
+    cb = np.where(cb_ >= 0, p[4], p[5]) * cb_
+    cr = np.where(cr_ >= 0, p[8], p[9]) * cr_
+    R = y + 1.402 * cr
+    G = y - 0.344136 * cb - 0.714136 * cr
+    B = y + 1.772 * cb
+    return np.stack([R, G, B], -1).astype(np.float32)
+
+
+@dataclass
+class FrontEndResult:
+    rgb: np.ndarray           # display-referred RGB [0,1], B2Y output
+    ae: AEResult
+    info: RawInfo
+    lux_index: float
+    cct: float
+
+
+def b2y(path: str, lux_index: float | None = None, cct: float | None = None, ev: float = 0.0,
+        half: bool = False) -> FrontEndResult:
+    lin, cam2srgb, info = load_dng(path, half=half)
+    li = float(lux_index) if lux_index is not None else (lux_index_from_ev(info.ev100) if info.ev100 else 300.0)
+    k = float(cct) if cct is not None else info.cct
+
+    ae = meter(lin, li)
+    x = lin * (ae.exp_short * 2.0 ** ev)
+    x = ltm_global(x, ae.adrc_gain)
+    cond = dict(drc=ae.adrc_gain, lux=li, cct=k)
+    x = np.clip(x @ cc_m9(cam2srgb, li, k, ae.adrc_gain).T, 0, None)
+    hue_tab, sat_tab = tuning.tdl_tables("m9", flag=0.0, **cond)
+    x = tdl_apply(x, hue_tab, sat_tab)
+    x = gamma_apply(x, tuning.gamma_lut("m9", **cond))
+    x = cv_apply(x, tuning.cv_params("m9", flag=0.0, **cond))
+    return FrontEndResult(np.clip(x, 0, 1), ae, info, li, k)

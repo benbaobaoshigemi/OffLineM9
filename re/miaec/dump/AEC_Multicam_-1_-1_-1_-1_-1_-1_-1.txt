@@ -1,0 +1,160 @@
+version: "2025-09-05 15:49"
+multicam_exp_ctrl {
+  multicam_mtr_type_master: MultiCamMeteringType_independent
+  multicam_mtr_type_slave: MultiCamMeteringType_independent
+  multicam_mtr_type_aux: MultiCamMeteringType_independent
+  multicam_exp_type_master: MultiCamExposureType_independent
+  multicam_exp_type_aux: MultiCamExposureType_independent
+}
+multi_cam_sensitivity_correction_value {
+  relative_sensitivity_correction_value {
+    value: 1.0
+  }
+  enable_absolute_sensitivity_correction_method {
+    value: true
+  }
+  lux_node {
+    arr: 1.0
+    arr: 1000.0
+  }
+  absolute_sensitivity_correction_value_by_lux {
+    arr: 1.0
+    arr: 1.0
+  }
+  enable_cct_correction_value {
+  }
+  cct_node {
+    arr: 2300.0
+    arr: 10000.0
+  }
+  sensitivity_correction_value_by_cct {
+    arr: 1.0
+    arr: 1.0
+  }
+  correct_from_convergence_out_for_follow_mode {
+    value: true
+  }
+}
+aon_config {
+  enable_aon {
+  }
+  sync_cam_id {
+    arr: 0
+    arr: 2
+    arr: 3
+    arr: 4
+  }
+  aon_mesh_count {
+    value: 9
+  }
+  aon_mesh_luma_weight {
+    arr: 0.0
+    arr: 1.0
+    arr: 0.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 0.0
+    arr: 1.0
+    arr: 0.0
+  }
+  mesh_luma_sat_thrd {
+    value: 220.0
+  }
+  mesh_luma_dark_thrd {
+    value: 5.0
+  }
+  mesh_sat_ratio_thrd {
+    value: 0.5
+  }
+  mesh_dark_ratio_thrd {
+    value: 1.0
+  }
+  aon_lux_node {
+    arr: 1.0
+    arr: 400.0
+    arr: 420.0
+    arr: 999.0
+  }
+  aon_dr_node {
+    arr: 0.0
+    arr: 1.0
+  }
+  aon_base_weight {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 0.0
+      arr: 0.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 0.0
+      arr: 0.0
+    }
+  }
+  mesh_confidence_weight {
+    arr: 0.025
+    arr: 0.1
+    arr: 0.025
+    arr: 0.1
+    arr: 0.5
+    arr: 0.1
+    arr: 0.025
+    arr: 0.1
+    arr: 0.025
+  }
+  aon_luma_confidence_node {
+    arr: 0.0
+    arr: 0.2
+    arr: 0.5
+    arr: 0.8
+    arr: 1.0
+  }
+  aon_sync_luma_weight_node {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.2
+    arr: 0.8
+    arr: 1.0
+  }
+  aon_distance_node {
+    arr: 0.0
+    arr: 0.5
+    arr: 1.5
+    arr: 3.0
+    arr: 10.0
+  }
+  aon_sync_distance_weight_node {
+    arr: 0.0
+    arr: 0.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  aon_zoom_ratio_node {
+    arr: 0.6
+    arr: 1.0
+    arr: 2.0
+    arr: 4.0
+    arr: 5.0
+  }
+  aon_zoom_ratio_weight_node {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 0.7
+    arr: 0.5
+  }
+  aon_zoom_ratio_face_weight_node {
+    arr: 0.8
+    arr: 0.8
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+}
+sync_multi_cam_fps_when_in_following_mode {
+  value: true
+}

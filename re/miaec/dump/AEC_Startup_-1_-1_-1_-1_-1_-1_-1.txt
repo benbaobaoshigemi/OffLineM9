@@ -1,0 +1,114 @@
+version: "2026-01-26 16:58"
+init_exp_index {
+  value: 260.0
+}
+warm_startup_config {
+  cam_sync_id {
+    arr: 0
+    arr: 2
+    arr: 3
+  }
+  confidence_enhance {
+    arr: 0.05
+    arr: 0.0
+    arr: 0.0
+  }
+  diff_time_node {
+    arr: 0.0
+    arr: 2.0
+    arr: 10.0
+    arr: 30.0
+  }
+  confidence_by_time {
+    arr: 0.2
+    arr: 0.15
+    arr: 0.1
+    arr: 0.0
+  }
+  diff_lux_node {
+    arr: 0.0
+    arr: 20.0
+    arr: 40.0
+    arr: 100.0
+  }
+  confidence_by_lux {
+    arr: 0.42
+    arr: 0.36
+    arr: 0.3
+    arr: 0.0
+  }
+  latest_scene_not_change_thrd {
+    value: 0.6
+  }
+  use_light_sensor_thrd {
+    value: 0.6
+  }
+  face_position_thrd {
+    value: 0.5
+  }
+  start_up_face_lock_count {
+    value: 10
+  }
+  saturated_ratio_thrd {
+    value: 1.2
+  }
+  lightsensor_lux_diff_thrd {
+    value: 50.0
+  }
+}
+light_sensor_startup {
+  light_sensor_start_enable {
+    value: true
+  }
+  light_sensor_startup_zone_data_knee {
+    arr: 0.0
+    arr: 3.0
+    arr: 3.5
+    arr: 8.0
+    arr: 18.0
+    arr: 67.0
+    arr: 135.0
+    arr: 425.0
+    arr: 757.0
+    arr: 1584.0
+    arr: 2437.0
+    arr: 8755.0
+    arr: 9000.0
+    arr: 52978.0
+    arr: 90000.0
+  }
+  light_sensor_startup_zone_data_value {
+    arr: 445.0
+    arr: 402.0
+    arr: 371.0
+    arr: 340.0
+    arr: 317.0
+    arr: 271.0
+    arr: 248.0
+    arr: 210.0
+    arr: 190.0
+    arr: 168.0
+    arr: 152.0
+    arr: 108.0
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  light_sensor_startup_zone_data_tolerance {
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+    arr: 20.0
+  }
+}

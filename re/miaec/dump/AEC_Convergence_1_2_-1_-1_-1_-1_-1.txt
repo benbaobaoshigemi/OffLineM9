@@ -1,0 +1,865 @@
+version: "2025-11-17 19:37"
+common {
+  unit_step_size {
+    value: 0.5
+  }
+  unit_minor_step_size {
+    value: 0.001
+  }
+}
+rapid {
+  tolerance_adj_ratio {
+    value: 4.0
+  }
+  status_thld {
+    stored_target_num {
+      value: 8
+    }
+    target_unstable_low_thld {
+      value: 0.5
+    }
+    target_unstable_high_thld {
+      value: 1.0
+    }
+    scene_change_adrc_diff_thld {
+      value: 1.5
+    }
+    scene_change_exp_idx_diff_thld {
+      value: 5.0
+    }
+    target_unstable_smooth_count {
+      value: 10
+    }
+    tol_mode_enter_count_thld {
+      value: 5
+    }
+    enter_adrc_tolerance_mode_thld {
+      value: 3.5
+    }
+    dcg_switch_smooth_count {
+      value: 5
+    }
+    mfhdr_switch_smooth_count {
+      value: 3
+    }
+    start_conv_frame_count {
+      value: 10
+    }
+    supermoon_exit_smooth_count {
+      value: 20
+    }
+  }
+  motion_tolerance {
+    tolerance_adj_ratio {
+      value: 3.0
+    }
+    stable_tolerance_adj_ratio {
+      value: 3.0
+    }
+  }
+  face_tolerance {
+    tolerance_adj_ratio {
+      value: 3.0
+    }
+    stable_tolerance_adj_ratio {
+      value: 3.0
+    }
+  }
+  adrc_tolerance {
+    tolerance_adj_ratio {
+      value: 3.0
+    }
+    stable_tolerance_adj_ratio {
+      value: 3.0
+    }
+  }
+  normal_tolerance {
+    tolerance_adj_ratio {
+      value: 3.0
+    }
+    stable_tolerance_adj_ratio {
+      value: 3.0
+    }
+  }
+  speed_condition {
+    over_exposure_low_thld {
+      value: 0.03
+    }
+    over_exposure_high_thld {
+      value: 0.05
+    }
+    dark_prevent_low_thld {
+      value: 0.2
+    }
+    dark_prevent_high_thld {
+      value: 0.23
+    }
+    face_score_thld {
+      value: 0.2
+    }
+    face_backlit_thld {
+      value: 3.5
+    }
+  }
+}
+speedgain {
+  conv_gain_default {
+    short_gain {
+      value: 0.15
+    }
+    mid_gain {
+      value: 0.15
+    }
+    long_gain {
+      value: 0.15
+    }
+  }
+  enable_safe_speed_adj_feature {
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: false
+    arr: true
+    arr: false
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: false
+    arr: false
+  }
+  safe_speed_adj_weight {
+    arr: 1.0
+    arr: 0.9
+    arr: 0.9
+    arr: 0.9
+    arr: 0.8
+    arr: 0.8
+    arr: 1.0
+    arr: 0.5
+    arr: 0.5
+    arr: 0.6
+    arr: 0.6
+    arr: 0.7
+    arr: 1.0
+    arr: 0.0
+    arr: 1.0
+    arr: 1.0
+    arr: 0.1
+    arr: 1.0
+    arr: 1.0
+  }
+  safe_speed_adj_ratio {
+    mannual_EV_adj_knee {
+      arr: 0.0
+      arr: 10.0
+    }
+    mannual_EV_adj_value {
+      arr: 0.3
+      arr: 0.3
+    }
+    over_exposure_adj_knee {
+      arr: 0.0
+      arr: 0.1
+      arr: 0.3
+      arr: 0.5
+      arr: 1.0
+    }
+    over_exposure_adj_value {
+      arr: 0.0
+      arr: 0.1
+      arr: 0.4
+      arr: 0.5
+      arr: 0.7
+    }
+    dark_prevent_adj_knee {
+      arr: 0.0
+      arr: 0.4
+      arr: 1.0
+    }
+    dark_prevent_adj_value {
+      arr: 0.0
+      arr: 0.1
+      arr: 0.25
+    }
+    face_conv_adj {
+      face_lux_node {
+        arr: 0.0
+        arr: 1000.0
+      }
+      face_backlit_ratio_node {
+        arr: 0.2
+        arr: 1.0
+        arr: 2.0
+      }
+      face_score_node {
+        arr: 0.0
+        arr: 1.0
+      }
+      face_enter_frame_node {
+        arr: 4.0
+        arr: 12.0
+        arr: 20.0
+        arr: 40.0
+        arr: 60.0
+        arr: 80.0
+      }
+      face_enter_adjust {
+        arr_2d {
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+          arr: 0.23
+          arr: 0.25
+          arr: 0.3
+        }
+        arr_2d {
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+          arr: 0.23
+          arr: 0.25
+          arr: 0.3
+        }
+      }
+      face_central_exit_frame_node {
+        arr: 4.0
+        arr: 12.0
+        arr: 20.0
+        arr: 40.0
+        arr: 60.0
+        arr: 80.0
+      }
+      face_central_exit_adjust {
+        arr_2d {
+          arr: 0.15
+          arr: 0.15
+          arr: 0.2
+          arr: 0.28
+          arr: 0.3
+          arr: 0.35
+        }
+        arr_2d {
+          arr: 0.15
+          arr: 0.15
+          arr: 0.2
+          arr: 0.28
+          arr: 0.3
+          arr: 0.35
+        }
+      }
+      face_edge_exit_frame_node {
+        arr: 4.0
+        arr: 12.0
+        arr: 20.0
+        arr: 40.0
+        arr: 60.0
+        arr: 80.0
+      }
+      face_edge_exit_adjust {
+        arr_2d {
+          arr: 0.2
+          arr: 0.23
+          arr: 0.25
+          arr: 0.3
+          arr: 0.33
+          arr: 0.35
+        }
+        arr_2d {
+          arr: 0.2
+          arr: 0.23
+          arr: 0.25
+          arr: 0.3
+          arr: 0.33
+          arr: 0.35
+        }
+      }
+      face_stable_backlight_adjust {
+        arr: 0.6
+        arr: 0.4
+        arr: 0.6
+      }
+      face_stable_score_adjust {
+        arr: 1.0
+        arr: 1.0
+      }
+      face_unstable_backlight_adjust {
+        arr: 0.25
+        arr: 0.1
+        arr: 0.2
+      }
+      face_unstable_score_adjust {
+        arr: 1.0
+        arr: 1.0
+      }
+      enable_face_blend_approach {
+        value: true
+      }
+      face_bright_ratio_node {
+        arr: 0.0
+        arr: 0.1
+        arr: 0.3
+        arr: 0.5
+        arr: 0.7
+        arr: 0.9
+      }
+      face_dark_ratio_node {
+        arr: 0.0
+        arr: 0.1
+        arr: 0.3
+        arr: 0.5
+        arr: 0.7
+        arr: 0.9
+      }
+      face_bright_weight_vec {
+        arr: 0.0
+        arr: 0.2
+        arr: 0.5
+        arr: 0.65
+        arr: 0.75
+        arr: 0.9
+      }
+      face_dark_weight_vec {
+        arr: 0.0
+        arr: 0.1
+        arr: 0.25
+        arr: 0.4
+        arr: 0.45
+        arr: 0.45
+      }
+    }
+    touch_adj_knee {
+      arr: 0.0
+      arr: 10.0
+    }
+    touch_adj_value {
+      arr: 0.8
+      arr: 1.0
+    }
+    motion_adj {
+      value: 0.15
+    }
+    deflicker_adj {
+      value: 0.5
+    }
+    conv_prob_over_adj {
+      value: 0.15
+    }
+    conv_over_adj {
+      value: 0.1
+    }
+    target_unstable_adj {
+      value: 0.1
+    }
+    target_unstable_smooth_factor_node {
+      arr: 0.1
+      arr: 0.3
+      arr: 0.5
+      arr: 0.7
+      arr: 0.9
+    }
+    target_unstable_mean_diff_node {
+      arr: 1.0
+      arr: 3.0
+      arr: 7.0
+    }
+    target_unstable_blend_weight {
+      arr_2d {
+        arr: 0.8
+        arr: 0.6
+        arr: 0.4
+        arr: 0.2
+        arr: 0.1
+      }
+      arr_2d {
+        arr: 0.9
+        arr: 0.75
+        arr: 0.6
+        arr: 0.4
+        arr: 0.2
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 0.8
+        arr: 0.6
+        arr: 0.4
+      }
+    }
+    MFHDR_change_adj {
+      value: 0.1
+    }
+    dcgHDR_change_adj {
+      value: 0.3
+    }
+    start_up_conv_adj_ratio_knee {
+      arr: 0.0
+      arr: 1.0
+    }
+    start_up_conv_adj_ratio_value {
+      arr: 0.0
+      arr: 1.0
+    }
+    approach_adj_knee {
+      arr: -60.0
+      arr: -45.0
+      arr: -35.0
+      arr: -25.0
+      arr: -15.0
+      arr: -10.0
+      arr: -5.0
+      arr: 0.0
+      arr: 5.0
+      arr: 10.0
+      arr: 15.0
+      arr: 25.0
+      arr: 35.0
+      arr: 45.0
+      arr: 60.0
+    }
+    approach_adj_value {
+      arr: 2.0
+      arr: 1.55
+      arr: 1.25
+      arr: 0.9
+      arr: 0.55
+      arr: 0.35
+      arr: 0.25
+      arr: 0.15
+      arr: 0.25
+      arr: 0.35
+      arr: 0.45
+      arr: 0.65
+      arr: 0.9
+      arr: 1.2
+      arr: 1.5
+    }
+    supermoon_exit_adj {
+      value: 0.2
+    }
+    highlight_enter_adj_value {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    highlight_wait_adj_value {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  enable_tone_speed_adj_feature {
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: false
+    arr: true
+    arr: false
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: false
+    arr: false
+  }
+  tone_speed_adj_weight {
+    arr: 1.0
+    arr: 0.9
+    arr: 0.9
+    arr: 0.9
+    arr: 0.8
+    arr: 0.8
+    arr: 1.0
+    arr: 0.5
+    arr: 0.5
+    arr: 0.6
+    arr: 0.6
+    arr: 0.7
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 0.1
+    arr: 1.0
+    arr: 1.0
+  }
+  tone_speed_adj_ratio {
+    mannual_EV_adj_knee {
+      arr: 0.0
+      arr: 10.0
+    }
+    mannual_EV_adj_value {
+      arr: 0.3
+      arr: 0.3
+    }
+    over_exposure_adj_knee {
+      arr: 0.0
+      arr: 0.1
+      arr: 0.3
+      arr: 0.5
+      arr: 1.0
+    }
+    over_exposure_adj_value {
+      arr: 0.0
+      arr: 0.18
+      arr: 0.4
+      arr: 0.5
+      arr: 0.6
+    }
+    dark_prevent_adj_knee {
+      arr: 0.0
+      arr: 0.4
+      arr: 1.0
+    }
+    dark_prevent_adj_value {
+      arr: 0.0
+      arr: 0.1
+      arr: 0.2
+    }
+    face_conv_adj {
+      face_lux_node {
+        arr: 0.0
+        arr: 1000.0
+      }
+      face_backlit_ratio_node {
+        arr: 0.2
+        arr: 1.0
+        arr: 2.0
+      }
+      face_score_node {
+        arr: 0.0
+        arr: 1.0
+      }
+      face_enter_frame_node {
+        arr: 4.0
+        arr: 12.0
+        arr: 20.0
+        arr: 28.0
+        arr: 36.0
+        arr: 44.0
+        arr: 52.0
+        arr: 60.0
+        arr: 70.0
+        arr: 80.0
+      }
+      face_enter_adjust {
+        arr_2d {
+          arr: 0.2
+          arr: 0.25
+          arr: 0.25
+          arr: 0.25
+          arr: 0.25
+          arr: 0.25
+          arr: 0.3
+          arr: 0.3
+          arr: 0.35
+          arr: 0.4
+        }
+        arr_2d {
+          arr: 0.2
+          arr: 0.25
+          arr: 0.25
+          arr: 0.25
+          arr: 0.25
+          arr: 0.25
+          arr: 0.3
+          arr: 0.3
+          arr: 0.35
+          arr: 0.4
+        }
+      }
+      face_central_exit_frame_node {
+        arr: 4.0
+        arr: 12.0
+        arr: 20.0
+        arr: 28.0
+        arr: 36.0
+        arr: 44.0
+        arr: 52.0
+        arr: 60.0
+        arr: 70.0
+        arr: 80.0
+      }
+      face_central_exit_adjust {
+        arr_2d {
+          arr: 0.15
+          arr: 0.15
+          arr: 0.15
+          arr: 0.15
+          arr: 0.2
+          arr: 0.2
+          arr: 0.25
+          arr: 0.3
+          arr: 0.35
+          arr: 0.35
+        }
+        arr_2d {
+          arr: 0.15
+          arr: 0.15
+          arr: 0.15
+          arr: 0.15
+          arr: 0.2
+          arr: 0.2
+          arr: 0.25
+          arr: 0.3
+          arr: 0.35
+          arr: 0.35
+        }
+      }
+      face_edge_exit_frame_node {
+        arr: 4.0
+        arr: 12.0
+        arr: 20.0
+        arr: 28.0
+        arr: 36.0
+        arr: 44.0
+        arr: 52.0
+        arr: 60.0
+        arr: 70.0
+        arr: 80.0
+      }
+      face_edge_exit_adjust {
+        arr_2d {
+          arr: 0.2
+          arr: 0.25
+          arr: 0.25
+          arr: 0.25
+          arr: 0.3
+          arr: 0.3
+          arr: 0.35
+          arr: 0.35
+          arr: 0.35
+          arr: 0.35
+        }
+        arr_2d {
+          arr: 0.2
+          arr: 0.25
+          arr: 0.25
+          arr: 0.25
+          arr: 0.3
+          arr: 0.3
+          arr: 0.35
+          arr: 0.35
+          arr: 0.35
+          arr: 0.35
+        }
+      }
+      face_stable_backlight_adjust {
+        arr: 0.6
+        arr: 0.4
+        arr: 0.6
+      }
+      face_stable_score_adjust {
+        arr: 1.0
+        arr: 1.0
+      }
+      face_unstable_backlight_adjust {
+        arr: 0.3
+        arr: 0.2
+        arr: 0.25
+      }
+      face_unstable_score_adjust {
+        arr: 1.0
+        arr: 1.0
+      }
+      enable_face_blend_approach {
+        value: true
+      }
+      face_bright_ratio_node {
+        arr: 0.0
+        arr: 0.1
+        arr: 0.3
+        arr: 0.5
+        arr: 0.7
+        arr: 0.9
+      }
+      face_dark_ratio_node {
+        arr: 0.0
+        arr: 0.1
+        arr: 0.3
+        arr: 0.5
+        arr: 0.7
+        arr: 0.9
+      }
+      face_bright_weight_vec {
+        arr: 0.0
+        arr: 0.28
+        arr: 0.55
+        arr: 0.65
+        arr: 0.75
+        arr: 0.9
+      }
+      face_dark_weight_vec {
+        arr: 0.0
+        arr: 0.1
+        arr: 0.2
+        arr: 0.3
+        arr: 0.4
+        arr: 0.4
+      }
+    }
+    touch_adj_knee {
+      arr: 0.0
+      arr: 10.0
+    }
+    touch_adj_value {
+      arr: 0.8
+      arr: 1.0
+    }
+    motion_adj {
+      value: 0.1
+    }
+    deflicker_adj {
+      value: 0.6
+    }
+    conv_prob_over_adj {
+      value: 0.1
+    }
+    conv_over_adj {
+      value: 0.1
+    }
+    target_unstable_adj {
+      value: 0.1
+    }
+    target_unstable_smooth_factor_node {
+      arr: 0.1
+      arr: 0.3
+      arr: 0.5
+      arr: 0.7
+      arr: 0.9
+    }
+    target_unstable_mean_diff_node {
+      arr: 1.0
+      arr: 3.0
+      arr: 7.0
+    }
+    target_unstable_blend_weight {
+      arr_2d {
+        arr: 0.9
+        arr: 0.7
+        arr: 0.5
+        arr: 0.3
+        arr: 0.1
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 0.9
+        arr: 0.7
+        arr: 0.4
+        arr: 0.15
+      }
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 0.8
+        arr: 0.6
+        arr: 0.4
+      }
+    }
+    MFHDR_change_adj {
+      value: 0.1
+    }
+    dcgHDR_change_adj {
+      value: 0.3
+    }
+    start_up_conv_adj_ratio_knee {
+      arr: 0.0
+      arr: 1.0
+    }
+    start_up_conv_adj_ratio_value {
+      arr: 0.0
+      arr: 1.0
+    }
+    approach_adj_knee {
+      arr: -60.0
+      arr: -40.0
+      arr: -20.0
+      arr: -15.0
+      arr: -10.0
+      arr: -5.0
+      arr: -2.5
+      arr: 0.0
+      arr: 5.0
+      arr: 10.0
+      arr: 15.0
+      arr: 20.0
+      arr: 40.0
+      arr: 60.0
+    }
+    approach_adj_value {
+      arr: 2.0
+      arr: 1.6
+      arr: 1.2
+      arr: 1.0
+      arr: 0.8
+      arr: 0.5
+      arr: 0.3
+      arr: 0.15
+      arr: 0.3
+      arr: 0.45
+      arr: 0.65
+      arr: 0.8
+      arr: 1.25
+      arr: 1.65
+    }
+    supermoon_exit_adj {
+      value: 0.2
+    }
+    highlight_enter_adj_value {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    highlight_wait_adj_value {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+launch {
+  launch_sp_gain {
+    value: 0.95
+  }
+  startup_drop_frame_init_num {
+    value: 2
+  }
+  max_launching_loops {
+    value: 20
+  }
+  startup_tolerance_multiplier {
+    value: 2
+  }
+  max_startup_step_size_dark2bright {
+    value: 100.0
+  }
+  max_startup_step_size_bright2dark {
+    value: 150.0
+  }
+  startup_tuning_range_max {
+    value: 50.0
+  }
+  startup_tuning_range_min {
+    value: 30.0
+  }
+  startup_bright2dark_max_tuning_factor {
+  }
+}

@@ -1,0 +1,2025 @@
+version: "2025-12-25 14:42"
+enable_stylization {
+  value: true
+}
+style_module_enable {
+  style_enable_whiteblack {
+  }
+  style_enable_dynamic_bright_pct {
+  }
+  style_enable_semantic_weight {
+  }
+}
+style_base {
+  style_base_target_dr_node {
+    arr: 1.0
+    arr: 20.0
+    arr: 80.0
+    arr: 200.0
+  }
+  style_base_target_lux_node {
+    arr: 0.0
+    arr: 123.0
+    arr: 173.0
+    arr: 283.0
+    arr: 343.0
+    arr: 423.0
+    arr: 483.0
+    arr: 513.0
+    arr: 583.0
+  }
+  style_base_target_scale {
+    arr_2d {
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.9
+      arr: 0.83
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.9
+      arr: 0.83
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+      arr: 0.85
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+      arr: 0.7
+    }
+    arr_2d {
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.75
+      arr: 0.65
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+      arr: 0.5
+    }
+  }
+}
+style_hist {
+  style_hist_dr_node {
+    arr: 0.0
+    arr: 10.0
+    arr: 25.0
+    arr: 50.0
+    arr: 70.0
+    arr: 100.0
+    arr: 150.0
+    arr: 220.0
+    arr: 250.0
+    arr: 300.0
+  }
+  style_hist_lux_node {
+    arr: 0.0
+    arr: 50.0
+    arr: 100.0
+    arr: 200.0
+    arr: 280.0
+    arr: 350.0
+    arr: 450.0
+    arr: 480.0
+  }
+  style_hist_bright_tone_ref_target_scale {
+    arr_2d {
+      arr: 1.074074
+      arr: 1.0757576
+      arr: 1.0746269
+      arr: 1.0833334
+      arr: 1.0925926
+      arr: 1.1
+      arr: 1.1111112
+      arr: 1.1111112
+    }
+    arr_2d {
+      arr: 1.0714285
+      arr: 1.0724638
+      arr: 1.0746269
+      arr: 1.0833334
+      arr: 1.0952381
+      arr: 1.1
+      arr: 1.1111112
+      arr: 1.1111112
+    }
+    arr_2d {
+      arr: 1.0714285
+      arr: 1.0724638
+      arr: 1.0746269
+      arr: 1.0833334
+      arr: 1.0952381
+      arr: 1.1052631
+      arr: 1.117647
+      arr: 1.117647
+    }
+    arr_2d {
+      arr: 1.0666667
+      arr: 1.0689656
+      arr: 1.0714285
+      arr: 1.08
+      arr: 1.0925926
+      arr: 1.1111112
+      arr: 1.117647
+      arr: 1.117647
+    }
+    arr_2d {
+      arr: 1.0645162
+      arr: 1.0689656
+      arr: 1.0689656
+      arr: 1.08
+      arr: 1.0869565
+      arr: 1.1111112
+      arr: 1.117647
+      arr: 1.117647
+    }
+    arr_2d {
+      arr: 1.060606
+      arr: 1.0666667
+      arr: 1.0689656
+      arr: 1.08
+      arr: 1.0909091
+      arr: 1.1111112
+      arr: 1.117647
+      arr: 1.117647
+    }
+    arr_2d {
+      arr: 1.0588236
+      arr: 1.0625
+      arr: 1.0666667
+      arr: 1.0769231
+      arr: 1.0909091
+      arr: 1.1052631
+      arr: 1.1111112
+      arr: 1.1111112
+    }
+    arr_2d {
+      arr: 1.0588236
+      arr: 1.0625
+      arr: 1.0666667
+      arr: 1.0769231
+      arr: 1.0909091
+      arr: 1.1
+      arr: 1.1111112
+      arr: 1.1111112
+    }
+    arr_2d {
+      arr: 1.0588236
+      arr: 1.0625
+      arr: 1.0666667
+      arr: 1.0769231
+      arr: 1.0909091
+      arr: 1.1
+      arr: 1.1111112
+      arr: 1.1111112
+    }
+    arr_2d {
+      arr: 1.0571429
+      arr: 1.0625
+      arr: 1.0666667
+      arr: 1.0769231
+      arr: 1.0909091
+      arr: 1.1
+      arr: 1.1111112
+      arr: 1.1111112
+    }
+  }
+  style_hist_core_dr_node {
+    arr: 4.0
+    arr: 10.0
+    arr: 25.0
+    arr: 50.0
+    arr: 70.0
+    arr: 100.0
+    arr: 150.0
+    arr: 220.0
+    arr: 250.0
+    arr: 300.0
+  }
+  style_hist_core_lux_node {
+    arr: 0.0
+    arr: 123.0
+    arr: 173.0
+    arr: 273.0
+    arr: 353.0
+    arr: 423.0
+    arr: 523.0
+  }
+  style_hist_core_bright_tone_low_ref_target_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.95
+      arr: 0.95
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+      arr: 0.8
+    }
+  }
+  style_hist_core_dark_tone_low_ref_target_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.95
+      arr: 0.95
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.8
+      arr: 0.8
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.8
+      arr: 0.8
+    }
+  }
+  style_hist_core_bright_tone_high_ref_target_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.95
+      arr: 0.95
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+  }
+  style_hist_core_dark_tone_high_ref_target_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+  }
+  style_hist_core_dark_tone_adj_ratio_cap_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+  }
+  style_hist_core_dr_b2m_node {
+    arr: 2.0
+    arr: 5.0
+    arr: 10.0
+    arr: 20.0
+    arr: 50.0
+    arr: 51.0
+    arr: 52.0
+    arr: 53.0
+    arr: 54.0
+    arr: 55.0
+  }
+  style_hist_core_bright_tone_adj_ratio_cap_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+  }
+  style_hist_adaptive_dr_node {
+    arr: 3.0
+    arr: 10.0
+    arr: 25.0
+    arr: 50.0
+    arr: 70.0
+    arr: 100.0
+    arr: 150.0
+    arr: 220.0
+    arr: 250.0
+    arr: 300.0
+  }
+  style_hist_adaptive_lux_node {
+    arr: 0.0
+    arr: 123.0
+    arr: 173.0
+    arr: 215.0
+    arr: 285.0
+    arr: 343.0
+    arr: 423.0
+    arr: 470.0
+    arr: 523.0
+  }
+  style_hist_adaptive_bright_tone_ref_target_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+  }
+  style_hist_adaptive_mid_tone_ref_target_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+  }
+  style_hist_adaptive_dark_tone_ref_target_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.95
+      arr: 0.95
+      arr: 0.95
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+  }
+  style_hist_adaptive_dr_b2m_node {
+    arr: 2.0
+    arr: 5.0
+    arr: 10.0
+    arr: 20.0
+    arr: 50.0
+    arr: 51.0
+    arr: 52.0
+    arr: 53.0
+    arr: 54.0
+    arr: 55.0
+  }
+  style_hist_adaptive_dr_m2d_node {
+    arr: 2.0
+    arr: 5.0
+    arr: 10.0
+    arr: 20.0
+    arr: 50.0
+    arr: 51.0
+    arr: 52.0
+    arr: 53.0
+    arr: 54.0
+    arr: 55.0
+  }
+  style_hist_adaptive_dt_adjust_ratio_normal_cap_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+  }
+  style_hist_adaptive_bt_adjust_ratio_normal_cap_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+    arr_2d {
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+      arr: 0.85
+    }
+  }
+  style_hist_adaptive_adjust_ratio_high_cap_scale {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 0.588
+    arr: 0.714
+    arr: 0.714
+    arr: 0.769
+  }
+  style_hist_adaptive_adjust_ratio_low_cap_scale {
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+    arr: 1.0
+  }
+  style_color_r_for_stats_node {
+    arr: 0.05
+    arr: 0.15
+    arr: 0.3
+    arr: 0.4
+    arr: 0.5
+    arr: 0.6
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  style_color_g_for_stats_node {
+    arr: 0.05
+    arr: 0.15
+    arr: 0.3
+    arr: 0.4
+    arr: 0.5
+    arr: 0.6
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  style_color_b_for_stats_node {
+    arr: 0.05
+    arr: 0.15
+    arr: 0.3
+    arr: 0.4
+    arr: 0.5
+    arr: 0.6
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  style_color_r_for_allcolor_node {
+    arr: 0.1
+    arr: 0.2
+    arr: 0.3
+    arr: 0.4
+    arr: 0.5
+    arr: 0.6
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  style_color_g_for_allcolor_node {
+    arr: 0.1
+    arr: 0.2
+    arr: 0.3
+    arr: 0.4
+    arr: 0.5
+    arr: 0.6
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  style_color_b_for_allcolor_node {
+    arr: 0.1
+    arr: 0.2
+    arr: 0.3
+    arr: 0.4
+    arr: 0.5
+    arr: 0.6
+    arr: 0.7
+    arr: 0.8
+    arr: 0.9
+    arr: 1.0
+  }
+  style_color_r_adjust_ratio_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  style_color_g_adjust_ratio_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+  style_color_b_adjust_ratio_scale {
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+      arr: 1.0
+    }
+  }
+}
+style_face {
+  style_face_target_lux_node {
+    arr: 173.0
+    arr: 223.0
+    arr: 273.0
+    arr: 323.0
+    arr: 353.0
+    arr: 393.0
+    arr: 423.0
+    arr: 453.0
+    arr: 493.0
+    arr: 523.0
+    arr: 543.0
+    arr: 593.0
+  }
+  style_face_target_backlight_node {
+    arr: 0.05
+    arr: 0.1
+    arr: 0.2
+    arr: 0.3
+    arr: 0.4
+    arr: 0.8
+    arr: 1.5
+    arr: 3.0
+    arr: 5.0
+    arr: 10.0
+  }
+  style_face_ref_target_scale {
+    arr_2d {
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+      arr: 0.9
+    }
+    arr_2d {
+      arr: 1.15
+      arr: 1.15
+      arr: 1.15
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+    }
+    arr_2d {
+      arr: 1.15
+      arr: 1.15
+      arr: 1.15
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+    }
+    arr_2d {
+      arr: 1.15
+      arr: 1.15
+      arr: 1.15
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+    }
+    arr_2d {
+      arr: 1.15
+      arr: 1.15
+      arr: 1.15
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+      arr: 1.1
+    }
+  }
+}

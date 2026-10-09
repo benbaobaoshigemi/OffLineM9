@@ -1,0 +1,63 @@
+version: "2025-09-25 16:19"
+enable_lls {
+  value: true
+}
+enable_extended_sensitivity {
+  value: true
+}
+enable_drc {
+  value: true
+}
+lls_trigger_idx_exit {
+  value: 255.0
+}
+lls_trigger_idx_enter {
+  value: 265.0
+}
+max_extended_gain {
+  value: 400.0
+}
+lux_node_stable {
+  arr: 370.0
+  arr: 400.0
+  arr: 440.0
+  arr: 480.0
+  arr: 520.0
+  arr: 540.0
+  arr: 570.0
+  arr: 600.0
+  arr: 610.0
+}
+extend_shutter_tbl_stable {
+  arr: 20000.0
+  arr: 30000.0
+  arr: 55000.0
+  arr: 75000.0
+  arr: 125000.0
+  arr: 135000.0
+  arr: 160000.0
+  arr: 260000.0
+  arr: 330000.0
+}
+lux_node_unstable {
+  arr: 370.0
+  arr: 400.0
+  arr: 440.0
+  arr: 480.0
+  arr: 520.0
+  arr: 540.0
+  arr: 570.0
+  arr: 600.0
+  arr: 610.0
+}
+extend_shutter_tbl_unstable {
+  arr: 20000.0
+  arr: 30000.0
+  arr: 55000.0
+  arr: 75000.0
+  arr: 125000.0
+  arr: 135000.0
+  arr: 160000.0
+  arr: 260000.0
+  arr: 330000.0
+}

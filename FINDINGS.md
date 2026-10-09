@@ -45,3 +45,39 @@
 ## 手机 / 样本
 - 用户 Find X9 Ultra（PMA110, SM8850, QNN 2.37, KernelSU）可只读 adb；推送/运行需先征得同意。
 - 本地样本 `samples/`（OPPO DNG，不入库）。
+
+## 小米 3A 调参（mi_tuning，2026-10-09 新增）
+- `odm/etc/camera/mi_tuning/<sensor>.bin`：u32 头 + 一串 u32 长度前缀的 protobuf 记录。
+  记录成对：头 `{1: 模块枚举, 2..8: mode/scenario/feature0/function/sub_function/scene/filter 数值键}` + 载荷。
+  偶数模块号=参数数据，奇数=LinkKey（把一个键重定向到另一个键的数据）。工具：`tools/mipb.py`、`tools/mituning.py`。
+- 字段名：`libmiaec.so` / `libmituning_datacenter.so` 内嵌完整 FileDescriptorProto，`tools/protodesc.py` 抽出
+  （`re/miaec/*.pb`），`tools/protoprint.py` 打印。模块枚举 `EnumTuningDataLable_Module`（AEC 512–553）。
+- **M9 曝光（Feature0=7 Legend）**：
+  - `AEC_Metering`（所有 sensor mode 的 Legend 都 Link 到 mode1 的数据）：base_target 26（普通 56），夜间 18–19（普通 32）。
+  - `AEC_Stylization`（仅 mode 37/42 有 Legend 数据，enable=True；普通默认关闭）：base_target_scale 0.6–0.7 按 lux，
+    直方图核心/自适应参考目标再 ×0.75–0.95，人脸目标 ×0.5–0.6。→ M9 中间调比普通拍照暗约 1.6–1.8 EV。
+    ⚠ mode 37/42 是否为 M9 实际传感器模式：由 Legend AWB 数据也只在这些模式出现等旁证推断，未直接证实。
+  - `AEC_FaceMetering`、`AEC_WhiteBlack`（夜间 ×1.02）、`AEC_AsdEnhance`（按 AI 场景 ×0.5–1.5）也有 Legend 专属数据。
+  - AWB 也有 Legend 专属：模块 4 AWBAiAwb、22 AWBPreference、32 AWBStatsMap（**尚未解码**，需 AWB 的 proto）。
+- AEC 结构（日志串）：short/safe/long 三目标；`mid_tone_gain`(ADRC) = mid/short，上限 DrcConfig.max_drc_gain(lux)=4.5。
+  hist_target_by_lux 下的 adaptive/mid/night/dark-prevent/flat/color/saturation 子调整按权重聚合后限幅
+  [aggregation_lower,upper]；具体合成代码未逆向（libmiaec 0x18e194 一带）。
+
+## M9 快照真实节点（legendsnapshot.json）
+- 主链：Anchor→MFNR→B2Y(SigFrame)→FormatConvertor(RAW16)→AllinOne(AISP)→B2Y ForRGB→StyleTrans→Depurple→WideLDC→LDC
+  →LeicaFilter→Watermark→JPEG→jpegrAggr(Ultra HDR)。旁路：GainmapAnchor/GainmapForRGB 两个 B2Y→GainMap(Y8)→LDC→
+  gainmapPostProc→jpegr；RawEmbeder（RAW 嵌入）。
+- AllinOne：`libmialgo_aisp.so`，配置 `aisp.json`/`aisp_correct_image.json`；NR 路径 `dgain_apply_adrc=0`
+  （输出线性 RGB，ADRC 留给 IPE/TMC）；接收 ipe/bps gamma 表、wb、lsc、adrc_gain、aitone_flag。`SetLegendMeta`
+  经 `liblegendmsg.so` 把 `LegendMsg.M9Msg{AwbGain, aisp_algoversion, Rect, imgname}` 传给 StyleTrans（元数据）。
+- B2Y ForRGB 用 subfunction 179/180（AllinoneTone[Denoise]）：已核实 M9 的 gamma/ltm/cc/cv/tdl/tmc/sce/gra/asf/cs/hnr/
+  upscale/lenr/cac 与不带 subfunction 时**完全相同**；只有 anr 不同（降噪）。OFE：仅 ltm21_ofe 在 M9 下 423/426 归零。
+- cc15：每叶 102 f32 = 矩阵 A(0–8) + 矩阵 B(10–18) + AI 类别权重(30–62)。普通 A=B；M9 A 弱、B 极强，`aiEnable` 时按
+  AI 类别（ACB）混合。M9 全条件只有一组。离线取 A。
+- cv122：Cb = a·[(B−G)+b·(R−G)], Cr = c·[(R−G)+d·(B−G)]（a/b/c/d 各有正负两值），由 BT.601 值反推验证（b=−0.338 ⇔ −0.169/0.5）。
+- chromatix 触发树的 type 字段=层号（不是变量号），各层变量按取值范围判定（见 m9/tuning.py）。
+- Depurple = altek CFR（`libmorpho_Depurple.so`），参数按镜头 `odm/etc/camera/{w,uw,t_3x,t_5x}.bin`，无 M9 专属。
+- StyleTrans 模型编译版本 `v2.33.0.250327`；humanseg 用 `scene_human_seg`/`human_segmentation_768`，
+  疑为 `human_seg_bimap_quant_npu_768.minn`（.minn 格式 2，未解）。
+- 参考包的"改头文件"= 改 5 字节让 15U 手机上的 QNN 加载 17U 模型（仍需 NPU）。离线方案：QAIRT x86 HTP 模拟后端
+  直接执行原版上下文二进制（进行中）。

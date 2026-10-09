@@ -1,0 +1,1675 @@
+version: "2025-12-01 15:11"
+enable_asd_enhance {
+  value: true
+}
+enable_stats_diff_detect {
+}
+asd_scene_keep_count_thrd {
+  value: 10
+}
+asd_state_count_thrd {
+  max_scene_stable_count {
+    value: 30
+  }
+  max_level_stable_count {
+    value: 30
+  }
+  max_leave_stable_count {
+    value: 30
+  }
+}
+asd_target_smooth {
+  adjust_ratio_filter_length {
+    value: 10
+  }
+  adjust_ratio_smooth_ratio {
+    value: 0.1
+  }
+}
+asd_scene_quantify {
+  asd_adjust_level_node {
+    arr: -15.0
+    arr: -14.0
+    arr: -13.0
+    arr: -12.0
+    arr: -11.0
+    arr: -10.0
+    arr: -9.0
+    arr: -8.0
+    arr: -7.0
+    arr: -6.0
+    arr: -5.0
+    arr: -4.0
+    arr: -3.0
+    arr: -2.0
+    arr: -1.0
+    arr: 0.0
+    arr: 1.0
+    arr: 2.0
+    arr: 3.0
+    arr: 4.0
+    arr: 5.0
+    arr: 6.0
+    arr: 7.0
+    arr: 8.0
+    arr: 9.0
+    arr: 10.0
+  }
+  asd_adjust_ratio_value {
+    arr: 0.25
+    arr: 0.3
+    arr: 0.35
+    arr: 0.4
+    arr: 0.45
+    arr: 0.5
+    arr: 0.55
+    arr: 0.6
+    arr: 0.65
+    arr: 0.7
+    arr: 0.75
+    arr: 0.8
+    arr: 0.85
+    arr: 0.9
+    arr: 0.95
+    arr: 1.0
+    arr: 1.05
+    arr: 1.1
+    arr: 1.15
+    arr: 1.2
+    arr: 1.25
+    arr: 1.3
+    arr: 1.35
+    arr: 1.4
+    arr: 1.45
+    arr: 1.5
+  }
+}
+asd_doc {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_ppt {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_food {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: 2
+    arr: 2
+    arr: 1
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.5
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_redflower {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: -6
+    arr: -6
+    arr: -5
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.5
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+      value: true
+    }
+    select_trigger_tag {
+      arr: 2.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 0.6
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 280.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+      }
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.5
+        arr: 1.0
+        arr: 0.6
+        arr: 0.3
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_flower {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: -5
+    arr: -5
+    arr: -5
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.75
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_autumn_mapleleaves_succulent {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_greenplants_grass {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: -4
+    arr: -4
+    arr: 2
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.5
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_beach {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_woodentexture {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 4
+    arr: 4
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.5
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_fireworks {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_bonfire_candlelight {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_snow {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: 4
+    arr: 4
+    arr: 4
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.5
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_cloudy {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: 3
+    arr: 3
+    arr: 1
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.7
+    }
+    confid_thrd_high {
+      value: 0.8
+    }
+    max_count {
+      value: 16
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_sunset {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: -1
+    arr: -1
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.5
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_night_billboard {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 2
+    arr: 2
+    arr: 4
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.5
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_moon {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: -6
+    arr: -6
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.5
+    }
+    confid_thrd_high {
+      value: 0.9
+    }
+    max_count {
+      value: 10
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_glass {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_nightnear {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_sky {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_planinsky {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_screen {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_fire {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: -4
+    arr: -5
+    arr: -5
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.05
+    }
+    confid_thrd_high {
+      value: 0.1
+    }
+    max_count {
+      value: 1
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+      value: true
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 290.0
+      arr: 380.0
+      arr: 420.0
+      arr: 470.0
+      arr: 500.0
+      arr: 550.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.6
+        arr: 0.8
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_sparks {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: -4
+    arr: -5
+    arr: -5
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.05
+    }
+    confid_thrd_high {
+      value: 0.1
+    }
+    max_count {
+      value: 1
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+      value: true
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 290.0
+      arr: 380.0
+      arr: 420.0
+      arr: 470.0
+      arr: 500.0
+      arr: 530.0
+      arr: 580.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 0.0
+        arr: 0.0
+        arr: 0.0
+        arr: 0.5
+        arr: 0.7
+        arr: 1.0
+        arr: 1.6
+        arr: 2.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_lantern {
+  enable_scene_adjust {
+  }
+  adjust_level {
+    arr: 0
+    arr: 0
+    arr: 0
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+    }
+    confid_thrd_high {
+    }
+    max_count {
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 350.0
+      arr: 450.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}
+asd_concert {
+  enable_scene_adjust {
+    value: true
+  }
+  adjust_level {
+    arr: -6
+    arr: -6
+    arr: -6
+  }
+  asd_io_thrd {
+    confid_thrd_low {
+      value: 0.05
+    }
+    confid_thrd_high {
+      value: 0.1
+    }
+    max_count {
+      value: 1
+    }
+  }
+  adjust_with_trigger {
+    enable_adjust_with_trigger {
+      value: true
+    }
+    select_trigger_tag {
+      arr: 0.0
+      arr: 0.0
+    }
+    first_trigger_node {
+      arr: 1.0
+    }
+    second_trigger_node {
+      arr: 0.0
+      arr: 50.0
+      arr: 100.0
+      arr: 210.0
+      arr: 290.0
+      arr: 440.0
+      arr: 480.0
+    }
+    adjust_ratio_weight {
+      arr_2d {
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 0.5
+        arr: 1.0
+      }
+    }
+  }
+  use_sum_rgb_thrd {
+    arr: 0.0
+    arr: 0.0
+    arr: 0.0
+  }
+  need_flatscene_detected {
+  }
+  need_spotlight_detected {
+  }
+  need_noflicker_detected {
+  }
+  disable_color_sa {
+  }
+}

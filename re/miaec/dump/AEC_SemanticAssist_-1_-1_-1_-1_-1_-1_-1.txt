@@ -1,0 +1,1032 @@
+version: "2025-07-24 10:05"
+enable_semantic_assist {
+  value: true
+}
+semantic_stats_process {
+  enable_category {
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+    arr: true
+  }
+  enable_stats_correct {
+    arr: false
+    arr: false
+    arr: false
+    arr: false
+    arr: false
+    arr: false
+    arr: false
+    arr: false
+    arr: false
+  }
+}
+semantic_sa_data {
+  semantic_sa_title: "background"
+  enable_cur_semantic {
+    rule {
+      description: "[Bool]"
+      recommend: "None"
+    }
+  }
+  semantic_luma_type {
+    rule {
+      description: "[Int32]"
+      high: 99
+    }
+  }
+  semantic_target {
+    target_first_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "1"
+        }
+        arr: 0.0
+      }
+    }
+    target_second_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 120.0
+        arr: 180.0
+        arr: 220.0
+        arr: 280.0
+        arr: 320.0
+        arr: 400.0
+      }
+    }
+    semantic_target_ref {
+      rule {
+        description: "[FloatArr2D]"
+        recommend: "None"
+        high: 255.0
+        row: "semantic_sa_data.0.semantic_target.target_first_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.0.semantic_target.target_second_trigger.trigger_value_node.rule.len"
+      }
+      arr_2d {
+        arr: 50.0
+        arr: 50.0
+        arr: 49.0
+        arr: 48.0
+        arr: 48.0
+        arr: 45.0
+        arr: 30.0
+      }
+    }
+  }
+  semantic_weight {
+    weight_first_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "1"
+        }
+        arr: 0.0
+      }
+    }
+    weight_second_trigger {
+      trigger_type: SemanticTrigger_background_ratio
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          high: 1.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 0.1
+        arr: 0.2
+        arr: 0.3
+        arr: 0.5
+        arr: 0.7
+        arr: 0.8
+      }
+    }
+    weight_third_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 120.0
+        arr: 180.0
+        arr: 220.0
+        arr: 280.0
+        arr: 320.0
+        arr: 400.0
+      }
+    }
+    semantic_weight_short {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.0.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.0.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.0.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+      }
+    }
+    semantic_weight_mid {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.0.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.0.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.0.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.2
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.3
+          arr: 0.5
+          arr: 0.5
+          arr: 0.3
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.2
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+      }
+    }
+    semantic_weight_long {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.0.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.0.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.0.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+      }
+    }
+  }
+}
+semantic_sa_data {
+  semantic_sa_title: "skin"
+  enable_cur_semantic {
+    rule {
+      description: "[Bool]"
+      recommend: "None"
+    }
+    value: true
+  }
+  semantic_luma_type {
+    rule {
+      description: "[Int32]"
+      high: 99
+    }
+    value: 3
+  }
+  semantic_target {
+    target_first_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "1"
+        }
+        arr: 0.0
+      }
+    }
+    target_second_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 120.0
+        arr: 180.0
+        arr: 220.0
+        arr: 280.0
+        arr: 320.0
+        arr: 400.0
+      }
+    }
+    semantic_target_ref {
+      rule {
+        description: "[FloatArr2D]"
+        recommend: "None"
+        high: 255.0
+        row: "semantic_sa_data.1.semantic_target.target_first_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.1.semantic_target.target_second_trigger.trigger_value_node.rule.len"
+      }
+      arr_2d {
+        arr: 65.0
+        arr: 65.0
+        arr: 65.0
+        arr: 60.0
+        arr: 55.0
+        arr: 55.0
+        arr: 50.0
+      }
+    }
+  }
+  semantic_weight {
+    weight_first_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "1"
+        }
+        arr: 0.0
+      }
+    }
+    weight_second_trigger {
+      trigger_type: SemanticTrigger_skin_ratio
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          high: 1.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 0.01
+        arr: 0.02
+        arr: 0.05
+        arr: 0.1
+        arr: 0.5
+        arr: 0.8
+      }
+    }
+    weight_third_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 120.0
+        arr: 180.0
+        arr: 220.0
+        arr: 280.0
+        arr: 320.0
+        arr: 400.0
+      }
+    }
+    semantic_weight_short {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.1.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.1.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.1.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+      }
+    }
+    semantic_weight_mid {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.1.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.1.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.1.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+          arr: 0.2
+        }
+        arr_2d {
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.5
+          arr: 0.5
+          arr: 0.5
+        }
+        arr_2d {
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.5
+          arr: 0.5
+        }
+        arr_2d {
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.5
+        }
+        arr_2d {
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.7
+          arr: 0.5
+        }
+      }
+    }
+    semantic_weight_long {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.1.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.1.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.1.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+      }
+    }
+  }
+}
+semantic_sa_data {
+  semantic_sa_title: "sky"
+  enable_cur_semantic {
+    rule {
+      description: "[Bool]"
+      recommend: "None"
+    }
+  }
+  semantic_luma_type {
+    rule {
+      description: "[Int32]"
+      high: 99
+    }
+    value: 4
+  }
+  semantic_target {
+    target_first_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "1"
+        }
+        arr: 0.0
+      }
+    }
+    target_second_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 120.0
+        arr: 180.0
+        arr: 220.0
+        arr: 280.0
+        arr: 320.0
+        arr: 400.0
+      }
+    }
+    semantic_target_ref {
+      rule {
+        description: "[FloatArr2D]"
+        recommend: "None"
+        high: 255.0
+        row: "semantic_sa_data.2.semantic_target.target_first_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.2.semantic_target.target_second_trigger.trigger_value_node.rule.len"
+      }
+      arr_2d {
+        arr: 150.0
+        arr: 150.0
+        arr: 150.0
+        arr: 140.0
+        arr: 100.0
+        arr: 10.0
+        arr: 10.0
+      }
+    }
+  }
+  semantic_weight {
+    weight_first_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "1"
+        }
+        arr: 0.0
+      }
+    }
+    weight_second_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          high: 1.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 0.01
+        arr: 0.05
+        arr: 0.1
+        arr: 0.2
+        arr: 0.5
+        arr: 0.8
+      }
+    }
+    weight_third_trigger {
+      trigger_value_node {
+        rule {
+          description: "[FloatArr]"
+          recommend: "None"
+          order: 1
+          high: 999.0
+          len: "7"
+        }
+        arr: 0.0
+        arr: 120.0
+        arr: 180.0
+        arr: 220.0
+        arr: 280.0
+        arr: 320.0
+        arr: 400.0
+      }
+    }
+    semantic_weight_short {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.2.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.2.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.2.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.3
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+      }
+    }
+    semantic_weight_mid {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.2.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.2.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.2.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+      }
+    }
+    semantic_weight_long {
+      rule {
+        high: 1.0
+        depth: "semantic_sa_data.2.semantic_weight.weight_first_trigger.trigger_value_node.rule.len"
+        row: "semantic_sa_data.2.semantic_weight.weight_second_trigger.trigger_value_node.rule.len"
+        col: "semantic_sa_data.2.semantic_weight.weight_third_trigger.trigger_value_node.rule.len"
+      }
+      arr_3d {
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+        arr_2d {
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+          arr: 0.0
+        }
+      }
+    }
+  }
+}

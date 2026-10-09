@@ -1,0 +1,1776 @@
+version: "2024-11-29 11:17"
+exptblCtrl {
+  enable_asdmotion_exp_table {
+  }
+  enable_tripod_exp_table {
+    value: true
+  }
+  enable_preflash_exp_table {
+  }
+  enable_nightcaptureoff_exp_table {
+  }
+  enable_nightcaptureon_exp_table {
+  }
+  enable_skip_fps_limit_exp_time {
+  }
+  enable_bracket_ev_exp_table {
+  }
+}
+exptbl_default {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 13.438
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_preflash {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_mainflash {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_deflicker50hz {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_deflicker60hz {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_timelapselow {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 21.326
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 4.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 4.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 9.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 9.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 80000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 80000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 100000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 100000.0
+      arr: 48.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 48.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 64.0
+    }
+    arr_2d {
+      arr: 140000.0
+      arr: 64.0
+    }
+    arr_2d {
+      arr: 140000.0
+      arr: 128.0
+    }
+  }
+}
+exptbl_timelapsemed {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 21.326
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 6.0
+    }
+    arr_2d {
+      arr: 90000.0
+      arr: 6.0
+    }
+    arr_2d {
+      arr: 90000.0
+      arr: 12.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 12.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 24.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 24.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 32.0
+    }
+    arr_2d {
+      arr: 180000.0
+      arr: 32.0
+    }
+    arr_2d {
+      arr: 180000.0
+      arr: 42.0
+    }
+    arr_2d {
+      arr: 210000.0
+      arr: 42.0
+    }
+    arr_2d {
+      arr: 210000.0
+      arr: 86.0
+    }
+  }
+}
+exptbl_timelapsehigh {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 21.326
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 6.0
+    }
+    arr_2d {
+      arr: 90000.0
+      arr: 6.0
+    }
+    arr_2d {
+      arr: 90000.0
+      arr: 12.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 12.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 24.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 24.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 32.0
+    }
+    arr_2d {
+      arr: 180000.0
+      arr: 32.0
+    }
+    arr_2d {
+      arr: 180000.0
+      arr: 42.0
+    }
+    arr_2d {
+      arr: 210000.0
+      arr: 42.0
+    }
+    arr_2d {
+      arr: 210000.0
+      arr: 86.0
+    }
+  }
+}
+exptbl_motionasdlow {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 21.326
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 4.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 4.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 9.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 9.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 80000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 80000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 100000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 100000.0
+      arr: 48.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 48.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 64.0
+    }
+    arr_2d {
+      arr: 140000.0
+      arr: 64.0
+    }
+    arr_2d {
+      arr: 140000.0
+      arr: 128.0
+    }
+  }
+}
+exptbl_motionasdmed {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 21.326
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 6.0
+    }
+    arr_2d {
+      arr: 90000.0
+      arr: 6.0
+    }
+    arr_2d {
+      arr: 90000.0
+      arr: 12.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 12.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 24.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 24.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 32.0
+    }
+    arr_2d {
+      arr: 180000.0
+      arr: 32.0
+    }
+    arr_2d {
+      arr: 180000.0
+      arr: 42.0
+    }
+    arr_2d {
+      arr: 210000.0
+      arr: 42.0
+    }
+    arr_2d {
+      arr: 210000.0
+      arr: 86.0
+    }
+  }
+}
+exptbl_motionasdhigh {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 21.326
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 2.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 6.0
+    }
+    arr_2d {
+      arr: 90000.0
+      arr: 6.0
+    }
+    arr_2d {
+      arr: 90000.0
+      arr: 12.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 12.0
+    }
+    arr_2d {
+      arr: 120000.0
+      arr: 24.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 24.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 32.0
+    }
+    arr_2d {
+      arr: 180000.0
+      arr: 32.0
+    }
+    arr_2d {
+      arr: 180000.0
+      arr: 42.0
+    }
+    arr_2d {
+      arr: 210000.0
+      arr: 42.0
+    }
+    arr_2d {
+      arr: 210000.0
+      arr: 86.0
+    }
+  }
+}
+exptbl_nightcaptureOff {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_f_1_4 {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_f_2_0 {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_f_2_8 {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_f_4_0 {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_reserved {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_dynamic_fps {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_longexp_star_hand {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 256.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 768.0
+    }
+    arr_2d {
+      arr: 80000.0
+      arr: 768.0
+    }
+    arr_2d {
+      arr: 80000.0
+      arr: 1024.0
+    }
+    arr_2d {
+      arr: 330000.0
+      arr: 1024.0
+    }
+  }
+}
+exptbl_longexp_star_trail {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 256.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 768.0
+    }
+    arr_2d {
+      arr: 80000.0
+      arr: 768.0
+    }
+    arr_2d {
+      arr: 80000.0
+      arr: 1024.0
+    }
+    arr_2d {
+      arr: 330000.0
+      arr: 1024.0
+    }
+  }
+}
+exptbl_longexp_trail {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_longexp_water {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_longexp_light {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+    arr_2d {
+      arr: 150000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_longexp_star_tripod {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_bracket_ev_neg {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
+exptbl_bracket_ev_pos {
+  f_num {
+    value: 1.68
+  }
+  exptbl_anchor {
+    arr_2d {
+      arr: 10.667
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 1.0
+    }
+    arr_2d {
+      arr: 10000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 8.0
+    }
+    arr_2d {
+      arr: 20000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 18.0
+    }
+    arr_2d {
+      arr: 30000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 36.0
+    }
+    arr_2d {
+      arr: 40000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 72.0
+    }
+    arr_2d {
+      arr: 50000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 96.0
+    }
+    arr_2d {
+      arr: 60000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 128.0
+    }
+    arr_2d {
+      arr: 70000.0
+      arr: 256.0
+    }
+  }
+}
