@@ -81,3 +81,22 @@
   疑为 `human_seg_bimap_quant_npu_768.minn`（.minn 格式 2，未解）。
 - 参考包的"改头文件"= 改 5 字节让 15U 手机上的 QNN 加载 17U 模型（仍需 NPU）。离线方案：QAIRT x86 HTP 模拟后端
   直接执行原版上下文二进制（进行中）。
+
+## M9 跨摄像头一致性（2026-10-09）
+- **结论：ISP 层的 M9 调校是分摄像头做的，三颗后摄不一致；三颗共有的只有 AWB 锁定（D50）+ StyleTrans + LeicaFilter。**
+- AE（mi_tuning）：
+  | 摄像头 | Legend Metering base_target | 普通 | AEC_Stylization（Legend） |
+  |---|---|---|---|
+  | 主摄 ovx10500u（wide_i/wide_ii 相同） | 26（夜 18） | 56 | 有，0.6–0.7，仅 mode 37/42 |
+  | 超广 s5kjn5 | 25.5–28 | 35–55 | 无 |
+  | 长焦 s5khpe | 30–55（=普通） | 30–55 | 无 |
+  主摄 Legend Stylization 只在 mode 37/42；其他 mode 落到默认数据（无 enable），故主摄 M9 必然跑 37/42。
+- IPE（chromatix，emu/chromatix 导出到 re/chromatix/modes/{wide_i,ultra_i,tele_i}）M9 vs 普通：
+  主摄 6 张表全不同；超广 cc15/tdl13/ltm21/tmc202 不同、gamma152/cv122 相同；**长焦 6 张全相同（无 M9 IPE 调校）**。
+  三颗之间的 M9 表两两不同。
+- AWB：三颗都有 Legend 的 AiAwb/Preference/StatsMap（模块 4/22/32）数据；锁 D50 的 CalLegendModeGain 是代码逻辑，与摄像头无关。
+- cc15 AI 混合：开关是 cc15 输入 `commonLibInput+0x40`（aiEnable），由 IPE 驱动 CC 模块 `FillDependencyData`
+  （libcamxhwlipedriver 0x38b760，camxipehwlcolorcorrection141p.cpp）从每帧 AI 使能（IPE 节点 m_isAIEnabledPerFrame，
+  camera.qcom.sm8850.so SetAIEnabledPerFrame / IPEIQControlAIEnable）取得；aiEnable=1 时用 ACB 的 CCM 输出变换矩阵
+  （libhwliqinterface2 0x29f020 → 0xfe7a20）。Legend 下是否置 1 未追完（sm8850 库 Ghidra 分析超 5 分钟）。
+- TMC202：m9/tmc.py 与原版在 4 组 lux/DRC 下一致（≤1.2e-6，tools/verify_tmc.py）。
