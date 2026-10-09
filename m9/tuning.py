@@ -31,6 +31,18 @@ LEVEL_VARS = {
     "ltm21_ipe_v2": ("drc", "lux"),
     "tmc202_sw_v2": ("drc", "gain", "lux"),
 }
+# Tele (s5khpe) trees have their own level layout; the extra last level (regions 0-5 / 10-20 /
+# 30-100...) is the zoom ratio: the continuous optical tele (~3.2-4.3x) always lies in the 0-5
+# region, higher regions are digital zoom. Leading 0 / >=1 two-region levels are the flag.
+LEVEL_VARS_TELE = {
+    "gamma152_ipe_v2": ("flag", "drc", "gain", "one", "lux", "zoom"),
+    "cc15_ipe_v2": ("flag", "one", "one", "lux", "cct", "zoom"),
+    "cv122_ipe_v2": ("one", "gain", "lux", "cct"),
+    "tdl13_ipe_v2": ("one", "one", "flag", "lux", "cct", "zoom"),
+    "ltm21_ipe_v2": ("drc", "gain", "lux", "zoom"),
+    "tmc202_sw_v2": ("drc", "gain", "lux", "zoom"),
+}
+OPTICAL_ZOOM = 4.0
 
 
 @lru_cache(maxsize=1)
@@ -80,8 +92,9 @@ def _tree(tag: str, module: str):
 def lookup(tag: str, module: str, drc: float = 1.0, gain: float = 1.0, lux: float = 300.0,
            cct: float = 5000.0, flag: float = 0.0) -> np.ndarray:
     """Interpolated leaf (float array) of `module` for tag 'm9' or 'normal'."""
-    m = {"drc": drc, "gain": gain, "lux": lux, "cct": cct, "flag": flag}
-    vals = [m.get(name, 0.5) if name != "one" else 0.5 for name in LEVEL_VARS[module]]
+    m = {"drc": drc, "gain": gain, "lux": lux, "cct": cct, "flag": flag, "zoom": OPTICAL_ZOOM}
+    lv = (LEVEL_VARS_TELE if tag.startswith("tele") else LEVEL_VARS)[module]
+    vals = [m.get(name, 0.5) if name != "one" else 0.5 for name in lv]
     # single-region 'one' levels: any value inside works; 0.5 lies in [0,2] / [0,64] / [0,1000]
     return _eval(_tree(tag, module), vals, 0)
 

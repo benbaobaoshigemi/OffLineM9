@@ -39,5 +39,13 @@ int main(int argc, char** argv) {
     printf(" %08x", *(uint32_t*)(node + i));
   }
   printf("\n");
+  for (int i = 0; i + 8 <= n; i += 4) {           // follow heap pointers in the header
+    uint64_t p = *(uint64_t*)(node + i);
+    if ((p >> 40) == 0xb40000 || (p >> 40) == 0xb40040 || ((p >> 32) & 0xffffff00) == 0xb4004000) {
+      printf("ptr@%04x ->", i);
+      for (int k = 0; k < 24; k++) printf(" %08x", ((uint32_t*)(uintptr_t)p)[k]);
+      printf("\n");
+    }
+  }
   return 0;
 }

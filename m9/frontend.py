@@ -184,10 +184,19 @@ def drc_curve(x: np.ndarray, gain: float) -> np.ndarray:
     return gain * x / (1.0 + (gain - 1.0) * x)
 
 
-def tmc_lut(gain: float, lux: float, n: int = 4096) -> np.ndarray:
+# camera -> (IPE table tag in Legend mode, IPE tag of the normal photo mode on the same camera).
+# main: ovx10500u wide_i has its own M9 tables; tele: s5khpe has none (Legend == normal).
+CAMERAS = {"main": ("m9", "normal"), "tele": ("tele", "tele")}
+
+
+def tmc_lut(gain: float, lux: float, n: int = 4096, tag: str = "m9") -> np.ndarray:
     """TMC202 GTM curve (m9.tmc, original knee/Hermite code) sampled on [0,1]."""
     from . import tmc
-    leaf = tuning.lookup("m9", "tmc202_sw_v2", drc=max(gain, 1.0), gain=1.0, lux=lux)
+    leaf = tuning.lookup(tag, "tmc202_sw_v2", drc=max(gain, 1.0), gain=1.0, lux=lux).copy()
+    # Offline trade-off: no local LTM. Its share of the ADRC gain (ltm_percentage #8, and the
+    # sub-GTM share #4) is folded into the global curve so the total tone lift is kept; the local
+    # contrast part of LTM is dropped. M9 main: GTM 1.0, LTM 0 -> unchanged (exact).
+    leaf[0] = min(1.0, leaf[0] + leaf[4] + leaf[8])
     X, Y = tmc.anchor_knees(leaf, max(gain, 1.0))
     return tmc.gtm_curve(np.linspace(0, 1, n), X, Y).astype(np.float32)
 
@@ -202,11 +211,12 @@ def ltm_global(rgb_lin: np.ndarray, gain: float, lut: np.ndarray | None = None) 
     return rgb_lin * g[..., None].astype(np.float32)
 
 
-def cc_m9(cam2srgb: np.ndarray, lux: float, cct: float, drc: float) -> np.ndarray:
+def cc_m9(cam2srgb: np.ndarray, lux: float, cct: float, drc: float, camera: str = "main") -> np.ndarray:
     """Camera -> M9 output matrix: DNG colorimetric matrix with the 17U M9/normal relation
     M_rel = CC_m9 * CC_normal^-1 (both act on the same 17U camera RGB) applied on top."""
     cond = dict(drc=max(drc, 1.0), lux=lux, cct=cct, flag=0.0)
-    rel = tuning.cc_matrix("m9", **cond) @ np.linalg.inv(tuning.cc_matrix("normal", **cond))
+    tag, ref = CAMERAS[camera]
+    rel = tuning.cc_matrix(tag, **cond) @ np.linalg.inv(tuning.cc_matrix(ref, **cond))
     return (rel @ cam2srgb).astype(np.float32)
 
 
@@ -267,19 +277,20 @@ class FrontEndResult:
 
 
 def b2y(path: str, lux_index: float | None = None, cct: float | None = None, ev: float = 0.0,
-        half: bool = False) -> FrontEndResult:
+        half: bool = False, camera: str = "main") -> FrontEndResult:
+    tag = CAMERAS[camera][0]
     lin, cam2srgb, info = load_dng(path, half=half)
     li = float(lux_index) if lux_index is not None else (lux_index_from_ev(info.ev100) if info.ev100 else 300.0)
     k = float(cct) if cct is not None else info.cct
 
-    ae = meter(lin, li)
+    ae = meter(lin, li, camera)
     gain = np.float32(ae.exp_short * 2.0 ** ev)
     cond = dict(drc=ae.adrc_gain, lux=li, cct=k)
-    ccm = cc_m9(cam2srgb, li, k, ae.adrc_gain).T
-    hue_tab, sat_tab = tuning.tdl_tables("m9", flag=0.0, **cond)
-    glut = tuning.gamma_lut("m9", **cond)
-    cvp = tuning.cv_params("m9", flag=0.0, **cond)
-    gtm = tmc_lut(ae.adrc_gain, li)
+    ccm = cc_m9(cam2srgb, li, k, ae.adrc_gain, camera).T
+    hue_tab, sat_tab = tuning.tdl_tables(tag, flag=0.0, **cond)
+    glut = tuning.gamma_lut(tag, **cond)
+    cvp = tuning.cv_params(tag, flag=0.0, **cond)
+    gtm = tmc_lut(ae.adrc_gain, li, tag=tag)
 
     def strip(x):                      # per-pixel IPE chain; strips run in parallel threads
         x = ltm_global(x * gain, ae.adrc_gain, gtm)

@@ -23,12 +23,12 @@ from functools import lru_cache
 
 import numpy as np
 
-_ASSET = os.path.join(os.path.dirname(__file__), "assets", "ae_m9.json")
+_ASSETS = {"main": "ae_m9.json", "tele": "ae_tele.json"}   # main: wide_i Legend; tele: s5khpe Legend
 
 
-@lru_cache(maxsize=1)
-def _t() -> dict:
-    return json.load(open(_ASSET))
+@lru_cache(maxsize=None)
+def _t(camera: str = "main") -> dict:
+    return json.load(open(os.path.join(os.path.dirname(__file__), "assets", _ASSETS[camera])))
 
 
 def _i1(x, xs, ys):
@@ -74,8 +74,8 @@ def _pct_avg(pix_sorted, lo, hi):
     return float(pix_sorted[a:b].mean())
 
 
-def _weighted_luma(blocks, exposure, lux):
-    t = _t()["luma"]
+def _weighted_luma(blocks, exposure, lux, tt):
+    t = tt["luma"]
     w = np.asarray(t["weight_luma_calculation.center_wghted_mtr_tbl"], np.float64).reshape(16, 16).copy()
     ln = t["weight_luma_calculation.lux_node"]
     bs = _i1(lux, ln, t["weight_luma_calculation.bright_start"])
@@ -87,9 +87,9 @@ def _weighted_luma(blocks, exposure, lux):
     return float((w * b).sum() / w.sum())
 
 
-def meter(lin_wb: np.ndarray, lux_index: float) -> AEResult:
+def meter(lin_wb: np.ndarray, lux_index: float, camera: str = "main") -> AEResult:
     """lin_wb: linear, white-balanced camera RGB, 1.0 = sensor saturation."""
-    t = _t()
+    t = _t(camera)
     m = t["metering"]
     blocks, pix = _stats(lin_wb)
     lux = float(lux_index)
@@ -111,9 +111,9 @@ def meter(lin_wb: np.ndarray, lux_index: float) -> AEResult:
     mid = base * style
 
     # converge: weighted luma(E) == mid   (weights depend on E through the bright ramp)
-    e = mid / max(_weighted_luma(blocks, 1.0, lux), 1e-6)
+    e = mid / max(_weighted_luma(blocks, 1.0, lux, t), 1e-6)
     for _ in range(20):
-        e_new = e * mid / max(_weighted_luma(blocks, e, lux), 1e-6)
+        e_new = e * mid / max(_weighted_luma(blocks, e, lux, t), 1e-6)
         if abs(e_new / e - 1) < 1e-4:
             e = e_new
             break
@@ -128,5 +128,5 @@ def meter(lin_wb: np.ndarray, lux_index: float) -> AEResult:
     cap = _i1(lux, d["normal_drc_ctrl.nor_drc_lux_node"], d["normal_drc_ctrl.max_drc_gain"][0])
     adrc = float(np.clip(e / max(e_short, 1e-9), 1.0, cap))
     e_short = e / adrc
-    return AEResult(lux, _weighted_luma(blocks, 1.0, lux), dr, base, style, mid, e,
+    return AEResult(lux, _weighted_luma(blocks, 1.0, lux, t), dr, base, style, mid, e,
                     bright_avg, ref, e_short, adrc)
