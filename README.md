@@ -3,6 +3,8 @@
 ```
 python -m m9.render input.dng -o out.jpg [--camera main|tele] [--zoom Z] [--ev 0] [--lux-index N] [--cct K] [--half]
 ```
+> **复现建议使用主摄版本**（`--camera main`，默认）：主摄是 M9 调校最完整、与实拍观感最接近的一路；长焦版仅作参考。
+
 **两个版本**（见 FINDINGS.md「M9 跨摄像头一致性」）：
 - `--camera main`（默认）：主摄 ovx10500u 的 Legend 调校——AE 压暗（base 26 × Stylization 0.6–0.7，mode 37/42）、
   M9 gamma/cc/cv/tdl/tmc（LTM 关、GTM 100%）。
