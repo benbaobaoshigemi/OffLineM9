@@ -121,3 +121,14 @@
 - ROM libultrahdr（vendor/lib64）为数组版元数据（max/min/gamma/offset 各 [3] + cap_min/max + use_base_cg）；
   jpegrAggr 默认写 ISO 21496-1（persist.vendor.camera.algoengine.jpegrAggr.iso21496_1=1），分数由连分数逼近 float32 值
   （单通道 flags 0x40，全部分母相同时 0x48 公分母）。`emu/uhdr`：dec/enc/iso 三种模式直接调用 ROM 库。
+
+
+## 双 Adobe DCP 对称色彩桥接与跨机映射约束
+- 跨机型渲染（如 OPPO Find X9 Ultra -> 小米 17 Ultra）**必须同时提供源机型对应镜头与目标 17U 对应镜头的 Adobe Standard `.dcp`**。
+- 仅使用源 DNG 内嵌 `ColorMatrix` 而缺失外部 `.dcp` 的 `ProfileHueSatMap`（`90×30×1`）时，部分镜头（如 X9U 70mm）在绿色区间会出现明显的黄偏。
+- `m9/dcp.py` 在 256×256 色度查找表上按当前场景 CCT 插值，执行对称双向映射：`Camera_src(D50-WB) → ForwardMatrix_src(T) + HSM_src(T) → ProPhoto D50 PCS → inv(HSM_17U(T) + ForwardMatrix_17U(T)) → Camera_17U(D50-WB)`；两者同为 Adobe Standard 时 `ProfileLookTable` 对称抵消。前端经此桥接后在 `B2Y` 直接使用 17U 原生 `cc15` 矩阵。
+
+## 长焦管线色彩与白平衡响应特征（实测）
+- **蓝色吸引子与高光肩部**：`tele tdl13` 在 `195°/210°/225°` 存在 `+7° / +5° / -7°` 收敛，叠加 `StyleTrans` 提饱和与 `LeicaFilter` 约 `+4.5°` 回拉，在 `H_in ∈ [210°, 224°]` 形成总斜率约 `0.18` 的压缩平台（稳定输出 `~211°–213°` 天空蓝）；当亮度进入高光肩部时，`B` 通道率先压限，使蓝天自然褪色并向 `~180°–185°` 青色旋转。
+- **绿色非线性分水岭**：`tele tdl13` 在 `105°~165°` 全零；`StyleTrans` 在 `b2y ≈ 84°` 处存在暖橄榄绿向高饱和冷翠绿的跳变边界，真实植被经 `CC_M9` 与黄绿 `tdl13` 压至 `~82°` 恰好停在边界前，随后由 `LeicaFilter` 控住彩度。暗部绿叶偏冷青、受光面偏暖橄榄。
+- **神经网络消融与白平衡分离**：拿掉 `StyleTrans` 后，局部高频结构差异极小（`0.90~1.69 / 255`），其主要作用在于抬升红/蓝/绿彩度、避免暖光正红偏橙，以及塑造两头冷青、中间调微暖的白平衡分离（暗部/高光 ~6650–6900K、中间调 ~6220K，全亮度段相对 D65 净多出约 `+0.0010~+0.0014` 青绿偏）。

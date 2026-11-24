@@ -55,6 +55,7 @@ class AEResult:
     bright_ref: float
     exp_short: float          # highlight-safe exposure (what the sensor would get)
     adrc_gain: float          # mid_tone_gain, applied by the global tone curve
+    zoom_adjust_ratio: float = 1.0
 
 
 def _stats(lin_wb: np.ndarray):
@@ -77,22 +78,24 @@ def _pct_avg(pix_sorted, lo, hi):
 def _weighted_luma(blocks, exposure, lux, tt):
     t = tt["luma"]
     w = np.asarray(t["weight_luma_calculation.center_wghted_mtr_tbl"], np.float64).reshape(16, 16).copy()
-    ln = t["weight_luma_calculation.lux_node"]
-    bs = _i1(lux, ln, t["weight_luma_calculation.bright_start"])
-    be = _i1(lux, ln, t["weight_luma_calculation.bright_end"])
-    bw = _i1(lux, ln, t["weight_luma_calculation.bright_weight"])
     b = blocks * exposure
-    ramp = np.clip((b - bs) / max(be - bs, 1e-6), 0, 1)
-    w *= 1.0 + (bw - 1.0) * ramp
+    if t.get("weight_luma_calculation.enable_bright_weight.value", False):
+        ln = t["weight_luma_calculation.lux_node"]
+        bs = _i1(lux, ln, t["weight_luma_calculation.bright_start"])
+        be = _i1(lux, ln, t["weight_luma_calculation.bright_end"])
+        bw = _i1(lux, ln, t["weight_luma_calculation.bright_weight"])
+        ramp = np.clip((b - bs) / max(be - bs, 1e-6), 0, 1)
+        w *= 1.0 + (bw - 1.0) * ramp
     return float((w * b).sum() / w.sum())
 
 
-def meter(lin_wb: np.ndarray, lux_index: float, camera: str = "main") -> AEResult:
+def meter(lin_wb: np.ndarray, lux_index: float, camera: str = "main", zoom: float | None = None) -> AEResult:
     """lin_wb: linear, white-balanced camera RGB, 1.0 = sensor saturation."""
     t = _t(camera)
     m = t["metering"]
     blocks, pix = _stats(lin_wb)
     lux = float(lux_index)
+    z = (1.0 if camera == "main" else 4.0) if zoom is None else float(zoom)
 
     # dynamic range bright/dark (percentile averages of the short/long hist bands)
     hl = m["hist_target_by_lux.hist_short_long_adjustment.hist_lux_node"]
@@ -102,13 +105,16 @@ def meter(lin_wb: np.ndarray, lux_index: float, camera: str = "main") -> AEResul
     dark_avg = _pct_avg(pix, 0.0, dt_en)
     dr = bright_avg / max(dark_avg, 1e-3)
 
-    # mid target
+    # mid target: tuning_base_target * zoom_adjust_ratio * style_scale (libmiaec CalculateBaseTarget)
     bl = m["base_target_by_lux.base_target_lux_node"]
     base = _i2(lux, dr, bl, m["base_target_by_lux.base_target_dr_node"], m["base_target_by_lux.base_target"])
+    zr = m.get("base_target_by_lux.base_target_zoom_adjust_ratio")
+    zn = m.get("base_target_by_lux.base_target_zoom_node")
+    zoom_adj = _i2(lux, z, bl, zn, zr) if (zr and zn) else 1.0
     s = t["stylization"]
     style = _i1(lux, s["style_base.style_base_target_lux_node"], s["style_base.style_base_target_scale"][0]) \
         if s.get("enable_stylization.value", s.get("enable_stylization", False)) else 1.0
-    mid = base * style
+    mid = base * zoom_adj * style
 
     # converge: weighted luma(E) == mid   (weights depend on E through the bright ramp)
     e = mid / max(_weighted_luma(blocks, 1.0, lux, t), 1e-6)
@@ -129,4 +135,4 @@ def meter(lin_wb: np.ndarray, lux_index: float, camera: str = "main") -> AEResul
     adrc = float(np.clip(e / max(e_short, 1e-9), 1.0, cap))
     e_short = e / adrc
     return AEResult(lux, _weighted_luma(blocks, 1.0, lux, t), dr, base, style, mid, e,
-                    bright_avg, ref, e_short, adrc)
+                    bright_avg, ref, e_short, adrc, zoom_adj)

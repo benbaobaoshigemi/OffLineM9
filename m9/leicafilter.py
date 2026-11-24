@@ -194,35 +194,22 @@ def lut_apply(rgb: np.ndarray, lut: np.ndarray) -> np.ndarray:
     return out
 
 
-def _lut_apply_torch(torch, dev, rgb, lut):
-    """Same trilinear lookup as the numpy path, on the GPU (row chunks bound memory)."""
-    n = lut.shape[0]
+def _lut_vol_torch(torch, dev, lut: np.ndarray):
     t = torch.from_numpy(np.ascontiguousarray((lut.astype(np.float32) / 255.0)[..., ::-1])).to(dev)
-    tf = t.reshape(-1, 3)
-    out = np.empty(rgb.shape, np.float32)
-    step = max(1, (1 << 22) // max(1, rgb.shape[1]))
-    for y in range(0, rgb.shape[0], step):
-        x = torch.from_numpy(np.ascontiguousarray(rgb[y:y + step], np.float32)).to(dev).clamp(0, 1) * (n - 1)
-        i0 = torch.clamp(torch.floor(x).to(torch.int64), max=n - 2)
-        f = x - i0
-        acc = torch.zeros_like(x)
-        for dr in (0, 1):
-            wr = f[..., 0:1] if dr else 1 - f[..., 0:1]
-            for dg in (0, 1):
-                wg = f[..., 1:2] if dg else 1 - f[..., 1:2]
-                for db in (0, 1):
-                    wb = f[..., 2:3] if db else 1 - f[..., 2:3]
-                    idx = ((i0[..., 0] + dr) * n + (i0[..., 1] + dg)) * n + (i0[..., 2] + db)
-                    acc = acc + wr * wg * wb * tf[idx]
-        out[y:y + step] = acc.cpu().numpy()
-    return out
+    return t.permute(3, 0, 1, 2).unsqueeze(0)
 
 
-def _cvstyle_torch(torch, dev, rgb, p, current_time):
-    h, w = rgb.shape[:2]
-    start, end, coord_scale, value_scale, k, b, v, t = (float(x) for x in p)
-    ys = torch.arange(h, device=dev, dtype=torch.float32)[:, None].expand(h, w)
-    xs = torch.arange(w, device=dev, dtype=torch.float32)[None, :].expand(h, w)
+def _lut_chunk_torch(F, vol, x_chunk):
+    grid = (x_chunk.clamp(0.0, 1.0)[..., [2, 1, 0]] * 2.0 - 1.0).unsqueeze(0).unsqueeze(0)
+    return F.grid_sample(vol, grid, mode="bilinear", padding_mode="border", align_corners=True).squeeze(0).squeeze(1).permute(1, 2, 0)
+
+
+def _cvstyle_chunk_torch(torch, x, y0: int, h: int, w: int, p, current_time: float):
+    start, end, coord_scale, value_scale, k, b, v, t = (float(val) for val in p)
+    ch = x.shape[0]
+    dev = x.device
+    ys = torch.arange(y0, y0 + ch, device=dev, dtype=torch.float32)[:, None]
+    xs = torch.arange(w, device=dev, dtype=torch.float32)[None, :]
     uvx = ((xs + 0.5) / w - 0.5) * w / h + 0.5
     uvy = (ys + 0.5) / h
     ux, uy = uvx - 0.5, uvy - 0.5
@@ -238,13 +225,36 @@ def _cvstyle_torch(torch, dev, rgb, p, current_time):
     dist = dist + 0.004 * rnd * 10.0 * coord_scale
     s = torch.clamp((dist - start) / (end - start), 0.0, 1.0)
     vig = s * s * (3.0 - 2.0 * s)
-    x = torch.from_numpy(np.ascontiguousarray(rgb, np.float32)).to(dev)
     r, g, bb = x[..., 0], x[..., 1], x[..., 2]
     L = 0.499 * r + 0.387 * g + 0.114 * bb
     Y = 0.299 * r + 0.587 * g + 0.114 * bb
     pf = v / (1.0 + torch.exp(k * (-L + b))) + t
     vig = ((1.0 - pf) * vig + pf) * value_scale
-    return (x + (Y * (vig - 1.0))[..., None]).cpu().numpy()
+    return x + (Y * (vig - 1.0)).unsqueeze(-1)
+
+
+def _lut_apply_torch(torch, dev, rgb, lut):
+    """Same trilinear lookup as the numpy path, using hardware trilinear grid_sample on GPU."""
+    import torch.nn.functional as F
+    vol = _lut_vol_torch(torch, dev, lut)
+    out = np.empty(rgb.shape, np.float32)
+    step = max(1, (1 << 22) // max(1, rgb.shape[1]))
+    with torch.no_grad():
+        for y in range(0, rgb.shape[0], step):
+            x = torch.from_numpy(np.ascontiguousarray(rgb[y:y + step], np.float32)).to(dev)
+            out[y:y + step] = _lut_chunk_torch(F, vol, x).cpu().numpy()
+    return out
+
+
+def _cvstyle_torch(torch, dev, rgb, p, current_time):
+    h, w = rgb.shape[:2]
+    out = np.empty(rgb.shape, np.float32)
+    step = max(1, (1 << 22) // max(1, w))
+    with torch.no_grad():
+        for y in range(0, h, step):
+            x = torch.from_numpy(np.ascontiguousarray(rgb[y:y + step], np.float32)).to(dev)
+            out[y:y + step] = _cvstyle_chunk_torch(torch, x, y, h, w, p, current_time).cpu().numpy()
+    return out
 
 
 def _nrand(u, v):
@@ -302,9 +312,46 @@ class LeicaFilter:
         self.preview = LeicaFilterParams(os.path.join(assets, "leica_filter_param_m9_preview.bin"))
 
     def __call__(self, rgb: np.ndarray, lux_index: float, cct: float, zoom: float = 1.0,
-                 scene: str = "common", style_trans_on: bool = True, shading: bool = True) -> np.ndarray:
+                 scene: str = "common", style_trans_on: bool = True, shading: bool = True,
+                 to_p3_u8: bool = False) -> np.ndarray:
         p = self.snapshot if style_trans_on else self.preview
-        out = lut_apply(rgb, p.lut(scene, lux_index, cct))
+        lut = p.lut(scene, lux_index, cct)
+        torch, dev = _torch()
+        if torch is not None and dev == "cuda":
+            import torch.nn.functional as F
+            from .uhdr import SRGB_TO_P3
+            vol = _lut_vol_torch(torch, dev, lut)
+            sh = p.shading_params(zoom, lux_index, cct) if shading else None
+            p3_m = torch.from_numpy(SRGB_TO_P3.T.copy()).to(dev) if to_p3_u8 else None
+            is_u8 = rgb.dtype == np.uint8
+            h, w = rgb.shape[:2]
+            out = np.empty(rgb.shape, np.uint8 if to_p3_u8 else np.float32)
+            step = max(1, (1 << 22) // max(1, w))
+            with torch.no_grad():
+                for y in range(0, h, step):
+                    x = torch.from_numpy(np.ascontiguousarray(rgb[y:y + step])).to(dev)
+                    if is_u8:
+                        x = x.float() / 255.0
+                    elif x.dtype != torch.float32:
+                        x = x.float()
+                    x = _lut_chunk_torch(F, vol, x)
+                    if sh is not None:
+                        x = _cvstyle_chunk_torch(torch, x, y, h, w, sh, 0.0)
+                    x = torch.clamp(x, 0.0, 1.0)
+                    if to_p3_u8:
+                        lin = torch.where(x <= 0.04045, x / 12.92, ((x + 0.055) / 1.055) ** 2.4)
+                        lin = torch.clamp(lin @ p3_m, 0.0, 1.0)
+                        p3 = torch.where(lin <= 0.0031308, lin * 12.92, 1.055 * torch.pow(lin, 1.0 / 2.4) - 0.055)
+                        out[y:y + step] = torch.clamp(p3 * 255.0 + 0.5, 0.0, 255.0).to(torch.uint8).cpu().numpy()
+                    else:
+                        out[y:y + step] = x.cpu().numpy()
+            return out
+        f_rgb = rgb.astype(np.float32) / 255.0 if rgb.dtype == np.uint8 else rgb
+        out = lut_apply(f_rgb, lut)
         if shading:
             out = cvstyle_apply(out, p.shading_params(zoom, lux_index, cct))
-        return np.clip(out, 0.0, 1.0)
+        out = np.clip(out, 0.0, 1.0)
+        if to_p3_u8:
+            from .uhdr import srgb_to_p3
+            return (srgb_to_p3(out) * 255.0 + 0.5).astype(np.uint8)
+        return out

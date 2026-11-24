@@ -40,16 +40,26 @@ class TorchBackend:
                 self.nets[model] = StyleTransNet(p, device=self.device)
         return self.nets[model]
 
-    def run(self, model: str, x: np.ndarray) -> np.ndarray:
+    accepts_u8 = True
+
+    def run(self, model: str, x: np.ndarray, as_u8: bool = False) -> np.ndarray:
         import torch
         net = self._net(model)
-        q = (np.clip(np.rint(x), 0, 255).astype(np.float32) - 128.0) / 127.5
+        arr = x if x.dtype == np.uint8 else np.clip(np.rint(x), 0, 255).astype(np.float32)
         outs = []
-        bs = 4 if model == "colorfix" else 1
+        bs = (16 if self.device.startswith("cuda") else 4) if model == "colorfix" else 1
+        use_fp16 = self.device.startswith("cuda")
         with torch.no_grad():
-            for i in range(0, len(q), bs):
-                t = torch.from_numpy(q[i:i + bs]).permute(0, 3, 1, 2).to(self.device)
-                y = net(t) if model == "colorfix" else net(t[:, :3], t[:, 3:4])
-                outs.append(y.permute(0, 2, 3, 1).cpu().numpy())
-        y = np.concatenate(outs)
-        return np.clip(np.rint(y * 127.5 + 128.0), 0, 255).astype(np.float32)
+            for i in range(0, len(arr), bs):
+                t = torch.from_numpy(np.ascontiguousarray(arr[i:i + bs])).to(self.device)
+                t = (t.float() - 128.0) / 127.5
+                t = t.permute(0, 3, 1, 2)
+                if use_fp16:
+                    with torch.amp.autocast("cuda", dtype=torch.float16):
+                        y = net(t) if model == "colorfix" else net(t[:, :3], t[:, 3:4])
+                    y = y.float()
+                else:
+                    y = net(t) if model == "colorfix" else net(t[:, :3], t[:, 3:4])
+                y = torch.clamp(torch.round(y.permute(0, 2, 3, 1) * 127.5 + 128.0), 0.0, 255.0)
+                outs.append((y.to(torch.uint8) if as_u8 else y).cpu().numpy())
+        return np.concatenate(outs)

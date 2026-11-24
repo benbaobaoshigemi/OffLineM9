@@ -82,17 +82,46 @@ def icc_p3() -> bytes:
     return _ICC_P3
 
 
+def _srgb_to_p3_torch(rgb: np.ndarray, as_u8: bool = False) -> np.ndarray | None:
+    try:
+        import torch
+        if not torch.cuda.is_available():
+            return None
+    except ImportError:
+        return None
+    h, w = rgb.shape[:2]
+    out = np.empty(rgb.shape, np.uint8 if as_u8 else np.float32)
+    step = max(1, (1 << 22) // max(1, w))
+    with torch.no_grad():
+        m = torch.from_numpy(SRGB_TO_P3.T.copy()).to("cuda")
+        for y in range(0, h, step):
+            x = torch.from_numpy(np.ascontiguousarray(rgb[y:y + step], np.float32)).to("cuda").clamp_(0.0, 1.0)
+            lin = torch.where(x <= 0.04045, x / 12.92, ((x + 0.055) / 1.055) ** 2.4)
+            lin = torch.clamp(lin @ m, 0.0, 1.0)
+            p3 = torch.where(lin <= 0.0031308, lin * 12.92, 1.055 * torch.pow(lin, 1.0 / 2.4) - 0.055)
+            out[y:y + step] = (torch.clamp(p3 * 255.0 + 0.5, 0.0, 255.0).to(torch.uint8) if as_u8 else p3).cpu().numpy()
+    return out
+
+
 def srgb_to_p3(rgb: np.ndarray) -> np.ndarray:
     """Re-encode display sRGB values as Display P3 (same colours, sRGB transfer curve)."""
+    gpu = _srgb_to_p3_torch(rgb, as_u8=False)
+    if gpu is not None:
+        return gpu
     x = np.clip(rgb, 0, 1).astype(np.float32)
     lin = np.where(x <= 0.04045, x / 12.92, ((x + 0.055) / 1.055) ** 2.4)
     lin = np.clip(lin @ SRGB_TO_P3.T, 0, 1)
     return np.where(lin <= 0.0031308, lin * 12.92, 1.055 * lin ** (1 / 2.4) - 0.055)
 
 
-def encode_p3_jpeg(rgb: np.ndarray, quality: int) -> bytes:
-    """sRGB float image -> Display P3 JPEG bytes with the ICC profile embedded (APP2)."""
-    u8 = (srgb_to_p3(rgb) * 255.0 + 0.5).astype(np.uint8)
+def encode_p3_jpeg(rgb: np.ndarray, quality: int, is_p3_u8: bool = False) -> bytes:
+    """sRGB float (or pre-converted Display P3 uint8 when `is_p3_u8=True`) -> Display P3 JPEG."""
+    if is_p3_u8:
+        u8 = rgb
+    else:
+        u8 = _srgb_to_p3_torch(rgb, as_u8=True)
+        if u8 is None:
+            u8 = (srgb_to_p3(rgb) * 255.0 + 0.5).astype(np.uint8)
     ok, j = cv2.imencode(".jpg", u8[..., ::-1], [cv2.IMWRITE_JPEG_QUALITY, quality])
     if not ok:
         raise RuntimeError("JPEG encode failed")
@@ -146,9 +175,10 @@ def _mpf(primary_size: int, gainmap_size: int, gainmap_offset: int) -> bytes:
     return b"MPF\0" + tiff + ifd + ent
 
 
-def write(path: str, sdr_rgb: np.ndarray, gm, quality: int = 95, gm_quality: int = 98):
-    """sdr_rgb: float [0,1] display sRGB (primary, stored as Display P3 + ICC); gm: m9.gainmap.GainMap."""
-    prim = encode_p3_jpeg(sdr_rgb, quality)
+def write(path: str, sdr_rgb: np.ndarray, gm, quality: int = 95, gm_quality: int = 98,
+          is_p3_u8: bool = False):
+    """sdr_rgb: float [0,1] display sRGB (or P3 uint8 if `is_p3_u8=True`); gm: m9.gainmap.GainMap."""
+    prim = encode_p3_jpeg(sdr_rgb, quality, is_p3_u8=is_p3_u8)
     ok2, gmj = cv2.imencode(".jpg", gm.image, [cv2.IMWRITE_JPEG_QUALITY, gm_quality])
     if not ok2:
         raise RuntimeError("JPEG encode failed")

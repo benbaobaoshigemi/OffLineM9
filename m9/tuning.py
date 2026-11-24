@@ -47,6 +47,14 @@ LEVEL_VARS_BY_TAG = {
     "tele_normal": {
         "cc15_ipe_v2": ("drc", "one", "one", "lux", "cct", "zoom"),
     },
+    "tele_lin": {
+        "gamma152_ipe_v2": ("drc", "gain", "one", "lux", "one"),
+        "cc15_ipe_v2": ("one", "one", "one", "lux", "cct", "one"),
+        "cv122_ipe_v2": ("one", "gain", "lux", "cct"),
+        "tdl13_ipe_v2": ("one", "one", "flag", "lux", "cct", "zoom"),
+        "ltm21_ipe_v2": ("drc", "lux"),
+        "tmc202_sw_v2": ("drc", "gain", "lux"),
+    },
 }
 OPTICAL_ZOOM = 4.0
 

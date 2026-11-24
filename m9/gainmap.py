@@ -65,27 +65,14 @@ def linear_frame_yuv(fe: frontend.FrontEndResult, ev: float = 0.0):
     dg = digital_gain(ae.adrc_gain, li)
     gain = np.float32(ae.exp_short * 2.0 ** ev * dg)
     cond = dict(drc=ae.adrc_gain, lux=li, cct=k)
-    ccm = frontend.cc_m9(fe.cam2srgb, li, k, ae.adrc_gain, fe.camera).T
+    ccm = frontend.cc_m9(fe.cam2srgb, li, k, ae.adrc_gain, fe.camera,
+                         target_dcp=fe.target_dcp, native_sensor=fe.native_sensor).T
     hue_tab, sat_tab = tuning.tdl_tables(tag, flag=0.0, **cond)
     cvp = tuning.cv_params(tag, flag=0.0, **cond)
     glut = tuning.gamma_lut(lin_tag, **cond)
     gtm = frontend.tmc_lut(ae.adrc_gain, li, tag=lin_tag)
-    lin = fe.lin
-    out = np.empty(lin.shape, np.float32)
-
-    def strip(a, b):
-        x = frontend.ltm_global(lin[a:b] * gain, ae.adrc_gain, gtm)
-        x = np.clip(x @ ccm, 0, None)
-        x = frontend.tdl_apply(x, hue_tab, sat_tab)
-        x = frontend.gamma_apply(x, glut)
-        y, cb, cr = frontend.cv_yuv(x, cvp)
-        out[a:b, :, 0], out[a:b, :, 1], out[a:b, :, 2] = y, cb, cr
-
-    from concurrent.futures import ThreadPoolExecutor
-    n = os.cpu_count() or 4
-    bd = np.linspace(0, lin.shape[0], 2 * n + 1).astype(int)
-    with ThreadPoolExecutor(n) as ex:
-        list(ex.map(lambda i: strip(bd[i], bd[i + 1]), range(2 * n)))
+    out = frontend.ipe_run(fe.lin, gain, ae.adrc_gain, gtm, ccm, hue_tab, sat_tab,
+                           glut, cvp, output_yuv=True)
     return out, dg
 
 
@@ -137,6 +124,72 @@ def post_proc(g8: np.ndarray, residual_gain: float = 1.0) -> GainMap:
     return GainMap(g8, boost, hl_pct=hl)
 
 
+def _make_torch(fe: frontend.FrontEndResult, ev: float) -> GainMap | None:
+    """Compute B2Y GainmapForRGB + NV12 + maxRGB on CUDA row chunks (zero 50MP YUV copy)."""
+    try:
+        import torch
+        if not torch.cuda.is_available():
+            return None
+    except ImportError:
+        return None
+    ae, li, k = fe.ae, fe.lux_index, fe.cct
+    tag = frontend.CAMERAS[fe.camera][0]
+    lin_tag = tag + "_lin" if tag + "_lin" in tuning.tables() else tag
+    dg = digital_gain(ae.adrc_gain, li)
+    gain = float(ae.exp_short * 2.0 ** ev * dg)
+    cond = dict(drc=ae.adrc_gain, lux=li, cct=k)
+    ccm = frontend.cc_m9(fe.cam2srgb, li, k, ae.adrc_gain, fe.camera,
+                         target_dcp=fe.target_dcp, native_sensor=fe.native_sensor).T
+    hue_tab, sat_tab = tuning.tdl_tables(tag, flag=0.0, **cond)
+    cvp = tuning.cv_params(tag, flag=0.0, **cond)
+    glut = tuning.gamma_lut(lin_tag, **cond)
+    gtm = frontend.tmc_lut(ae.adrc_gain, li, tag=lin_tag)
+
+    lin = fe.lin
+    H, W = lin.shape[:2]
+    ow = ((W + SCALE - 1) // SCALE + 1) & ~1
+    oh = ((H + SCALE - 1) // SCALE + 1) & ~1
+    r = W // ow if ow else 1
+    rows = np.minimum(np.arange(oh) * r, H - 1)
+    c0 = np.arange(0, ow, 2) * r
+    cols = np.minimum(np.stack([c0, c0 + 1], 1).reshape(-1)[:ow], W - 1)
+    crow = np.minimum(rows // 2, H // 2 - 1)
+    ccol = np.minimum(np.repeat(c0 // 2, 2)[:ow], W // 2 - 1)
+
+    g8 = np.empty((oh, ow), np.uint8)
+    out_step = 512
+    with torch.no_grad():
+        state = frontend._ipe_prep_torch("cuda", ae.adrc_gain, gtm, ccm, hue_tab, sat_tab, glut, cvp)
+        cols_t = torch.from_numpy(cols.astype(np.int64)).to("cuda")
+        ccol_t = torch.from_numpy(ccol.astype(np.int64)).to("cuda")
+        w2 = W - (W % 2)
+        for oy0 in range(0, oh, out_step):
+            oy1 = min(oy0 + out_step, oh)
+            iy0 = int(crow[oy0] * 2)
+            iy1 = int(crow[oy1 - 1] * 2 + 2)
+            x = torch.from_numpy(np.ascontiguousarray(lin[iy0:iy1], np.float32)).to("cuda")
+            yuv = frontend._ipe_chunk_torch(torch, x, gain, state, output_yuv=True)
+            y8 = torch.clamp(torch.round(yuv[..., 0] * 255.0), 0.0, 255.0).to(torch.int32)
+            ch_h = yuv.shape[0]
+            c = yuv[:ch_h - (ch_h % 2), :w2, 1:].reshape(ch_h // 2, 2, w2 // 2, 2, 2).mean(dim=(1, 3))
+            c8 = torch.clamp(torch.round(c * 255.0 + 128.0), 0.0, 255.0).to(torch.int32)
+            l_rows = torch.from_numpy((rows[oy0:oy1] - iy0).astype(np.int64)).to("cuda")
+            l_crow = torch.from_numpy((crow[oy0:oy1] - iy0 // 2).astype(np.int64)).to("cuda")
+            Y = y8[l_rows][:, cols_t]
+            u = c8[l_crow][:, ccol_t, 0] - 128
+            v = c8[l_crow][:, ccol_t, 1] - 128
+            dR, dB, dG = v * 359, u * 454, u * -88 + v * -183
+            mx = torch.clamp(torch.maximum(torch.maximum(dR, dG), dB), min=0) >> 8
+            s = (dR + dB + dG) >> 8
+            t = (s * 0x5556) >> 16
+            t = t - (t >> 15)
+            g8[oy0:oy1] = torch.clamp(Y + ((mx + t) >> 1), 0, 255).to(torch.uint8).cpu().numpy()
+    return post_proc(g8)
+
+
 def make(fe: frontend.FrontEndResult, ev: float = 0.0) -> GainMap:
+    gpu = _make_torch(fe, ev)
+    if gpu is not None:
+        return gpu
     yuv, _ = linear_frame_yuv(fe, ev)
     return post_proc(max_rgb(*to_nv12(yuv)))

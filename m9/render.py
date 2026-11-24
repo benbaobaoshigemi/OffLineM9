@@ -1,13 +1,13 @@
 """Offline Leica Moment M9 renderer (17 Ultra pipeline, reimplemented).
 
-  python -m m9.render input.dng -o out.jpg [--camera main|tele] [--lux-index N] [--cct K] [--ev E] [--half]
+  python -m m9.render input.dng -o out.jpg [--camera tele|main] [--dcp auto|none|PATH] [--lux-index N] [--cct K] [--ev E] [--half]
 
---camera selects whose Legend tuning is reproduced (the 17U M9 ISP tuning differs per camera,
-see FINDINGS.md): main = ovx10500u (own M9 AE/IPE tuning), tele = s5khpe (no M9 ISP tuning:
-normal AE/IPE; M9 = AWB lock + StyleTrans + LeicaFilter).
+--camera selects whose Legend tuning is reproduced:
+  tele (default) = s5khpe optical tele (sensor mode 4, deterministic static CC, zero AI Matrix B)
+  main           = ovx10500u wide_i (static Matrix A; per-frame AI Matrix B omitted)
 
 Stages (17U legendsnapshot): B2Y front end (m9.frontend) -> StyleTrans (pluggable, see
-m9.styletrans) -> LeicaFilter (m9.leicafilter) -> JPEG.
+m9.styletrans) -> LeicaFilter (m9.leicafilter) -> JPEG / Ultra HDR.
 """
 from __future__ import annotations
 
@@ -22,41 +22,45 @@ from .leicafilter import LeicaFilter
 
 def render(path: str, out: str, lux_index: float | None = None, cct: float | None = None,
            scene: str = "common", ev: float = 0.0, quality: int = 95, half: bool = False,
-           verbose: bool = True, camera: str = "main", zoom: float | None = None,
-           hdr: bool = True) -> np.ndarray:
-    fe = b2y(path, lux_index, cct, ev=ev, half=half, camera=camera)
+           verbose: bool = True, camera: str = "tele", zoom: float | None = None,
+           hdr: bool = True, dcp: str | None = "auto", src_dcp: str | None = "auto") -> np.ndarray:
     if zoom is None:
         zoom = 1.0 if camera == "main" else _tele_zoom(path)
+    fe = b2y(path, lux_index, cct, ev=ev, half=half, camera=camera, zoom=zoom,
+             target_dcp=dcp, source_dcp=src_dcp)
     img = fe.rgb
     style_on = False
     try:
         from . import styletrans
         st = styletrans.load()
         if st is not None:
-            img = st(img, fe.lux_index, fe.cct)
+            img = st.run_u8(img, fe.lux_index, fe.cct)
             style_on = True
     except ImportError:
         pass
-    img = LeicaFilter()(img, lux_index=fe.lux_index, cct=fe.cct, zoom=zoom, scene=scene,
-                        style_trans_on=style_on)
+    p3_u8 = LeicaFilter()(img, lux_index=fe.lux_index, cct=fe.cct, zoom=zoom, scene=scene,
+                          style_trans_on=style_on, to_p3_u8=True)
     if verbose:
         a = fe.ae
+        s_dcp = fe.source_dcp and os.path.basename(fe.source_dcp)
+        t_dcp = fe.target_dcp and os.path.basename(fe.target_dcp)
+        cc_src = f"DCP({s_dcp or 'DNG'}->{t_dcp})" if t_dcp else f"rel({s_dcp or 'DNG'})"
         print(f"[{camera} x{zoom:.2f}] {os.path.basename(path)}: {fe.info.make} {fe.info.model} EV100={fe.info.ev100:.2f} "
-              f"lux_index={fe.lux_index:.0f} cct={fe.cct:.0f} | AE base={a.base_target:.1f} "
+              f"lux_index={fe.lux_index:.0f} cct={fe.cct:.0f} | AE base={a.base_target:.1f} zadj={a.zoom_adjust_ratio:.2f} "
               f"style={a.style_scale:.2f} mid={a.mid_target:.1f} dr={a.dr_b2d:.1f} "
               f"exp_mid={a.exp_mid:.2f} exp_short={a.exp_short:.2f} adrc={a.adrc_gain:.2f} "
-              f"| StyleTrans={'on' if style_on else 'off (LeicaFilter preview params)'}")
+              f"| CC={cc_src} StyleTrans={'on' if style_on else 'off (LeicaFilter preview params)'}")
     if hdr:
         from . import gainmap, uhdr
         gm = gainmap.make(fe, ev)
         fe.lin = None
-        n = uhdr.write(out, img, gm, quality)
+        n = uhdr.write(out, p3_u8, gm, quality, is_p3_u8=True)
         if verbose:
             print(f"  UltraHDR: gainmap {gm.image.shape[1]}x{gm.image.shape[0]} mean={gm.image.mean():.1f} "
                   f"hl={gm.hl_pct:.2f}% maxBoost={gm.max_boost:.2f} -> {n / 1e6:.1f} MB")
     else:
-        _save(img, out, quality)
-    return img
+        _save(p3_u8, out, quality, is_p3_u8=True)
+    return p3_u8
 
 
 def _tele_zoom(path: str) -> float:
@@ -67,10 +71,10 @@ def _tele_zoom(path: str) -> float:
     return float(np.clip(f35 / 23.0, 3.2, 4.3)) if f35 and f35 > 0 else 4.3
 
 
-def _save(img: np.ndarray, out: str, quality: int):
+def _save(img: np.ndarray, out: str, quality: int, is_p3_u8: bool = False):
     from .uhdr import encode_p3_jpeg
     with open(out, "wb") as f:
-        f.write(encode_p3_jpeg(img, quality))
+        f.write(encode_p3_jpeg(img, quality, is_p3_u8=is_p3_u8))
 
 
 def main():
@@ -82,13 +86,18 @@ def main():
     ap.add_argument("--scene", default="common",
                     choices=["common", "protrait", "night", "plants", "food", "sunrise_sunset"])
     ap.add_argument("--ev", type=float, default=0.0, help="exposure compensation (stops)")
-    ap.add_argument("--camera", default="main", choices=["main", "tele"])
+    ap.add_argument("--camera", default="tele", choices=["main", "tele"])
     ap.add_argument("--zoom", type=float, help="LeicaFilter zoom ratio (default: main 1.0, tele from focal length)")
+    ap.add_argument("--dcp", default="auto",
+                    help="target 17U .dcp path, 'auto' (use 17U Adobe Standard DCP if found), or 'none' (relative CC)")
+    ap.add_argument("--src-dcp", default="auto",
+                    help="source camera .dcp path, 'auto' (match camera/lens Adobe DCP), or 'none' (DNG ColorMatrix)")
     ap.add_argument("--no-hdr", action="store_true", help="plain SDR JPEG (no Ultra HDR gain map)")
     ap.add_argument("--half", action="store_true", help="half-size demosaic (fast preview)")
     a = ap.parse_args()
     out = a.output or os.path.splitext(a.input)[0] + "_M9.jpg"
-    render(a.input, out, a.lux_index, a.cct, a.scene, a.ev, half=a.half, camera=a.camera, zoom=a.zoom, hdr=not a.no_hdr)
+    render(a.input, out, a.lux_index, a.cct, a.scene, a.ev, half=a.half, camera=a.camera, zoom=a.zoom,
+           hdr=not a.no_hdr, dcp=a.dcp, src_dcp=a.src_dcp)
 
 
 if __name__ == "__main__":
